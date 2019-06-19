@@ -15,8 +15,7 @@ public class User {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-	@Column(name = "user_name")
-	private String userName;
+	private String username;
 	private String password;
 	private String emaill;
 	private Boolean enabled;
