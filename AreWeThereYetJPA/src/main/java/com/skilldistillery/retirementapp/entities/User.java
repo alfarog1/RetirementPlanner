@@ -28,11 +28,11 @@ public class User {
 		super();
 	}
 
-	public User(int id, String userName, String password, String emaill, Boolean enabled, UserProfile userProfile,
+	public User(int id, String username, String password, String emaill, Boolean enabled, UserProfile userProfile,
 			List<Asset> assets) {
 		super();
 		this.id = id;
-		this.userName = userName;
+		this.username = username;
 		this.password = password;
 		this.emaill = emaill;
 		this.enabled = enabled;
@@ -49,11 +49,11 @@ public class User {
 	}
 
 	public String getUserName() {
-		return userName;
+		return username;
 	}
 
-	public void setUserName(String userName) {
-		this.userName = userName;
+	public void setUserName(String username) {
+		this.username = username;
 	}
 
 	public String getPassword() {
@@ -98,7 +98,7 @@ public class User {
 
 	@Override
 	public String toString() {
-		return "User [id=" + id + ", userName=" + userName + ", password=" + password + ", emaill=" + emaill
+		return "User [id=" + id + ", userName=" + username + ", password=" + password + ", emaill=" + emaill
 				+ ", enabled=" + enabled + "]";
 	}
 
