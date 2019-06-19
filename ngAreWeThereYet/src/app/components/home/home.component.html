@@ -1,3 +1,88 @@
-<p>
-  home works!
-</p>
+<br>
+<br>
+<h1>Are We There Yet?</h1>
+<br>
+<br>
+<br>
+<table class="centered">
+<tbody>
+<tr>
+  <td>
+<div>
+  <div>
+    <div style="display: block">
+      <canvas baseChart
+      height="350"
+      width="350"
+        [data]="doughnutChartData"
+        [labels]="doughnutChartLabels"
+        [chartType]="doughnutChartType"
+        [colors]="donutColors">
+      </canvas>
+    </div>
+  </div>
+</div>
+</td>
+<td>
+<div>
+  <div>
+    <div style="display: block">
+      <canvas baseChart
+      height="350"
+      width="350"
+        [data]="doughnutChartData2"
+        [labels]="doughnutChartLabels2"
+        [chartType]="doughnutChartType2"
+        [colors]="donutColors">
+      </canvas>
+    </div>
+  </div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+<br>
+<br>
+<br>
+<table class="centered">
+    <tbody>
+    <tr>
+      <td>
+    <div>
+      <div>
+        <div style="display: block">
+          <canvas baseChart
+          height="350"
+          width="350"
+            [data]="doughnutChartData3"
+            [labels]="doughnutChartLabels3"
+            [chartType]="doughnutChartType3"
+            [colors]="donutColors">
+          </canvas>
+        </div>
+      </div>
+    </div>
+    </td>
+    <td>
+    <div>
+      <div>
+        <div style="display: block">
+          <canvas baseChart
+          height="350"
+          width="350"
+            [data]="doughnutChartData4"
+            [labels]="doughnutChartLabels4"
+            [chartType]="doughnutChartType4"
+            [colors]="donutColors">
+          </canvas>
+        </div>
+      </div>
+    </div>
+    </td>
+    </tr>
+    </tbody>
+    </table>
+
+
+<script src="node_modules/chart.js/src/chart.js"></script>
