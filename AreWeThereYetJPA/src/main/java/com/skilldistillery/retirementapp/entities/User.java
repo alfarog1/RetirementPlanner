@@ -20,17 +20,17 @@ public class User {
 	private String password;
 	private String emaill;
 	private Boolean enabled;
-	@OneToOne
+	@OneToOne(mappedBy = "user")
 	private UserProfile userProfile;
 	@OneToMany
-	private List<Portfolio> portfolios;
+	private List<Asset> assets;
 
 	public User() {
 		super();
 	}
 
 	public User(int id, String userName, String password, String emaill, Boolean enabled, UserProfile userProfile,
-			List<Portfolio> portfolios) {
+			List<Asset> assets) {
 		super();
 		this.id = id;
 		this.userName = userName;
@@ -38,7 +38,7 @@ public class User {
 		this.emaill = emaill;
 		this.enabled = enabled;
 		this.userProfile = userProfile;
-		this.portfolios = portfolios;
+		this.assets = assets;
 	}
 
 	public int getId() {
@@ -89,12 +89,12 @@ public class User {
 		this.userProfile = userProfile;
 	}
 
-	public List<Portfolio> getPortfolio() {
-		return portfolios;
+	public List<Asset> getPortfolio() {
+		return assets;
 	}
 
-	public void setPortfolio(List<Portfolio> portfolios) {
-		this.portfolios = portfolios;
+	public void setPortfolio(List<Asset> assets) {
+		this.assets = assets;
 	}
 
 	@Override
