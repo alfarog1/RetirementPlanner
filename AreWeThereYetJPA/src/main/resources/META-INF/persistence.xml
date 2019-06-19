@@ -11,11 +11,15 @@
     
     <class>com.skilldistillery.retirementapp.entities.User</class>
     <class>com.skilldistillery.retirementapp.entities.Asset</class>
+    <class>com.skilldistillery.retirementapp.entities.EmployerMatch</class>
+    <class>com.skilldistillery.retirementapp.entities.RiskProfile</class>
+    <class>com.skilldistillery.retirementapp.entities.UserProfile</class>
+    <class>com.skilldistillery.retirementapp.entities.Vehicle</class>
 
     <properties>
-      <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/tododb?useSSL=false" />
-      <property name="javax.persistence.jdbc.user" value="root"/>
-      <property name="javax.persistence.jdbc.password" value="root" />
+      <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/retiredb?useSSL=false" />
+      <property name="javax.persistence.jdbc.user" value="retire"/>
+      <property name="javax.persistence.jdbc.password" value="retire" />
       <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver" />
 
       <property name="hibernate.show_sql" value="true" />

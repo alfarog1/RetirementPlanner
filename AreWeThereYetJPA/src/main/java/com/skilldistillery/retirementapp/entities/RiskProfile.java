@@ -6,7 +6,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 @Entity
+@Table(name="risk_profile")
 public class RiskProfile {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -14,6 +16,7 @@ public class RiskProfile {
 	private String name;
 	private String description;
 	private int ror;
+	
 	@ManyToOne
 	@JoinColumn(name = "vehicle_id")
 	private Vehicle vehicle;

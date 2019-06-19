@@ -17,28 +17,33 @@ public class User {
 	private int id;
 	private String username;
 	private String password;
-	private String emaill;
+	private String email;
 	private Boolean enabled;
 	@OneToOne(mappedBy = "user")
 	private UserProfile userProfile;
-	@OneToMany
+	
+	@OneToMany(mappedBy="user")
 	private List<Asset> assets;
 
 	public User() {
 		super();
 	}
 
-	public User(int id, String username, String password, String emaill, Boolean enabled, UserProfile userProfile,
+	
+
+	public User(int id, String username, String password, String email, Boolean enabled, UserProfile userProfile,
 			List<Asset> assets) {
 		super();
 		this.id = id;
 		this.username = username;
 		this.password = password;
-		this.emaill = emaill;
+		this.email = email;
 		this.enabled = enabled;
 		this.userProfile = userProfile;
 		this.assets = assets;
 	}
+
+
 
 	public int getId() {
 		return id;
@@ -64,12 +69,12 @@ public class User {
 		this.password = password;
 	}
 
-	public String getEmaill() {
-		return emaill;
+	public String getEmail() {
+		return email;
 	}
 
-	public void setEmaill(String emaill) {
-		this.emaill = emaill;
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
 	public Boolean getEnabled() {
@@ -98,7 +103,7 @@ public class User {
 
 	@Override
 	public String toString() {
-		return "User [id=" + id + ", userName=" + username + ", password=" + password + ", emaill=" + emaill
+		return "User [id=" + id + ", userName=" + username + ", password=" + password + ", email=" + email
 				+ ", enabled=" + enabled + "]";
 	}
 

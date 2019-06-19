@@ -16,18 +16,24 @@ public class Asset {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	private Double amount;
+	
 	@Column(name = "contribution_fixed")
 	private Double contributionFixed;
+	
 	@Column(name = "contribution_percent")
 	private int contributionPercent;
+	
 	@ManyToOne
 	@JoinColumn(name = "user_id")
 	private User user;
+	
 	@ManyToOne
-	@JoinColumn(name = "asset_id")
+	@JoinColumn(name = "vehicle_id")
 	private Vehicle vehicle;
-	@OneToMany
+	
+	@OneToMany(mappedBy="asset")
 	private List<EmployerMatch> ems;
+	
 	@ManyToOne
 	@JoinColumn(name = "risk_profile_id")
 	private RiskProfile riskProfile;
