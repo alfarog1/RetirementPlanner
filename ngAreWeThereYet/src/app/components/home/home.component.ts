@@ -1,16 +1,38 @@
 import { Component, OnInit } from "@angular/core";
 import { ChartType, ChartOptions, ChartLayoutOptions } from "chart.js";
 import { MultiDataSet, Label } from "ng2-charts";
+import { trigger, transition, animate, style } from '@angular/animations'
 
 @Component({
   selector: "app-home",
   templateUrl: "./home.component.html",
-  styleUrls: ["./home.component.css"]
+  styleUrls: ["./home.component.css"],
+  animations: [
+    trigger('slideInLeft', [
+      transition(':enter', [
+        style({transform: 'translateX(-100%)'}),
+        animate('400ms ease-in', style({transform: 'translateX(0%)'}))
+      ]),
+      transition(':leave', [
+        animate('400ms ease-in', style({transform: 'translateX(-100%)'}))
+      ])
+    ]),
+    trigger('slideInRight', [
+      transition(':enter', [
+        style({transform: 'translateX(100%)'}),
+        animate('400ms ease-in', style({transform: 'translateX(0%)'}))
+      ]),
+      transition(':leave', [
+        animate('400ms ease-in', style({transform: 'translateX(100%)'}))
+      ])
+    ])
+  ]
 })
 export class HomeComponent implements OnInit {
   constructor() {}
 
   ngOnInit() {}
+
 
   // Doughnut  1
   public doughnutChartLabels: Label[] = ["Savings", "401k", "IRA", "Bonds"];
@@ -20,6 +42,8 @@ export class HomeComponent implements OnInit {
     // [250, 130, 70],
   ];
   public doughnutChartType: ChartType = "doughnut";
+
+
 
 
   // Doughnut 2

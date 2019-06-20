@@ -7,3 +7,9 @@ h1{
   font-weight: bolder;
   text-align: center;
 }
+div#logo{
+  position: absolute;
+  right: 0;
+  top: 0;
+  z-index: -1;
+}
