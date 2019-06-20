@@ -209,7 +209,7 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `retiredb`;
-INSERT INTO `asset` (`id`, `risk_profile_id`, `vehicle_id`, `user_id`, `amount`, `contribution_fixed`, `contribution_percent`) VALUES (1, 1, 1, 1, 50000, 5000, NULL);
+INSERT INTO `asset` (`id`, `risk_profile_id`, `vehicle_id`, `user_id`, `amount`, `contribution_fixed`, `contribution_percent`) VALUES (1, 1, 1, 1, 50000, 5000, 5);
 
 COMMIT;
 
