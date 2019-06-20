@@ -27,8 +27,6 @@ public class EmployerMatch {
 	@ManyToOne
 	@JoinColumn(name = "asset_id")
 	private Asset asset;
-	
-	
 
 	public EmployerMatch() {
 		super();

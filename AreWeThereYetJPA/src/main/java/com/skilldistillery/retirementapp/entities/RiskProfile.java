@@ -13,15 +13,16 @@ public class RiskProfile {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
+	
 	private String name;
+	
 	private String description;
+	
 	private int ror;
 	
 	@ManyToOne
 	@JoinColumn(name = "vehicle_id")
 	private Vehicle vehicle;
-	
-	
 
 	public RiskProfile() {
 		super();

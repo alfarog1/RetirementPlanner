@@ -16,20 +16,29 @@ public class UserProfile {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
+	
 	@Column(name ="retirement_age")
 	private int retirementAge;
+	
 	@Column(name ="life_expectancy")
 	private int retirementExpectancy;
+	
 	@Column(name ="percent_income")
 	private int percentIncome;
+	
 	@Column(name ="first_name")
 	private String fName;
+	
 	@Column(name ="last_name")
 	private String lName;
+	
 	private Date dob;
+	
 	private int income;
+	
 	@Column(name ="pay_period")
 	private String payPeriod;
+	
 	@OneToOne
 	@JoinColumn(name ="user_id")
 	private User user;

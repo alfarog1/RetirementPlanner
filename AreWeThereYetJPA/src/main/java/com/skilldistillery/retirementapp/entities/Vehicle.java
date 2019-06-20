@@ -23,7 +23,7 @@ public class Vehicle {
 	private Boolean isFixed;
 	
 	@Column(name = "max_contribution")
-	private int maxContribution;
+	private Integer maxContribution;
 	
 	@Column(name = "is_pretax")
 	private Boolean isPretax;
@@ -87,11 +87,12 @@ public class Vehicle {
 		this.isFixed = isFixed;
 	}
 
+
 	public int getMaxContribution() {
 		return maxContribution;
 	}
 
-	public void setMaxContribution(int maxContribution) {
+	public void setMaxContribution(Integer maxContribution) {
 		this.maxContribution = maxContribution;
 	}
 

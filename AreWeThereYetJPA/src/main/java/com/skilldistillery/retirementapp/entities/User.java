@@ -15,10 +15,15 @@ public class User {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
+	
 	private String username;
+	
 	private String password;
+	
 	private String email;
+	
 	private Boolean enabled;
+	
 	@OneToOne(mappedBy = "user")
 	private UserProfile userProfile;
 	
@@ -28,8 +33,6 @@ public class User {
 	public User() {
 		super();
 	}
-
-	
 
 	public User(int id, String username, String password, String email, Boolean enabled, UserProfile userProfile,
 			List<Asset> assets) {

@@ -9,10 +9,10 @@
     </provider>
     <!-- here are my entities -->
     
-    <class>com.skilldistillery.retirementapp.entities.User</class>
     <class>com.skilldistillery.retirementapp.entities.Asset</class>
     <class>com.skilldistillery.retirementapp.entities.EmployerMatch</class>
     <class>com.skilldistillery.retirementapp.entities.RiskProfile</class>
+    <class>com.skilldistillery.retirementapp.entities.User</class>
     <class>com.skilldistillery.retirementapp.entities.UserProfile</class>
     <class>com.skilldistillery.retirementapp.entities.Vehicle</class>
 
