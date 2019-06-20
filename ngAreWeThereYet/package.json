@@ -23,10 +23,7 @@
     "@angular/router": "~8.0.0",
     "@ng-bootstrap/ng-bootstrap": "^4.2.1",
     "bootstrap": "^4.3.1",
-<<<<<<< HEAD
-=======
     "chart.js": "^2.8.0",
->>>>>>> f7528bd678cd36171521c5b731c43b10ff0c465e
     "ng2-charts": "^2.3.0",
     "rxjs": "~6.4.0",
     "tslib": "^1.9.0",
