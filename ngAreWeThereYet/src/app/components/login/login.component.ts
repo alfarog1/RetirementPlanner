@@ -81,9 +81,9 @@ export class LoginComponent implements OnInit {
   }
   @Input() error: string | null;
 
-<<<<<<< HEAD
+
   @Output() submitEM = new EventEmitter();
-=======
+
   login(form: NgForm) {
     const loginData = form.value;
     console.log(loginData);
@@ -99,5 +99,5 @@ export class LoginComponent implements OnInit {
 
 
     }
->>>>>>> c8ed4ec78d9e547f2fa90a411e6c8aafde9de53e
+
 }
