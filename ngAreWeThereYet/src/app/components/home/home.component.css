@@ -3,7 +3,7 @@
   position: relative;
 }
 .right{
-  position: static;
+  position: absolute;
   right: 0;
   top: 0;
 }

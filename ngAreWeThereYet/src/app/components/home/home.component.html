@@ -1,14 +1,19 @@
 
 <div id="logo"> <img src="../assets/logo.jpg" width="200" height="200" [@slideInRight] ></div>
 
-<br>
+
+<app-login *ngIf="visible" [@slideInTop] >Your Form</app-login>
+<div [@slideInLeft] style="position: absolute; top: 0; right: 0; padding: 20px;">
+<button  type="button" class="btn btn-success" (click)="onClickMe()" > Login </button>
+<button  type="button" class="btn btn-warning" > Sign Up </button>
+</div>
 <table class="centered">
 <tbody>
 <tr>
   <td>
 <div>
   <div>
-    <div style="display: block" [@slideInLeft]>
+    <div style="display: block"  [@slideInLeft]>
       <canvas baseChart
       height="350"
       width="350"
