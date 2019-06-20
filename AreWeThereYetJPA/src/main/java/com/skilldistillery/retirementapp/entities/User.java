@@ -15,11 +15,11 @@ public class User {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-	@Column(name = "user_name")
-	private String userName;
+	private String username;
 	private String password;
 	private String emaill;
 	private Boolean enabled;
+	private String role;
 	@OneToOne(mappedBy = "user")
 	private UserProfile userProfile;
 	@OneToMany
@@ -29,16 +29,26 @@ public class User {
 		super();
 	}
 
-	public User(int id, String userName, String password, String emaill, Boolean enabled, UserProfile userProfile,
+	public User(int id, String username, String password, String emaill, Boolean enabled, String role, UserProfile userProfile,
 			List<Asset> assets) {
 		super();
 		this.id = id;
-		this.userName = userName;
+		this.username = username;
 		this.password = password;
 		this.emaill = emaill;
 		this.enabled = enabled;
+		this.role = role;
 		this.userProfile = userProfile;
 		this.assets = assets;
+	}
+	
+
+	public String getRole() {
+		return role;
+	}
+
+	public void setRole(String role) {
+		this.role = role;
 	}
 
 	public int getId() {
@@ -50,11 +60,11 @@ public class User {
 	}
 
 	public String getUserName() {
-		return userName;
+		return username;
 	}
 
-	public void setUserName(String userName) {
-		this.userName = userName;
+	public void setUserName(String username) {
+		this.username = username;
 	}
 
 	public String getPassword() {
@@ -99,7 +109,7 @@ public class User {
 
 	@Override
 	public String toString() {
-		return "User [id=" + id + ", userName=" + userName + ", password=" + password + ", emaill=" + emaill
+		return "User [id=" + id + ", userName=" + username + ", password=" + password + ", emaill=" + emaill
 				+ ", enabled=" + enabled + "]";
 	}
 
