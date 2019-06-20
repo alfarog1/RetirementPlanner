@@ -1,5 +1,12 @@
+
+import { BrowserModule } from "@angular/platform-browser";
+import { NgModule } from "@angular/core";
+import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
+import { ChartsModule } from "ng2-charts";
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { AuthenticationService } from './services/authentication.service';
 import { AssetService } from "./services/asset.service";
+
 
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
@@ -15,15 +22,12 @@ import { RiskProfileService } from "./services/risk-profile.service";
 import { UserProfileService } from "./services/user-profile.service";
 import { UserService } from "./services/user.service";
 import { VehicleService } from "./services/vehicle.service";
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { ChartsModule } from 'ng2-charts';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {MatButtonModule, MatCheckboxModule} from '@angular/material';
+
+import {MatButtonModule, MatCheckboxModule, MatCardModule, MatInputModule} from '@angular/material';
 import { ReactiveFormsModule } from '@angular/forms';
 import { LoginComponent } from './components/login/login.component';
 import { LogoutComponent } from './components/logout/logout.component';
+
 
 
 @NgModule({
@@ -46,8 +50,14 @@ import { LogoutComponent } from './components/logout/logout.component';
     ChartsModule,
     BrowserAnimationsModule,
     MatButtonModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    ReactiveFormsModule,
+    MatCardModule,
+    MatInputModule,
+    MatCheckboxModule,
+    ReactiveFormsModule,
   ],
+
   providers: [
     AssetService,
     EmployerMatchService,
@@ -56,9 +66,9 @@ import { LogoutComponent } from './components/logout/logout.component';
     UserService,
     VehicleService,
     AuthenticationService,
-     MatCheckboxModule,
-     ReactiveFormsModule,
+    LoginComponent
   ],
+
   bootstrap: [AppComponent]
 })
 export class AppModule {}
