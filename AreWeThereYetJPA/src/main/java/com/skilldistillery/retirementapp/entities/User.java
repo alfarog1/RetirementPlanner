@@ -23,7 +23,9 @@ public class User {
 	private String email;
 	
 	private Boolean enabled;
-	
+
+	private String role;
+
 	@OneToOne(mappedBy = "user")
 	private UserProfile userProfile;
 	
@@ -34,7 +36,9 @@ public class User {
 		super();
 	}
 
-	public User(int id, String username, String password, String email, Boolean enabled, UserProfile userProfile,
+
+	public User(int id, String username, String password, String emaill, Boolean enabled, String role, UserProfile userProfile,
+
 			List<Asset> assets) {
 		super();
 		this.id = id;
@@ -42,8 +46,18 @@ public class User {
 		this.password = password;
 		this.email = email;
 		this.enabled = enabled;
+		this.role = role;
 		this.userProfile = userProfile;
 		this.assets = assets;
+	}
+	
+
+	public String getRole() {
+		return role;
+	}
+
+	public void setRole(String role) {
+		this.role = role;
 	}
 
 
