@@ -15,19 +15,26 @@ public class Vehicle {
 	private int id;
 	@Column(name = "asset_name")
 	private String assetName;
+	
 	@Column(name = "is_qualified")
 	private Boolean isQualified;
+	
 	@Column(name = "is_fixed")
 	private Boolean isFixed;
+	
 	@Column(name = "max_contribution")
-	private int maxContribution;
+	private Integer maxContribution;
+	
 	@Column(name = "is_pretax")
 	private Boolean isPretax;
+	
 	@Column(name = "has_employer_match")
 	private Boolean hasEmployerMatch;
-	@OneToMany
+	
+	@OneToMany(mappedBy="vehicle")
 	private List<Asset> assets;
-	@OneToMany
+	
+	@OneToMany(mappedBy="vehicle")
 	private List<RiskProfile> riskProfiles;
 
 	public Vehicle() {
@@ -80,11 +87,12 @@ public class Vehicle {
 		this.isFixed = isFixed;
 	}
 
+
 	public int getMaxContribution() {
 		return maxContribution;
 	}
 
-	public void setMaxContribution(int maxContribution) {
+	public void setMaxContribution(Integer maxContribution) {
 		this.maxContribution = maxContribution;
 	}
 
