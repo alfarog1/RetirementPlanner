@@ -1,3 +1,31 @@
-<p>
-  signup works!
-</p>
+<div class = 'container'>
+  <div class = 'row'>
+    <div class = 'col-6 offset-3'>
+      <h3>lets start here</h3>
+      <form>
+        Email: <input type="email" name = 'email' [(ngModel)]="newUser.email"><br>
+        Username: <input type="text" name = 'username' [(ngModel)]="newUser.username"><br>
+        Password: <input type="password" name = 'password' [(ngModel)]="newUser.password"><br>
+        <div *ngIf="newUser.email != null && newUser.username != null && newUser.password != null">
+          <h4>then we ask about this</h4>
+          First Name: <input type="text" name = 'fname' [(ngModel)]="newUserProfile.fName"><br>
+          Last Name: <input type="text" name = 'lname' [(ngModel)]="newUserProfile.lName"><br>
+          Date of Birth: <input type="date" name = 'dob' [(ngModel)]="newUserProfile.dob"><br>
+          <div *ngIf="newUserProfile.fName != null && newUserProfile.lName != null && newUserProfile.dob != null">
+            <h4>last well ask about this</h4>
+            Annual Income: <input type="number" name = 'income' [(ngModel)]="newUserProfile.income"><br>
+            Pay Period: <select name = 'payperiod' [(ngModel)]="newUserProfile.payPeriod">
+                <option value="weekly">Weekly</option>
+                <option value="biweekly">Bi-Weekly</option>
+                <option value="monthly">Monthly</option>
+                <option value="bimonthly">Bi-Monthly</option>
+            </select>
+            <div *ngIf="newUserProfile.income != null && newUserProfile.payPeriod != null">
+              <button (click)='createUser()'>Submit</button>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
