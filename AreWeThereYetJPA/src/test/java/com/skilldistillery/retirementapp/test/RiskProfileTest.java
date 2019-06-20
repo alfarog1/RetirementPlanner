@@ -12,12 +12,13 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import com.skilldistillery.retirementapp.entities.User;
+import com.skilldistillery.retirementapp.entities.EmployerMatch;
+import com.skilldistillery.retirementapp.entities.RiskProfile;
 
-public class UserTest {
+class RiskProfileTest {
 	private EntityManager em;
-	private User user;
 	private static EntityManagerFactory emf;
+	private RiskProfile risk;
 	
 	@BeforeAll
 	public static void setupAll() {
@@ -32,20 +33,18 @@ public class UserTest {
 	@BeforeEach
 	public void setUp() throws Exception {
 		em = emf.createEntityManager();
-		user = em.find(User.class, 1);
+		risk = em.find(RiskProfile.class, 1);
 		
 	}
 
 	@AfterEach
 	public void tearDown() throws Exception {
 		em.close();
-		user = null;
+		risk = null;
 	}
 	
 	@Test
 	public void test() {
-		assertEquals("smithy", user.getUserName());
+		assertEquals(1, risk.getId());
 	}
-	
-
 }

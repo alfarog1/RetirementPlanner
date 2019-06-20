@@ -7,22 +7,26 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 @Entity
+@Table(name="employer_match")
 public class EmployerMatch {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
+	
 	@Column(name = "bottom_threshold")
 	private int bottomThreshold;
+	
 	@Column(name = "top_threshold")
 	private int topThreshold;
+	
 	@Column(name = "matching_percent")
 	private int matchingPercent;
+	
 	@ManyToOne
 	@JoinColumn(name = "asset_id")
 	private Asset asset;
-	
-	
 
 	public EmployerMatch() {
 		super();
