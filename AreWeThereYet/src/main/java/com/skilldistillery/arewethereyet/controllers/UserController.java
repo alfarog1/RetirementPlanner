@@ -31,7 +31,7 @@ public class UserController {
 	@GetMapping(path = "ping")
 	public String ping() //
 	{
-		return "users/pong";
+		return "/pong";
 	}
 
 	@GetMapping(path = "")
