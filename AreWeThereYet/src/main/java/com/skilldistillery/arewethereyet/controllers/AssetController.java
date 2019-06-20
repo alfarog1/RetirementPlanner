@@ -39,7 +39,7 @@ public class AssetController {
 	        return svc.index(principal.getName());
 	    }
 
-	    @GetMapping(path = "/{aId}")
+	    @GetMapping(path = "/{aid}")
 	    public Asset show(HttpServletRequest req, HttpServletResponse res, @PathVariable("aId") int aId, Principal principal) 
 	    {
 	        return svc.show(principal.getName(), aId);
