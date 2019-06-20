@@ -25,7 +25,7 @@ CREATE TABLE IF NOT EXISTS `vehicle` (
   `asset_name` VARCHAR(45) NULL DEFAULT NULL,
   `is_qualified` TINYINT(4) NULL DEFAULT NULL,
   `is_fixed` TINYINT(4) NULL DEFAULT NULL,
-  `max_contribution` INT(11) NULL DEFAULT NULL,
+  `max_contribution` INT(11) NULL,
   `is_pretax` TINYINT(4) NULL DEFAULT NULL,
   `has_employer_match` TINYINT(4) NULL DEFAULT NULL,
   PRIMARY KEY (`id`))
@@ -64,8 +64,8 @@ DROP TABLE IF EXISTS `user` ;
 
 CREATE TABLE IF NOT EXISTS `user` (
   `id` INT(11) NOT NULL AUTO_INCREMENT,
-  `username` VARCHAR(45) NOT NULL,
-  `password` VARCHAR(45) NOT NULL,
+  `username` VARCHAR(200) NOT NULL,
+  `password` VARCHAR(200) NOT NULL,
   `email` VARCHAR(100) NOT NULL,
   `role` VARCHAR(45) NOT NULL DEFAULT 'user',
   `enabled` TINYINT(4) NOT NULL DEFAULT '1',

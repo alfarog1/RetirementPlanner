@@ -9,6 +9,6 @@ export class Vehicle {
   maxContribution: number;
   isPretax: boolean;
   hasEmployerMatch: boolean;
-  assets: Asset;
-  riskProfiles: RiskProfile;
+  assets: Asset [];
+  riskProfiles: RiskProfile [];
 }

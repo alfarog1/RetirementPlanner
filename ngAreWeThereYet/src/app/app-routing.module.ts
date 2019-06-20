@@ -7,12 +7,12 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { RiskQuestionnaireComponent } from './components/risk-questionnaire/risk-questionnaire.component';
 
 const routes: Routes = [
-  { path: "", pathMatch: "full", redirectTo: "home" },
-  { path: "home", component: HomeComponent },
-  { path: "signup", component: SignupComponent },
-  { path: "dashboard", component: DashboardComponent },
-  { path: "questionnaire", component: RiskQuestionnaireComponent },
-  { path: "**", component: NotFoundComponent }
+  { path: '', pathMatch: 'full', redirectTo: 'home' },
+  { path: 'home', component: HomeComponent },
+  { path: 'signup', component: SignupComponent },
+  { path: 'dashboard', component: DashboardComponent },
+  { path: 'questionnaire', component: RiskQuestionnaireComponent },
+  { path: '**', component: NotFoundComponent }
 ];
 
 @NgModule({

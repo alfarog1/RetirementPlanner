@@ -16,6 +16,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.skilldistillery.arewethereyet.services.UserProfileService;
+import com.skilldistillery.arewethereyet.services.UserService;
+import com.skilldistillery.retirementapp.entities.User;
 import com.skilldistillery.retirementapp.entities.UserProfile;
 
 @RestController
@@ -25,12 +27,15 @@ public class UserProfileController {
 	@Autowired
 	UserProfileService svc;
 	
+	@Autowired
+	UserService usvc;
+	
 	@GetMapping("profiles")
-	public List<UserProfile> getAllCourses(){
+	public List<UserProfile> getAllProfiles(){
 		return svc.getAll();
 	}
 	@GetMapping("profiles/{id}")
-	public UserProfile getCourseById(@PathVariable int id, HttpServletResponse resp) {
+	public UserProfile getProfileById(@PathVariable int id, HttpServletResponse resp) {
 		UserProfile profile = svc.findById(id);
 		if(profile != null) {
 			resp.setStatus(200);
@@ -41,7 +46,7 @@ public class UserProfileController {
 		}
 	}
 	@PostMapping("profiles")
-	public UserProfile createCourse(@RequestBody UserProfile profile, HttpServletResponse resp, HttpServletRequest req) {
+	public UserProfile createProfile(@RequestBody UserProfile profile, HttpServletResponse resp, HttpServletRequest req) {
 		try{
 			if(svc.create(profile) != null) {
 				resp.setStatus(201);
@@ -58,14 +63,25 @@ public class UserProfileController {
 		
 	}
 	@PutMapping("profiles/{id}")
-	public UserProfile replacePost(@RequestBody UserProfile profile, @PathVariable int id, HttpServletRequest req, HttpServletResponse resp) {
+	public UserProfile replace(@RequestBody UserProfile profile, @PathVariable int id, HttpServletRequest req, HttpServletResponse resp) {
 	
-		UserProfile updateCourse = svc.replace(id, profile);
+		UserProfile updateProfile = svc.replace(id, profile);
 			
-		if(updateCourse == null) {
+		if(updateProfile == null) {
 			resp.setStatus(404);
 		}
-		return updateCourse;
+		return updateProfile;
+	}
+	@GetMapping("user/{uid}/profiles")
+	public UserProfile getByUser_Username(@PathVariable int uid, HttpServletRequest req, HttpServletResponse resp) {
+		User user = usvc.show(uid);
+		if (user != null) {
+			UserProfile profile = svc.getByUser_Username(user.getUserName());
+			return profile;
+		}else {
+			return null;
+		}
+		
 	}
 
 }

@@ -1,3 +1,7 @@
-<p>
-  login works!
-</p>
+<div id="loginForm">
+  <form #form=ngForm>
+      <input type="text" name="username" ngModel >
+      <input type="text" name="password" ngModel/>
+      <button type="button" (click)="login(form)">Login</button>
+    </form>
+  </div>

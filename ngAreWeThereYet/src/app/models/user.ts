@@ -7,5 +7,5 @@ export class User {
   email: string;
   enabled: boolean;
   userProfile: UserProfile;
-  assets: Asset;
+  assets: Asset [];
 }
