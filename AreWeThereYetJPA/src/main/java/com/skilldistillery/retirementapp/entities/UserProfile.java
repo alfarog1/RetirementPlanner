@@ -9,27 +9,38 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
+import javax.persistence.Table;
 @Entity
+@Table(name="user_profile")
 public class UserProfile {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-	@Column(name = "retirement_age")
+	
+	@Column(name ="retirement_age")
 	private int retirementAge;
-	@Column(name = "life_expectancy")
+	
+	@Column(name ="life_expectancy")
 	private int retirementExpectancy;
-	@Column(name = "percent_income")
+	
+	@Column(name ="percent_income")
 	private int percentIncome;
-	@Column(name = "first_name")
+	
+	@Column(name ="first_name")
 	private String fName;
-	@Column(name = "last_name")
+	
+	@Column(name ="last_name")
 	private String lName;
+	
 	private Date dob;
+	
 	private int income;
-	@Column(name = "pay_period")
+	
+	@Column(name ="pay_period")
 	private String payPeriod;
+	
 	@OneToOne
-	@JoinColumn(name = "user_id")
+	@JoinColumn(name ="user_id")
 	private User user;
 
 	public UserProfile() {

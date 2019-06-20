@@ -15,19 +15,26 @@ public class Asset {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
+	
 	private Double amount;
+	
 	@Column(name = "contribution_fixed")
 	private Double contributionFixed;
+	
 	@Column(name = "contribution_percent")
 	private int contributionPercent;
+	
 	@ManyToOne
 	@JoinColumn(name = "user_id")
 	private User user;
+	
 	@ManyToOne
-	@JoinColumn(name = "asset_id")
+	@JoinColumn(name = "vehicle_id")
 	private Vehicle vehicle;
-	@OneToMany
-	private List<EmployerMatch> ems;
+	
+	@OneToMany(mappedBy="asset")
+	private List<EmployerMatch> employerMatch;
+	
 	@ManyToOne
 	@JoinColumn(name = "risk_profile_id")
 	private RiskProfile riskProfile;
@@ -81,11 +88,11 @@ public class Asset {
 	}
 
 	public List<EmployerMatch> getEms() {
-		return ems;
+		return employerMatch;
 	}
 
 	public void setEms(List<EmployerMatch> ems) {
-		this.ems = ems;
+		this.employerMatch = ems;
 	}
 
 	public RiskProfile getRiskProfile() {
@@ -109,7 +116,7 @@ public class Asset {
 		this.contributionPercent = contributionPercent;
 		this.user = user;
 		this.vehicle = vehicle;
-		this.ems = ems;
+		this.employerMatch = ems;
 		this.riskProfile = riskProfile;
 	}
 
