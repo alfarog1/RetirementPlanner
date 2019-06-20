@@ -58,8 +58,8 @@ import { AuthenticationService } from 'src/app/services/authentication.service';
         display: flex;
         justify-content: flex-end;
       }
-    `,
-  ],
+    `
+  ]
 })
 export class LoginComponent implements OnInit {
   form: FormGroup = new FormGroup({
