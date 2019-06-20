@@ -1,7 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { ChartType, ChartOptions, ChartLayoutOptions } from "chart.js";
 import { MultiDataSet, Label } from "ng2-charts";
-import { trigger, transition, animate, style } from '@angular/animations'
+import { trigger, transition, animate, style } from '@angular/animations';
 
 @Component({
   selector: "app-home",
@@ -129,4 +129,5 @@ export class HomeComponent implements OnInit {
   }): void {
     console.log(event, active);
   }
+
 }

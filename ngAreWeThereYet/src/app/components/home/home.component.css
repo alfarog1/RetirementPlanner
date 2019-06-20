@@ -1,15 +1,21 @@
 .centered{
   margin:0 auto;
+  position: relative;
 }
-
+.right{
+  position: static;
+  right: 0;
+  top: 0;
+}
 h1{
   font-family: gotham narrow;
   font-weight: bolder;
   text-align: center;
 }
 div#logo{
-  position: absolute;
+  position: relative;
+  z-index: -1;
   right: 0;
   top: 0;
-  z-index: -1;
 }
+

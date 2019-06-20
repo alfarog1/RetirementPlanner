@@ -5,6 +5,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ChartsModule } from 'ng2-charts';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatButtonModule, MatCheckboxModule} from '@angular/material';
+import { ReactiveFormsModule } from '@angular/forms';
+
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -15,6 +17,8 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { RiskQuestionnaireComponent } from './components/risk-questionnaire/risk-questionnaire.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { MyLineChartComponent } from './my-line-chart/my-line-chart.component';
+import { LoginComponent } from './components/login/login.component';
+import { LogoutComponent } from './components/logout/logout.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +28,9 @@ import { MyLineChartComponent } from './my-line-chart/my-line-chart.component';
     DashboardComponent,
     RiskQuestionnaireComponent,
     NotFoundComponent,
-    MyLineChartComponent
+    MyLineChartComponent,
+    LoginComponent,
+    LogoutComponent
   ],
   imports: [
     NgbModule,
@@ -34,7 +40,9 @@ import { MyLineChartComponent } from './my-line-chart/my-line-chart.component';
     ChartsModule,
     BrowserAnimationsModule,
     MatButtonModule,
-     MatCheckboxModule
+     MatCheckboxModule,
+     ReactiveFormsModule,
+
 
   ],
   providers: [AreWeThereYetService],
