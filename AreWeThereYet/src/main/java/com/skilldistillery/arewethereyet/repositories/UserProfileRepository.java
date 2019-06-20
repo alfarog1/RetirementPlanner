@@ -5,5 +5,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import com.skilldistillery.retirementapp.entities.UserProfile;
 
 public interface UserProfileRepository extends JpaRepository<UserProfile, Integer> {
+	
+	UserProfile getByUser_Username(String username);
 
 }

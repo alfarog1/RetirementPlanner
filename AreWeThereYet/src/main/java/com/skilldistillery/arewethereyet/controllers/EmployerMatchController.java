@@ -27,11 +27,11 @@ public class EmployerMatchController {
 	EmployerMatchService svc;
 	
 	@GetMapping("matches")
-	public List<EmployerMatch> getAllCourses(){
+	public List<EmployerMatch> getAll(){
 		return svc.allMatches();
 	}
 	@GetMapping("matches/{id}")
-	public EmployerMatch getCourseById(@PathVariable int id, HttpServletResponse resp) {
+	public EmployerMatch getById(@PathVariable int id, HttpServletResponse resp) {
 		EmployerMatch match = svc.findById(id);
 		if(match != null) {
 			resp.setStatus(200);
@@ -42,7 +42,7 @@ public class EmployerMatchController {
 		}
 	}
 	@PostMapping("matches")
-	public EmployerMatch createCourse(@RequestBody EmployerMatch match, HttpServletResponse resp, HttpServletRequest req) {
+	public EmployerMatch create(@RequestBody EmployerMatch match, HttpServletResponse resp, HttpServletRequest req) {
 		try{
 			if(svc.create(match) != null) {
 				resp.setStatus(201);
@@ -59,7 +59,7 @@ public class EmployerMatchController {
 		
 	}
 	@PutMapping("matches/{id}")
-	public EmployerMatch replacePost(@RequestBody EmployerMatch match, @PathVariable int id, HttpServletRequest req, HttpServletResponse resp) {
+	public EmployerMatch replace(@RequestBody EmployerMatch match, @PathVariable int id, HttpServletRequest req, HttpServletResponse resp) {
 	
 		EmployerMatch updateMatch = svc.replace(id, match);
 			
@@ -69,7 +69,7 @@ public class EmployerMatchController {
 		return match;
 	}
 	@DeleteMapping("matches/{id}")
-	public Boolean deleteCourse(@PathVariable int id, HttpServletResponse resp) {
+	public Boolean delete(@PathVariable int id, HttpServletResponse resp) {
 		Boolean success = svc.deleteById(id);
 		if (success) {
 			resp.setStatus(200);

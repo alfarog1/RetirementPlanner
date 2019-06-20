@@ -10,4 +10,5 @@ public interface UserProfileService {
 	public UserProfile findById(Integer id);
 	public UserProfile create(UserProfile profile);
 	public UserProfile replace(int id, UserProfile profile);
+	public UserProfile getByUser_Username(String username);
 }

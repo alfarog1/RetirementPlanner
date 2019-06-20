@@ -50,5 +50,11 @@ public class UserProfileServiceImpl implements UserProfileService {
 		repo.saveAndFlush(profile);
 		return profile;
 	}
+
+	@Override
+	public UserProfile getByUser_Username(String username) {
+		UserProfile profile = repo.getByUser_Username(username);
+		return profile;
+	}
 	
 }
