@@ -10,6 +10,6 @@ export class Asset {
   contributionPercent: number;
   user: User;
   vehicle: Vehicle;
-  employerMatch: EmployerMatch;
+  employerMatch: EmployerMatch [];
   riskProfile: RiskProfile;
 }
