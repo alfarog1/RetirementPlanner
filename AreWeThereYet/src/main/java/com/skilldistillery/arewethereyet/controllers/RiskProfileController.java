@@ -27,11 +27,11 @@ public class RiskProfileController {
 	RiskProfileService svc;
 	
 	@GetMapping("risks")
-	public List<RiskProfile> getAllAddresses(){
+	public List<RiskProfile> getAllRiskProfiles(){
 		return svc.allRiskProfiles();
 	}
 	@GetMapping("risks/{id}")
-	public RiskProfile getById(@PathVariable int id, HttpServletResponse resp) {
+	public RiskProfile getRiskProfileById(@PathVariable int id, HttpServletResponse resp) {
 		RiskProfile risk = svc.findById(id);
 		if(risk != null) {
 			resp.setStatus(200);
@@ -42,7 +42,7 @@ public class RiskProfileController {
 		}
 	}
 	@PostMapping("risks")
-	public RiskProfile create(@RequestBody RiskProfile risk, HttpServletResponse resp, HttpServletRequest req) {
+	public RiskProfile createRiskProfile(@RequestBody RiskProfile risk, HttpServletResponse resp, HttpServletRequest req) {
 		try{
 			if(svc.create(risk) != null) {
 				resp.setStatus(201);
@@ -59,7 +59,7 @@ public class RiskProfileController {
 		
 	}
 	@PutMapping("risks/{id}")
-	public RiskProfile replace(@RequestBody RiskProfile risk, @PathVariable int id, HttpServletRequest req, HttpServletResponse resp) {
+	public RiskProfile replaceRiskProfile(@RequestBody RiskProfile risk, @PathVariable int id, HttpServletRequest req, HttpServletResponse resp) {
 	
 		RiskProfile updateAddress = svc.replace(id, risk);
 			
@@ -69,7 +69,7 @@ public class RiskProfileController {
 		return updateAddress;
 	}
 	@DeleteMapping("risks/{id}")
-	public Boolean deleteRisk(@PathVariable int id, HttpServletResponse resp) {
+	public Boolean deleteRiskProfile(@PathVariable int id, HttpServletResponse resp) {
 		Boolean success = svc.deleteById(id);
 		if (success) {
 			resp.setStatus(200);
