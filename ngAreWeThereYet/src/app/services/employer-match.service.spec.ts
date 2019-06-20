@@ -1,12 +1,12 @@
 import { TestBed } from '@angular/core/testing';
 
-import { AreWeThereYetService } from './are-we-there-yet.service';
+import { EmployerMatchService } from './employer-match.service';
 
-describe('AreWeThereYetService', () => {
+describe('EmployerMatchService', () => {
   beforeEach(() => TestBed.configureTestingModule({}));
 
   it('should be created', () => {
-    const service: AreWeThereYetService = TestBed.get(AreWeThereYetService);
+    const service: EmployerMatchService = TestBed.get(EmployerMatchService);
     expect(service).toBeTruthy();
   });
 });
