@@ -19,6 +19,7 @@ public class User {
 	private String password;
 	private String emaill;
 	private Boolean enabled;
+	private String role;
 	@OneToOne(mappedBy = "user")
 	private UserProfile userProfile;
 	@OneToMany
@@ -28,7 +29,7 @@ public class User {
 		super();
 	}
 
-	public User(int id, String username, String password, String emaill, Boolean enabled, UserProfile userProfile,
+	public User(int id, String username, String password, String emaill, Boolean enabled, String role, UserProfile userProfile,
 			List<Asset> assets) {
 		super();
 		this.id = id;
@@ -36,8 +37,18 @@ public class User {
 		this.password = password;
 		this.emaill = emaill;
 		this.enabled = enabled;
+		this.role = role;
 		this.userProfile = userProfile;
 		this.assets = assets;
+	}
+	
+
+	public String getRole() {
+		return role;
+	}
+
+	public void setRole(String role) {
+		this.role = role;
 	}
 
 	public int getId() {
