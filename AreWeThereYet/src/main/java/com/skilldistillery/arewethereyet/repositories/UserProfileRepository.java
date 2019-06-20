@@ -6,5 +6,7 @@ import org.springframework.stereotype.Component;
 import com.skilldistillery.retirementapp.entities.UserProfile;
 @Component
 public interface UserProfileRepository extends JpaRepository<UserProfile, Integer> {
+	
+	UserProfile getByUser_Username(String username);
 
 }
