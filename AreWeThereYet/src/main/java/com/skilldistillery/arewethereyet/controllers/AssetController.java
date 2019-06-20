@@ -26,10 +26,11 @@ import com.skilldistillery.retirementapp.entities.Asset;
 public class AssetController {
 	@Autowired
 	AssetService svc;
+	
 	 @GetMapping(path = "ping")
 	    public String ping() //
 	    {
-	        return "todos/pong";
+	        return "assets/pong";
 	    }
 
 	    @GetMapping(path = "")
