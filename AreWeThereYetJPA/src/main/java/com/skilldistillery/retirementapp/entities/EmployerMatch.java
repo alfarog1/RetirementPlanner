@@ -8,6 +8,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 @Entity
 @Table(name="employer_match")
 public class EmployerMatch {
@@ -23,7 +25,7 @@ public class EmployerMatch {
 	
 	@Column(name = "matching_percent")
 	private int matchingPercent;
-	
+	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name = "asset_id")
 	private Asset asset;

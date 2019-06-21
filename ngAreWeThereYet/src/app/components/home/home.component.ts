@@ -4,6 +4,7 @@ import { ChartType, ChartOptions, ChartLayoutOptions } from "chart.js";
 import { MultiDataSet, Label } from "ng2-charts";
 import { trigger, transition, animate, style } from "@angular/animations";
 import { Asset } from 'src/app/models/asset';
+import { Router } from '@angular/router';
 
 @Component({
   selector: "app-home",
@@ -75,11 +76,12 @@ export class HomeComponent implements OnInit {
   mutFunAvg: number = 10;
   tspAvg: number = 30;
   bondsAvg: number= 20;
-  constructor(private assetService: AssetService
+  constructor(private assetService: AssetService,
+              private router: Router
   ) { }
 
   ngOnInit() {
-    this.averageBalancePerAsset();
+    
     this.reload();
   }
   visible = false;
@@ -108,7 +110,7 @@ export class HomeComponent implements OnInit {
   "TSP"
 ];
   public doughnutChartData: MultiDataSet = [
-    [this.count1, this.count2, this.count3, this.count4, this.count5,this.count6,this.count7,this.count8,this.count9,this.count10,this.count11,this.count12,this.count13,this.count14,this.count15,this.count16,this.count17]
+    [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
     
     // [50, 150, 120],
     // [250, 130, 70],
@@ -208,12 +210,16 @@ export class HomeComponent implements OnInit {
     this.assetService.index().subscribe(
       good => {
         this.assets = good;
+        this.averageBalancePerAsset();
         console.log(this.assets);
       },
       bad => {
         console.log(bad);
       }
     )
+  }
+  signUp(){
+  this.router.navigateByUrl('signup');
   }
   averageBalancePerAsset() {
     console.log(this.assets);
