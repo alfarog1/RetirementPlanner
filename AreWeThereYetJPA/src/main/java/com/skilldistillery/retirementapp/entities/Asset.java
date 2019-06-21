@@ -38,9 +38,6 @@ public class Asset {
 	@ManyToOne
 	@JoinColumn(name = "risk_profile_id")
 	private RiskProfile riskProfile;
-	
-	@Column(name= "does_employer_match")
-	private Boolean doesEmployerMatch;
 
 	public int getId() {
 		return id;
