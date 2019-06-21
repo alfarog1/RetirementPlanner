@@ -54,9 +54,16 @@ export class AuthenticationService {
   }
 
   register(user) {
+    console.log('in auth.register()');
     console.log(user);
+
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json'
+      })
+    };
     // create request to register a new account
-    return this.http.post(this.url + 'register', user)
+    return this.http.post(this.url + 'register', user, httpOptions)
     .pipe(
       catchError((err: any) => {
         console.log(err);
