@@ -22,7 +22,7 @@ public class Asset {
 	private Double contributionFixed;
 	
 	@Column(name = "contribution_percent")
-	private int contributionPercent;
+	private Integer contributionPercent;
 	
 	@ManyToOne
 	@JoinColumn(name = "user_id")
@@ -38,6 +38,9 @@ public class Asset {
 	@ManyToOne
 	@JoinColumn(name = "risk_profile_id")
 	private RiskProfile riskProfile;
+	
+	@Column(name= "does_employer_match")
+	private Boolean doesEmployerMatch;
 
 	public int getId() {
 		return id;
