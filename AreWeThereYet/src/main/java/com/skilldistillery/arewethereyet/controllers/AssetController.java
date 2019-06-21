@@ -22,7 +22,7 @@ import com.skilldistillery.retirementapp.entities.Asset;
 
 @RestController
 @RequestMapping("api/assets")
-@CrossOrigin({"*", "http://localhost:4203"})
+@CrossOrigin({"*", "http://localhost:4208"})
 public class AssetController {
 	@Autowired
 	AssetService svc;

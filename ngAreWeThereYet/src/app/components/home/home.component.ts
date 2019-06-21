@@ -1,7 +1,9 @@
+import { AssetService } from './../../services/asset.service';
 import { Component, OnInit } from "@angular/core";
 import { ChartType, ChartOptions, ChartLayoutOptions } from "chart.js";
 import { MultiDataSet, Label } from "ng2-charts";
 import { trigger, transition, animate, style } from "@angular/animations";
+import { Asset } from 'src/app/models/asset';
 
 @Component({
   selector: "app-home",
@@ -38,12 +40,17 @@ import { trigger, transition, animate, style } from "@angular/animations";
   ]
 })
 export class HomeComponent implements OnInit {
-  constructor() {}
+  assets: Asset[] = [];
+  constructor(private assetService: AssetService
+              ) { }
 
-  ngOnInit() {}
+  ngOnInit() { 
+    this.averageBalancePerAsset();
+    this.reload();
+  }
   visible = false;
 
-  onClickMe(){
+  onClickMe() {
     this.visible = !this.visible;
   }
 
@@ -135,4 +142,24 @@ export class HomeComponent implements OnInit {
   }): void {
     console.log(event, active);
   }
+  reload() {
+    this.assetService.index().subscribe(
+      good => {
+        this.assets = good;
+        console.log(this.assets);
+      },
+      bad => {
+        console.log(bad);
+      }
+    )
+  }
+  averageBalancePerAsset() {
+    console.log(this.assets);
+    for (let i = 0; i < this.assets.length; i++){
+      console.log(this.assets[i]);
+    }
+      
+
+  
+}
 }

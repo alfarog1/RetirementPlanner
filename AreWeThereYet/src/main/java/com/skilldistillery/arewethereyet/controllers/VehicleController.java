@@ -23,7 +23,7 @@ import com.skilldistillery.retirementapp.entities.Vehicle;
 
 @RestController
 @RequestMapping("api/vehicles")
-@CrossOrigin({ "*", "http://localhost:4203" })
+@CrossOrigin({ "*", "http://localhost:4208" })
 public class VehicleController {
 	@Autowired
 	VehicleService svc;
