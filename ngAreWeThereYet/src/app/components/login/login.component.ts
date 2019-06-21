@@ -11,7 +11,7 @@ import { AuthenticationService } from 'src/app/services/authentication.service';
       <mat-card>
             <mat-card-title>Login</mat-card-title>
       <mat-card-content>
-        <form [formGroup]="form" (ngSubmit)="submit()">
+        <form [formGroup]="form" (ngSubmit)="login()">
           <p>
             <mat-form-field>
               <input type="text" matInput placeholder="Username" formControlName="username">
@@ -74,18 +74,18 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
   }
- submit() {
-    if (this.form.valid) {
-      this.submitEM.emit(this.form.value);
-    }
-  }
-  @Input() error: string | null;
+//  submit() {
+//     if (this.form.valid) {
+//       this.submitEM.emit(this.form.value);
+//     }
+//   }
+//   @Input() error: string | null;
 
 
-  @Output() submitEM = new EventEmitter();
+//   @Output() submitEM = new EventEmitter();
 
-  login(form: NgForm) {
-    const loginData = form.value;
+  login() {
+    const loginData = this.form.value;
     console.log(loginData);
     this.auth.login(loginData.username, loginData.password).subscribe(
       data => {
@@ -99,5 +99,21 @@ export class LoginComponent implements OnInit {
 
 
     }
+
+  // login(form: NgForm) {
+  //   const loginData = form.value;
+  //   console.log(loginData);
+  //   this.auth.login(loginData.username, loginData.password).subscribe(
+  //     data => {
+  //       this.router.navigateByUrl('/something');
+  //     },
+  //     err =>  {
+  //       console.log('Error logging in');
+  //       this.router.navigateByUrl('/login');
+  //     },
+  //   );
+
+
+  //   }
 
 }
