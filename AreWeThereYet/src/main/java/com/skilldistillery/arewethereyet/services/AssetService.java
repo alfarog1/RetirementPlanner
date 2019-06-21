@@ -15,5 +15,7 @@ public interface AssetService {
 	public Asset update(String username, int aid, Asset asset);
 
 	public boolean destroy(String username, int aid);
+	
+	public List<Asset> getAllAssets();
 
 }

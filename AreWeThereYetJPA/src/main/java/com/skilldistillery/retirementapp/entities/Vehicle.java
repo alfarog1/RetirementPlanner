@@ -8,6 +8,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 @Entity
 public class Vehicle {
 	@Id
@@ -30,7 +32,7 @@ public class Vehicle {
 	
 	@Column(name = "has_employer_match")
 	private Boolean hasEmployerMatch;
-	
+	@JsonIgnore
 	@OneToMany(mappedBy="vehicle")
 	private List<Asset> assets;
 	
@@ -88,7 +90,7 @@ public class Vehicle {
 	}
 
 
-	public int getMaxContribution() {
+	public Integer getMaxContribution() {
 		return maxContribution;
 	}
 

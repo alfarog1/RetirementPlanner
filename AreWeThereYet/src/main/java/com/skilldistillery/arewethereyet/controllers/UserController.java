@@ -23,7 +23,7 @@ import com.skilldistillery.retirementapp.entities.User;
 
 @RestController
 @RequestMapping("api/users")
-@CrossOrigin({ "*", "http://localhost:4203" })
+@CrossOrigin({ "*", "http://localhost:4208" })
 public class UserController {
 	@Autowired
 	UserService svc;
