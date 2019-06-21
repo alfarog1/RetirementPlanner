@@ -1,3 +1,74 @@
-<p>
-  risk-questionnaire works!
+<div id="logo"> <img src="../assets/logo.jpg" width="200" height="200" [@slideInRight] ></div>
+
+
+<h3>Question 1</h3>
+<P>Do you agree or disagree with the following statement?
+  "I consider myself a long-term investor who is not concerned about the volatility of my account
+over the next five to ten years or longer.  The final result is more important to me than daily,
+monthly or annual changes in my account</P>
+<br>
+
+<h3>Question 2</h3>
+<p>Assume you have $10,000 in your retirement account, invested for the most part in stock funds.
+  Over the next 12 months, your account drops to $8,000.  What would you do with the remaining assets.
 </p>
+<br>
+
+<h3>Question 3</h3>
+<p>While inflation (the rise in the cost of goods and services) can reduce the buying power of money
+  over time, stock investments have historically outpaced inflation by taking higher amounts of risk.
+  Which of the following describes your views?
+</p>
+<br>
+
+<h3>Question 4</h3>
+<p>How old are you?</p>
+<br>
+
+<h3>Question 5</h3>
+<p>How many years until you plan on accessing your retirement savings?</p>
+
+
+
+
+
+<table class="centered">
+  <tbody>
+  <tr>
+    <td>
+  <div>
+    <div>
+      <div style="display: block"  [@slideInLeft]>
+        <canvas baseChart
+        height="350"
+        width="350"
+          [data]="doughnutChartData"
+          [labels]="doughnutChartLabels"
+          [chartType]="doughnutChartType"
+          [colors]="donutColors">
+        </canvas>
+      </div>
+    </div>
+  </div>
+  </td>
+  <td>
+  <div>
+    <div>
+      <div style="display: block" [@slideInRight]>
+        <canvas baseChart
+        height="350"
+        width="350"
+          [data]="doughnutChartData2"
+          [labels]="doughnutChartLabels2"
+          [chartType]="doughnutChartType2"
+          [colors]="donutColors">
+        </canvas>
+      </div>
+    </div>
+  </div>
+  </td>
+  </tr>
+  </tbody>
+  </table>
+
+  <script src="node_modules/chart.js/src/chart.js"></script>
