@@ -1,18 +1,24 @@
 <div class = 'container'>
   <div class = 'row'>
-    <div class = 'col-6 offset-3'>
-      <h3>lets start here</h3>
+    <div class = 'col-8 offset-3'>
+      <h3 [@slideInLeft]>Lets get started!</h3>
+      <div class = 'form'>
       <form>
+        <div class = 'section1' [@slideInBottom]>
         Email: <input type="email" name = 'email' [(ngModel)]="newUser.email"><br>
         Username: <input type="text" name = 'username' [(ngModel)]="newUser.username"><br>
         Password: <input type="password" name = 'password' [(ngModel)]="newUser.password"><br>
+        </div>
         <div *ngIf="newUser.email != null && newUser.username != null && newUser.password != null">
-          <h4>then we ask about this</h4>
-          First Name: <input type="text" name = 'fname' [(ngModel)]="newUserProfile.fName"><br>
-          Last Name: <input type="text" name = 'lname' [(ngModel)]="newUserProfile.lName"><br>
-          Date of Birth: <input type="date" name = 'dob' [(ngModel)]="newUserProfile.dob"><br>
+          <h4 [@slideInLeft] >Tell us about yourself</h4>
+          <div class = 'section2' [@slideInBottom]>
+          First Name: <input [@slideInBottom] type="text" name = 'fname' [(ngModel)]="newUserProfile.fName"><br>
+          Last Name: <input [@slideInBottom] type="text" name = 'lname' [(ngModel)]="newUserProfile.lName"><br>
+          Date of Birth: <input [@slideInBottom] type="date" name = 'dob' [(ngModel)]="newUserProfile.dob"><br>
+          </div>
           <div *ngIf="newUserProfile.fName != null && newUserProfile.lName != null && newUserProfile.dob != null">
-            <h4>last well ask about this</h4>
+            <h4 [@slideInLeft]>This will let us do math magic</h4>
+            <div class = 'section3' [@slideInBottom]>
             Annual Income: <input type="number" name = 'income' [(ngModel)]="newUserProfile.income"><br>
             Pay Period: <select name = 'payperiod' [(ngModel)]="newUserProfile.payPeriod">
                 <option value="weekly">Weekly</option>
@@ -20,12 +26,14 @@
                 <option value="monthly">Monthly</option>
                 <option value="bimonthly">Bi-Monthly</option>
             </select>
+            </div>
             <div *ngIf="newUserProfile.income != null && newUserProfile.payPeriod != null">
-              <button (click)='createUser()'>Submit</button>
+              <button [@slideInLeft] class="btn btn-success" (click)='createUser()'>Submit</button>
             </div>
           </div>
         </div>
       </form>
+    </div>
     </div>
   </div>
 </div>
