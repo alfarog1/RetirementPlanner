@@ -34,15 +34,15 @@ public class Vehicle {
 	@OneToMany(mappedBy="vehicle")
 	private List<Asset> assets;
 	
-	@OneToMany(mappedBy="vehicle")
-	private List<RiskProfile> riskProfiles;
+//	@OneToMany(mappedBy="vehicle")
+//	private List<RiskProfile> riskProfiles;
 
 	public Vehicle() {
 		super();
 	}
 
 	public Vehicle(int id, String assetName, Boolean isQualified, Boolean isFixed, int maxContribution,
-			Boolean isPretax, Boolean hasEmployerMatch, List<Asset> assets, List<RiskProfile> riskProfiles) {
+			Boolean isPretax, Boolean hasEmployerMatch, List<Asset> assets) {
 		super();
 		this.id = id;
 		this.assetName = assetName;
@@ -52,7 +52,7 @@ public class Vehicle {
 		this.isPretax = isPretax;
 		this.hasEmployerMatch = hasEmployerMatch;
 		this.assets = assets;
-		this.riskProfiles = riskProfiles;
+
 	}
 
 	public int getId() {
@@ -120,13 +120,7 @@ public class Vehicle {
 		this.assets = assets;
 	}
 
-	public List<RiskProfile> getRiskProfiles() {
-		return riskProfiles;
-	}
 
-	public void setRiskProfiles(List<RiskProfile> riskProfiles) {
-		this.riskProfiles = riskProfiles;
-	}
 
 	@Override
 	public String toString() {

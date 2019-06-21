@@ -20,21 +20,21 @@ public class RiskProfile {
 	
 	private int ror;
 	
-	@ManyToOne
-	@JoinColumn(name = "vehicle_id")
-	private Vehicle vehicle;
+//	@ManyToOne
+//	@JoinColumn(name = "vehicle_id")
+//	private Vehicle vehicle;
 
 	public RiskProfile() {
 		super();
 	}
 
-	public RiskProfile(int id, String name, String description, int ror, Vehicle vehicle) {
+	public RiskProfile(int id, String name, String description, int ror) {
 		super();
 		this.id = id;
 		this.name = name;
 		this.description = description;
 		this.ror = ror;
-		this.vehicle = vehicle;
+
 	}
 
 	public int getId() {
@@ -69,13 +69,6 @@ public class RiskProfile {
 		this.ror = ror;
 	}
 
-	public Vehicle getVehicle() {
-		return vehicle;
-	}
-
-	public void setVehicle(Vehicle vehicle) {
-		this.vehicle = vehicle;
-	}
 
 	@Override
 	public String toString() {
