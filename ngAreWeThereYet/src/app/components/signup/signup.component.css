@@ -1,0 +1,13 @@
+.container{
+  background-color: lightgrey;
+  width: 600px;
+  height: 590px;
+}
+
+input {
+  border-radius: 5px;
+}
+
+button {
+  background-color: #28a745;
+}

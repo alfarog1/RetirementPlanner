@@ -1,3 +1,4 @@
+import { AuthenticationService } from './authentication.service';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { catchError } from 'rxjs/operators';
@@ -10,12 +11,28 @@ import { Asset } from '../models/asset';
 export class AssetService {
   // Fields
   private baseUrl = 'http://localhost:8085/';
-  private url = this.baseUrl + '';
+  private url = this.baseUrl + 'api/assets';
 
   // Constructor
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient,
+    private authService: AuthenticationService
+  ) { }
 
   // Methods
+  index() {
+    if (this.authService.checkLogin()) {
+      const credentials = this.authService.getCredentials();
+      const httpOptions = {
+        headers: new HttpHeaders({
+          'Authorization': `Basic ${credentials}`,
+          'X-Requested-With': 'XMLHttpRequest'
+        })
+      };
+      return this.http.get<Asset[]>(this.url, httpOptions);
+    }
+  }
+
+
   handleError(error: any) {
     console.error('Something Broke');
     return throwError(error.json().error || 'Server Error');
@@ -28,7 +45,7 @@ export class AssetService {
       })
     };
     return this.http.post<Asset>(this.url, asset, httpOptions)
-    .pipe(catchError(this.handleError));
+      .pipe(catchError(this.handleError));
   }
 
   // TODO: Find correct edit function
@@ -39,8 +56,8 @@ export class AssetService {
       })
     };
     return this.http
-    .put(this.url + '/' + updateAsset.id, updateAsset, httpOptions)
-    .pipe(catchError(this.handleError));
+      .put(this.url + '/' + updateAsset.id, updateAsset, httpOptions)
+      .pipe(catchError(this.handleError));
   }
 
   destroy(id: number) {
@@ -50,7 +67,10 @@ export class AssetService {
       })
     };
     return this.http.delete(this.url + '/' + id, httpOptions)
-    .pipe(catchError(this.handleError));
+      .pipe(catchError(this.handleError));
+  }
+  averageValueOfAssets() {
+
   }
 
 }

@@ -61,4 +61,9 @@ public class AssetServiceImpl implements AssetService {
 		return true;
 	}
 
+	@Override
+	public List<Asset> getAllAssets() {
+		return repo.findAll();
+	}
+
 }
