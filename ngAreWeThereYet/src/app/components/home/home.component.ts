@@ -59,29 +59,29 @@ export class HomeComponent implements OnInit {
   count15 = 0;
   count16 = 0;
   count17 = 0;
-  stocksAvg: number = 60;
-  savingsAvg: number = 300;
-  annuityAvg: number = 500;
-  traIraAvg: number = 100;
-  rothIraAvg: number = 75;
-  avg457b: number = 50;
-  avg401k: number = 45;
-  avg401a: number = 200;
-  avg403b: number = 100;
-  avg457: number = 100;
-  invPropAvg: number = 75;
-  nonQualAvg: number = 30;
-  profitShareAvg: number = 35;
-  monPurAvg: number = 90;
-  mutFunAvg: number = 10;
-  tspAvg: number = 30;
-  bondsAvg: number= 20;
+  stocksAvg: number = 0;
+  savingsAvg: number = 0;
+  annuityAvg: number = 0;
+  traIraAvg: number = 0;
+  rothIraAvg: number = 0;
+  avg457b: number = 0;
+  avg401k: number = 0;
+  avg401a: number = 0;
+  avg403b: number = 0;
+  avg457: number = 0;
+  invPropAvg: number = 0;
+  nonQualAvg: number = 0;
+  profitShareAvg: number = 0;
+  monPurAvg: number = 0;
+  mutFunAvg: number = 0;
+  tspAvg: number = 0;
+  bondsAvg: number = 0;
   constructor(private assetService: AssetService,
-              private router: Router
+    private router: Router
   ) { }
 
   ngOnInit() {
-    
+
     this.reload();
   }
   visible = false;
@@ -91,27 +91,27 @@ export class HomeComponent implements OnInit {
   }
 
   // Doughnut  1
-  public doughnutChartLabels: Label[] = ["Stocks",
-  "Bonds",
-  "Savings",
-  "Annuity",
-  "Traditional IRA",
-  "Roth IRA",
-  "457b",
-  "401k",
-  "401a",
-  "403b",
-  "457",
-  "Investment Property",
-  "Non-Qualified",
-  "Profit Sharing",
-  "Money Purchase",
-  "Mutual Fund",
-  "TSP"
-];
-  public doughnutChartData: MultiDataSet = [
-    [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
-    
+  public doughnutChartLabels: Label[] = [ "Stocks",
+    "Bonds",
+    "Savings",
+    "Annuity",
+    "Traditional IRA",
+    "Roth IRA",
+    "457b",
+    "401k",
+    "401a",
+    "403b",
+    "457",
+    "Investment Property",
+    "Non-Qualified",
+    "Profit Sharing",
+    "Money Purchase",
+    "Mutual Fund",
+    "TSP"
+  ];
+  public doughnutChartData = [
+    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+
     // [50, 150, 120],
     // [250, 130, 70],
   ];
@@ -151,10 +151,8 @@ export class HomeComponent implements OnInit {
     "Mutual Fund",
     "TSP"
   ];
-  public doughnutChartData3: MultiDataSet = [
-    [this.stocksAvg, this.bondsAvg, this.savingsAvg, this.annuityAvg, this.traIraAvg, this.rothIraAvg, this.avg457b, this.avg401k, this.avg401a, this.avg403b, this.avg457, this.invPropAvg, this.nonQualAvg, this.profitShareAvg, this.monPurAvg, this.mutFunAvg, this.tspAvg]
-    // [50, 150, 120],
-    // [250, 130, 70],
+  public doughnutChartData3 = [
+    0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
   ];
   public doughnutChartType3: ChartType = "doughnut";
 
@@ -218,104 +216,111 @@ export class HomeComponent implements OnInit {
       }
     )
   }
-  signUp(){
-  this.router.navigateByUrl('signup');
+  signUp() {
+    this.router.navigateByUrl('signup');
   }
   averageBalancePerAsset() {
     console.log(this.assets);
+    let temp = [
+      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+    ];
+    let temp1 = [
+      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+    ];
     for (let i = 0; i < this.assets.length; i++) {
       console.log(this.assets[i]);
+      console.log(this.assets[i].vehicle.id);
       switch (this.assets[i].vehicle.id) {
 
         case 1:
           let value1 = this.assets[i].amount;
-          let count1 = 0;
-          count1++;
-          this.stocksAvg = value1 / count1;
+          temp[0]++;
+          temp1[0] = value1 / temp[0];
           break;
         case 2:
           let value2 = this.assets[i].amount;
-          this.count2++;
-          this.bondsAvg = value2 / this.count2;
+          temp[1]++;
+          temp1[1] = value2 / temp[1];
           break;
         case 3:
           let value3 = this.assets[i].amount;
-          this.count3++;
-          this.savingsAvg = value3 / this.count3;
+          temp[2]++;
+          temp1[2] = value3 / temp[2];
           break;
         case 4:
           let value4 = this.assets[i].amount;
-          this.count4++;
-          this.annuityAvg = value4 / this.count4;
+          temp[3]++;
+          temp1[3] = value4 / temp[3];
           break;
         case 5:
           let value5 = this.assets[i].amount;
-          this.count5++;
-          this.traIraAvg = value5 / this.count5;
+          temp[4]++;
+          temp1[4] = value5 / temp[4];
           break;
         case 6:
           let value6 = this.assets[i].amount;
-          this.count6++;
-          this.rothIraAvg = value6 / this.count6;
+          temp[5]++;
+          temp1[5] = value6 / temp[5];
           break;
         case 7:
           let value7 = this.assets[i].amount;
-          this.count7++;
-          this.avg457b = value7 / this.count7;
+          temp[6]++;
+          temp1[6] = value7 / temp[6];
           break;
         case 8:
           let value8 = this.assets[i].amount;
-          this.count8++;
-          this.avg401k = value8 / this.count8;
+          temp[7]++;
+          temp1[7] = value8 / temp[7];
           break;
         case 9:
           let value9 = this.assets[i].amount;
-          this.count9++;
-          this.avg401a = value9 / this.count9;
+          temp[8]++;
+          temp1[8] = value9 / temp[8];
           break;
         case 10:
           let value10 = this.assets[i].amount;
-          this.count10++;
-          this.avg403b = value10 / this.count10;
+          temp[9]++;
+          temp1[9] = value10 / temp[9];
           break;
         case 11:
           let value11 = this.assets[i].amount;
-          this.count11++;
-          this.avg457 = value11 / this.count11;
+          temp[10]++;
+          temp1[10] = value11 / temp[10];
           break;
         case 12:
           let value12 = this.assets[i].amount;
-          this.count12++;
-          this.invPropAvg = value12 / this.count12;
+          temp[11]++;
+          temp1[11] = value12 / temp[11];
           break;
         case 13:
           let value13 = this.assets[i].amount;
-          this.count13++;
-          this.nonQualAvg = value13 / this.count13;
+          temp[12]++;
+          temp1[12] = value13 / temp[12];
           break;
         case 14:
           let value14 = this.assets[i].amount;
-          this.count14++;
-          this.profitShareAvg = value14 / this.count14;
+          temp[13]++;
+          temp1[13] = value14 / temp[13];
           break;
         case 15:
           let value15 = this.assets[i].amount;
-          this.count15++;
-          this.monPurAvg = value15 / this.count15;
+          temp[14]++;
+          temp1[14] = value15 / temp[14];
           break;
         case 16:
           let value16 = this.assets[i].amount;
-          this.count16++;
-          this.mutFunAvg = value16 / this.count16;
+          temp[15]++;
+          temp1[15] = value16 / temp[15];
           break;
         case 17:
           let value17 = this.assets[i].amount;
-          this.count17++;
-          this.tspAvg = value17 / this.count17;
+          temp[16]++;
+          temp1[16] = value17 / temp[16];
           break;
       }
     }
-
+    this.doughnutChartData = temp;
+    this.doughnutChartData3 = temp1;
 
 
   }
