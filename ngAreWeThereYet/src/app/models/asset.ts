@@ -12,4 +12,5 @@ export class Asset {
   vehicle: Vehicle;
   employerMatch: EmployerMatch [];
   riskProfile: RiskProfile;
+  doesEmployerMatch: boolean;
 }
