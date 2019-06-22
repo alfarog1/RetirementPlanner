@@ -1,0 +1,10 @@
+<table *ngFor="let asset of assets" >
+  <tr (click)='expand = asset.id'>
+    <td>{{asset.vehicle.assetName}}</td>
+    <td>{{asset.amount}}</td>
+    <td *ngIf="expand === asset.id && asset.contributionFixed > 0">Fixed contribution: <br> {{asset.contributionFixed}}</td>
+    <td *ngIf="expand === asset.id && asset.contributionPercent > 0">Percent contribution: <br> {{asset.contributionPercent}}</td>
+    <td *ngIf="expand === asset.id && asset.doesEmployerMatch">Employer matching: <br> {{asset.employerMatch}}</td>
+    <td *ngIf="expand === asset.id && asset.riskProfile != null">Risk profile: <br> {{asset.riskProfile.name}}</td>
+  </tr>
+</table>

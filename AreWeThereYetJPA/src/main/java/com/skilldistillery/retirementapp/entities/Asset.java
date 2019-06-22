@@ -25,6 +25,7 @@ public class Asset {
 	
 	@Column(name = "contribution_percent")
 	private Integer contributionPercent;
+	
 	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name = "user_id")
