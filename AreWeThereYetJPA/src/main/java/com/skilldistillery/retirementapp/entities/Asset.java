@@ -10,6 +10,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 @Entity
 public class Asset {
 	@Id
@@ -22,8 +24,8 @@ public class Asset {
 	private Double contributionFixed;
 	
 	@Column(name = "contribution_percent")
-	private int contributionPercent;
-	
+	private Integer contributionPercent;
+	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name = "user_id")
 	private User user;
@@ -63,7 +65,7 @@ public class Asset {
 		this.contributionFixed = contributionFixed;
 	}
 
-	public int getContributionPercent() {
+	public Integer getContributionPercent() {
 		return contributionPercent;
 	}
 
@@ -79,11 +81,11 @@ public class Asset {
 		this.user = user;
 	}
 
-	public Vehicle getAsset() {
+	public Vehicle getVehicle() {
 		return vehicle;
 	}
 
-	public void setAsset(Vehicle vehicle) {
+	public void setVehicle(Vehicle vehicle) {
 		this.vehicle = vehicle;
 	}
 

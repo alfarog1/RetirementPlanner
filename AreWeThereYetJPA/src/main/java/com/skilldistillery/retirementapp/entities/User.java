@@ -2,6 +2,7 @@ package com.skilldistillery.retirementapp.entities;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -26,7 +27,7 @@ public class User {
 
 	private String role;
 
-	@OneToOne(mappedBy = "user")
+	@OneToOne(mappedBy = "user", cascade = CascadeType.PERSIST)
 	private UserProfile userProfile;
 	
 	@OneToMany(mappedBy="user")
@@ -37,7 +38,7 @@ public class User {
 	}
 
 
-	public User(int id, String username, String password, String emaill, Boolean enabled, String role, UserProfile userProfile,
+	public User(int id, String username, String password, String email, Boolean enabled, String role, UserProfile userProfile,
 
 			List<Asset> assets) {
 		super();
@@ -70,11 +71,11 @@ public class User {
 		this.id = id;
 	}
 
-	public String getUserName() {
+	public String getUsername() {
 		return username;
 	}
 
-	public void setUserName(String username) {
+	public void setUsername(String username) {
 		this.username = username;
 	}
 
@@ -120,8 +121,12 @@ public class User {
 
 	@Override
 	public String toString() {
-		return "User [id=" + id + ", userName=" + username + ", password=" + password + ", email=" + email
-				+ ", enabled=" + enabled + "]";
+		StringBuilder builder = new StringBuilder();
+		builder.append("User [id=").append(id).append(", username=").append(username).append(", password=")
+				.append(password).append(", email=").append(email).append(", enabled=").append(enabled)
+				.append(", role=").append(role).append(", userProfile=").append(userProfile).append(", assets=")
+				.append(assets).append("]");
+		return builder.toString();
 	}
 
 }

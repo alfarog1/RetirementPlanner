@@ -22,7 +22,7 @@ import com.skilldistillery.retirementapp.entities.Asset;
 
 @RestController
 @RequestMapping("api/assets")
-@CrossOrigin({"*", "http://localhost:4203"})
+@CrossOrigin({"*", "http://localhost:4208"})
 public class AssetController {
 	@Autowired
 	AssetService svc;
@@ -33,10 +33,15 @@ public class AssetController {
 	        return "assets/pong";
 	    }
 
-	    @GetMapping(path = "")
+	    @GetMapping(path = "/user")
 	    public List<Asset> index(HttpServletRequest req, HttpServletResponse res, Principal principal) //
 	    {
 	        return svc.index(principal.getName());
+	    }
+	    @GetMapping("")
+	    public List<Asset> getAllAssets(){
+	    	System.out.println(svc.getAllAssets());
+	    	return svc.getAllAssets();
 	    }
 
 	    @GetMapping(path = "/{aid}")

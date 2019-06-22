@@ -1,3 +1,208 @@
+<div id="logo">
+  <img src="../assets/logo.jpg" width="200" height="200" [@slideInRight] />
+</div>
+
+<div class="q1">
+    <h3>Question 1</h3>
+    <P>
+      Do you agree or disagree with the following statement? "I consider myself
+      a long-term investor who is not concerned about the volatility of my
+      account over the next five to ten years or longer. The final result is
+      more important to me than daily, monthly or annual changes in my
+      account</P>
+      <select class="selectpicker" [(ngModel)]="question1">
+        <option value='0'>Please select one</option>
+        <option value='1'>Completely disagree</option>
+        <option value='2'>I am willing to accept a moderate amount of annual volatility,
+          but not loss of significant principal.</option>
+        <option value='3'>I would accept an occasional annual loss if the final result was good</option>
+        <option value='5'>Completely agree</option>
+    </select>
+</div>
+<br />
+
+<div class="q2">
+<h3>Question 2</h3>
 <p>
-  risk-questionnaire works!
+  Assume you have $10,000 in your retirement account, invested for the most part
+  in stock funds. Over the next 12 months, your account drops to $8,000. What
+  would you do with the remaining assets.
 </p>
+<select class="mdb-select md-form colorful-select dropdown-primary" [(ngModel)]="question2">
+    <option value='0'>Please select one</option>
+    <option value='1'>Transfer all assets to a money market fund (low risk and low returns)</option>
+    <option value='2'>Transfer the assets bond funds (moderate risk and moderate returns)</option>
+    <option value='3'>Consider transferring a small portion of your assets to bond funds</option>
+    <option value='5'>Make no changes to your account</option>
+</select>
+</div>
+<br/>
+
+<div class="q3">
+<h3>Question 3</h3>
+<p>
+  While inflation (the rise in the cost of goods and services) can reduce the
+  buying power of money over time, stock investments have historically outpaced
+  inflation by taking higher amounts of risk. Which of the following describes
+  your views?
+</p>
+<select class="selectpicker" [(ngModel)]="question3">
+    <option value='0'>Please select one</option>
+    <option value='1'>I am comfortable if my investments only keep pace with inflation</option>
+    <option value='2'>I am comfortable taking a small amount of risk to outpace inflation</option>
+    <option value='3'>I am comfrotable taking a moderate amount of risk to outpace inflation</option>
+    <option value='5'>I want to fully capitalize on my investments despite the risk</option>
+</select>
+</div>
+<br/>
+
+<div class="q4">
+<h3>Question 4</h3>
+<p>How old are you?</p>
+<select class="selectpicker" [(ngModel)]="question4">
+    <option value='0'>Please select one</option>
+    <option value='1'>60 years or older</option>
+    <option value='2'>50-59 years old</option>
+    <option value='3'>40-49 years old</option>
+    <option value='4'>30-39 years old</option>
+    <option value='5'>Less than years old</option>
+</select>
+</div>
+<br />
+
+<div class="q5">
+<h3>Question 5</h3>
+<p>How many years until you plan on accessing your retirement savings?</p>
+<select class="selectpicker" [(ngModel)]="question5">
+    <option value='0'>Please select one</option>
+    <option value='1'>Less than 3 years</option>
+    <option value='2'>3-5 years</option>
+    <option value='3'>5-10 years</option>
+    <option value='4'>10-15 years</option>
+    <option value='5'>More than 15 years</option>
+</select>
+</div>
+<br>
+<br>
+<br>
+
+
+
+<table class="centered">
+  <tbody>
+    <tr>
+      <td>
+          <h3>Conservative</h3>
+        <div>
+          <div>
+            <div style="display: block" [@slideInLeft]>
+              <canvas
+                baseChart
+                height="350"
+                width="350"
+                [data]="doughnutChartData"
+                [labels]="doughnutChartLabels"
+                [chartType]="doughnutChartType"
+                [colors]="donutColors"
+              >
+              </canvas>
+            </div>
+          </div>
+        </div>
+      </td>
+      <td>
+          <h3>Moderately-Conservative</h3>
+        <div>
+          <div>
+            <div style="display: block" [@slideInRight]>
+              <canvas
+                baseChart
+                height="350"
+                width="350"
+                [data]="doughnutChartData2"
+                [labels]="doughnutChartLabels2"
+                [chartType]="doughnutChartType2"
+                [colors]="donutColors"
+              >
+              </canvas>
+            </div>
+          </div>
+        </div>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<br>
+<br>
+<br>
+
+<table class="centered">
+    <tbody>
+    <tr>
+      <td>
+        <h3>Moderate</h3>
+    <div>
+      <div>
+        <div style="display: block" [@slideInLeft]>
+          <canvas baseChart
+          height="350"
+          width="350"
+            [data]="doughnutChartData3"
+            [labels]="doughnutChartLabels3"
+            [chartType]="doughnutChartType3"
+            [colors]="donutColors">
+          </canvas>
+        </div>
+      </div>
+    </div>
+    </td>
+    <td>
+      <h3>Moderately-Aggressive</h3>
+    <div>
+      <div>
+        <div style="display: block" [@slideInRight]>
+          <canvas baseChart
+          height="350"
+          width="350"
+            [data]="doughnutChartData4"
+            [labels]="doughnutChartLabels4"
+            [chartType]="doughnutChartType4"
+            [colors]="donutColors">
+          </canvas>
+        </div>
+      </div>
+    </div>
+    </td>
+    </tr>
+    </tbody>
+    </table>
+
+    <br>
+    <br>
+    <br>
+
+    <table>
+    <tbody>
+        <tr>
+          <td>
+            <h3>Aggressive</h3>
+        <div>
+          <div>
+            <div style="display: block" [@slideInLeft]>
+              <canvas baseChart
+              height="350"
+              width="350"
+                [data]="doughnutChartData3"
+                [labels]="doughnutChartLabels3"
+                [chartType]="doughnutChartType3"
+                [colors]="donutColors">
+              </canvas>
+            </div>
+          </div>
+        </div>
+        </td>
+      </table>
+
+
+<script src="node_modules/chart.js/src/chart.js"></script>

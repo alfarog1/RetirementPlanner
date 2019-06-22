@@ -5,7 +5,7 @@
 <app-login *ngIf="visible" [@slideInTop] >Your Form</app-login>
 <div [@slideInLeft] style="position: absolute; top: 0; right: 0; padding: 20px;">
 <button  type="button" class="btn btn-success" (click)="onClickMe()" > Login </button>
-<button  type="button" class="btn btn-warning" > Sign Up </button>
+<button  type="button" class="btn btn-warning" (click)="signUp()"> Sign Up </button>
 </div>
 <table class="centered">
 <tbody>
@@ -17,6 +17,7 @@
       <canvas baseChart
       height="350"
       width="350"
+      position = 'bottom'
         [data]="doughnutChartData"
         [labels]="doughnutChartLabels"
         [chartType]="doughnutChartType"
@@ -33,6 +34,7 @@
       <canvas baseChart
       height="350"
       width="350"
+      position = 'bottom'
         [data]="doughnutChartData2"
         [labels]="doughnutChartLabels2"
         [chartType]="doughnutChartType2"
@@ -86,6 +88,7 @@
     </tr>
     </tbody>
     </table>
+    
 
 
 <script src="node_modules/chart.js/src/chart.js"></script>

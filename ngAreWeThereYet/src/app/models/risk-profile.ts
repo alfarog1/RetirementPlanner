@@ -4,5 +4,4 @@ export class RiskProfile {
   name: string;
   description: string;
   ror: number;
-  vehicle: Vehicle;
 }
