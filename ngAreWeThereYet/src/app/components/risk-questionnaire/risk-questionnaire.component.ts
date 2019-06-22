@@ -5,7 +5,7 @@ import { trigger, transition, animate, style } from '@angular/animations';
 
 @Component({
   selector: 'app-risk-questionnaire',
-  templateUrl: './risk-questionnaire.component.html',
+  templateUrl: 'risk-questionnaire.component.html',
   styleUrls: ['./risk-questionnaire.component.css'],
   animations: [
     trigger('slideInLeft', [
@@ -40,14 +40,18 @@ import { trigger, transition, animate, style } from '@angular/animations';
 export class RiskQuestionnaireComponent implements OnInit {
   // Fields
   visible = false;
-
+  question1 = 0;
+  question2 = 0;
+  question3 = 0;
+  question4 = 0;
+  question5 = 0;
   // Constructor
   constructor() {}
 
   // Doughnut 1
-  public doughnutChartLabels: Label[] = ['Savings', '401k', 'IRA', 'Bonds'];
+  public doughnutChartLabels: Label[] = ['Bonds', 'Large Cap', 'Mid Cap', 'Small Cap', 'International', 'Cash'];
   public doughnutChartData: MultiDataSet = [
-    [350, 450, 100, 20]
+    [40, 10, 50, 0, 5, 40]
     // [50, 150, 120],
     // [250, 130, 70],
   ];
