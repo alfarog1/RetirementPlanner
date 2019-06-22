@@ -1,0 +1,47 @@
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title">Type of Investment</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+
+
+    <div class="form-group">
+      <!-- <label for="exampleFormControlSelect1">Example select</label> -->
+      <select class="form-control" id="investmentAdd" (change)="currentBalance()">
+        <option value="" selected="selected">Select investment type</option>
+        <option value="TRADIRA">Traditional IRA</option>
+        <option value="ROTHIRA">Roth IRA</option>
+        <option value="457">457 (deferred comp)</option>
+        <option value="401K">401(k)</option>
+        <option value="401A">401(a)</option>
+        <option value="403B">403(b)</option>
+        <option value="STOCKS">Stocks</option>
+        <option value="BONDS">Bonds</option>
+        <option value="MUTUALFUND">Mutual Funds</option>
+        <option value="SAVINGS">Savings</option>
+        <option value="INVPRO">Investment Property</option>
+        <option value="OTHER">Other</option>
+        <option value="NonQual">Non-Qualified</option>
+        <option value="457B">457B</option>
+        <option value="ProfitShar">Profit Sharing</option>
+        <option value="MoneyPurch">Money Purchase</option>
+        <option value="TSP">Thrift Savings Plan</option>
+      </select>
+    </div>
+
+
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-light" (click)="modal.close('Close click')">Close</button>
+  </div>
+</ng-template>
+
+<!-- <button class="btn btn-outline-primary mb-2 mr-2" (click)="openWindowCustomClass(content)">Modal with window custom class</button>
+<button class="btn btn-outline-primary mb-2 mr-2" (click)="openBackDropCustomClass(content)">Modal with backdrop custom class</button> -->
+<button class="btn btn-outline-primary mb-2 mr-2" (click)="openSm(content)">Add Investments</button>
+<!-- <button class="btn btn-outline-primary mb-2 mr-2" (click)="openLg(content)">Large modal</button>
+<button class="btn btn-outline-primary mb-2 mr-2" (click)="openVerticallyCentered(content)">Modal vertically centered</button> -->
+
