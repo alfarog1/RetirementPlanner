@@ -27,8 +27,12 @@ import {MatButtonModule, MatCheckboxModule, MatCardModule, MatInputModule} from 
 import { ReactiveFormsModule } from '@angular/forms';
 import { LoginComponent } from './components/login/login.component';
 import { LogoutComponent } from './components/logout/logout.component';
-import { HttpClientModule } from '@angular/common/http';
-import { FlexLayoutModule } from "@angular/flex-layout";
+
+
+
+import { CounterComponent } from './components/counter/counter.component';
+import { ModalOptionsComponent } from './components/modal-options/modal-options.component';
+
 
 
 
@@ -42,7 +46,9 @@ import { FlexLayoutModule } from "@angular/flex-layout";
     NotFoundComponent,
     MyLineChartComponent,
     LoginComponent,
-    LogoutComponent
+    LogoutComponent,
+    CounterComponent,
+    ModalOptionsComponent
   ],
   imports: [
     NgbModule,

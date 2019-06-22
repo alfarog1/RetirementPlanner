@@ -1,4 +1,6 @@
+import { AssetService } from './../../services/asset.service';
 import { Component, OnInit } from '@angular/core';
+import { Asset } from 'src/app/models/asset';
 
 @Component({
   selector: 'app-dashboard',
@@ -7,9 +9,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DashboardComponent implements OnInit {
 
-  constructor() { }
+  newAsset: Asset = null;
+  assets: Asset[] = [];
+  constructor(private assetService: AssetService) { }
 
   ngOnInit() {
   }
+
+  addedAsset(newAsset: Asset){
+    this.assetService.create(newAsset);
+    newAsset = null;
+    this.assetService.getUsersAssets().subscribe(
+      good => {
+        this.assets = good;
+      }
+    )
+  }
+
 
 }
