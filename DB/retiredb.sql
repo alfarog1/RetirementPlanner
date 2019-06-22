@@ -222,6 +222,7 @@ INSERT INTO `user` (`id`, `username`, `password`, `email`, `role`, `enabled`) VA
 INSERT INTO `user` (`id`, `username`, `password`, `email`, `role`, `enabled`) VALUES (8, 'MPerez10', 'monica', 'monica@gmail.com', 'user', 1);
 INSERT INTO `user` (`id`, `username`, `password`, `email`, `role`, `enabled`) VALUES (9, 'DD4', 'dion', 'dion@aol.com', 'user', 1);
 INSERT INTO `user` (`id`, `username`, `password`, `email`, `role`, `enabled`) VALUES (10, 'Moss', 'alexander', 'alexander@gmail.com', 'user', 1);
+INSERT INTO `user` (`id`, `username`, `password`, `email`, `role`, `enabled`) VALUES (11, 'user', '$2a$10$qXOl2X/57LVg3L9zZY1fauvBCu9WXjfe6dES3mAf/9mtP1e9txHRy', 'user@user.com', 'user', 1);
 
 COMMIT;
 
@@ -288,6 +289,7 @@ INSERT INTO `user_profile` (`id`, `user_id`, `retirement_age`, `life_expectancy`
 INSERT INTO `user_profile` (`id`, `user_id`, `retirement_age`, `life_expectancy`, `percent_income`, `first_name`, `last_name`, `dob`, `income`, `pay_period`) VALUES (8, 8, 66, 80, 65, 'Monica', 'Perez', '1991-05-22', 100000, 'monthly');
 INSERT INTO `user_profile` (`id`, `user_id`, `retirement_age`, `life_expectancy`, `percent_income`, `first_name`, `last_name`, `dob`, `income`, `pay_period`) VALUES (9, 9, 58, 88, 70, 'Dion', 'Davis', '1979-09-04', 110000, 'bi-weekly');
 INSERT INTO `user_profile` (`id`, `user_id`, `retirement_age`, `life_expectancy`, `percent_income`, `first_name`, `last_name`, `dob`, `income`, `pay_period`) VALUES (10, 10, 68, 83, 95, 'Alexander', 'Moss', '1965-10-10', 95000, 'monthly');
+INSERT INTO `user_profile` (`id`, `user_id`, `retirement_age`, `life_expectancy`, `percent_income`, `first_name`, `last_name`, `dob`, `income`, `pay_period`) VALUES (11, 11, 69, 85, 90, 'user', 'name', '1995-12-01', 100000, 'bi-weekly');
 
 COMMIT;
 
