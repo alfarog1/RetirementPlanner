@@ -15,6 +15,7 @@ public class Vehicle {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
+	
 	@Column(name = "asset_name")
 	private String assetName;
 	
@@ -32,6 +33,7 @@ public class Vehicle {
 	
 	@Column(name = "has_employer_match")
 	private Boolean hasEmployerMatch;
+	
 	@JsonIgnore
 	@OneToMany(mappedBy="vehicle")
 	private List<Asset> assets;

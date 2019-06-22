@@ -32,6 +32,8 @@ import { LogoutComponent } from './components/logout/logout.component';
 
 import { CounterComponent } from './components/counter/counter.component';
 import { ModalOptionsComponent } from './components/modal-options/modal-options.component';
+import { AssetdisplayComponent } from './components/assetdisplay/assetdisplay.component';
+import { HttpClientModule } from '@angular/common/http';
 
 
 
@@ -48,7 +50,8 @@ import { ModalOptionsComponent } from './components/modal-options/modal-options.
     LoginComponent,
     LogoutComponent,
     CounterComponent,
-    ModalOptionsComponent
+    ModalOptionsComponent,
+    AssetdisplayComponent
   ],
   imports: [
     NgbModule,
@@ -64,8 +67,7 @@ import { ModalOptionsComponent } from './components/modal-options/modal-options.
     MatInputModule,
     MatCheckboxModule,
     ReactiveFormsModule,
-    HttpClientModule,
-    FlexLayoutModule
+    HttpClientModule
   ],
 
   providers: [
