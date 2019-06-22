@@ -31,8 +31,18 @@ export class AssetService {
       return this.http.get<Asset[]>(this.url, httpOptions);
     }
   }
-
-
+  getUsersAssets() {
+    if (this.authService.checkLogin()) {
+      const credentials = this.authService.getCredentials();
+      const httpOptions = {
+        headers: new HttpHeaders({
+          'Authorization': `Basic ${credentials}`,
+          'X-Requested-With': 'XMLHttpRequest'
+        })
+      };
+      return this.http.get<Asset[]>(this.url + '/user', httpOptions);
+    }
+  }
   handleError(error: any) {
     console.error('Something Broke');
     return throwError(error.json().error || 'Server Error');
