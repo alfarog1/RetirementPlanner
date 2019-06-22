@@ -1,3 +1,40 @@
-<p>
-  dashboard works!
-</p>
+<div class="container" id="header">
+  <div class="row">
+    <div id="risk" class="col">
+      RISK PROFILE
+    </div>
+
+    <div id="counter" class="col-md-auto">
+      <app-counter></app-counter>
+    </div>
+
+    <div id="gauge" class="col">
+      GUAGE
+    </div>
+  </div>
+</div>
+<div class="container" id='subHeader'>
+  <div class="row">
+    <div class="col">
+      DOB
+    </div>
+    <div class="col-6">
+   <marquee> News Ticker <link rel="alternate" href="rss.xml" type="application/rss+xml" title="RSS"></marquee>
+    </div>
+    <div class="col">
+     NAME
+    </div>
+  </div>
+</div>
+<div class="container" id="bodyArea">
+    <div class="row">
+      <div class="col">
+        Current Assets
+      </div>
+      <div class="col-8">
+     Add Assets and Goals <br>
+     <app-modal-options></app-modal-options>
+      </div>
+
+    </div>
+  </div>
