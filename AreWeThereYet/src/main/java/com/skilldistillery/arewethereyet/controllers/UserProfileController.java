@@ -76,7 +76,7 @@ public class UserProfileController {
 	public UserProfile getByUser_Username(@PathVariable int uid, HttpServletRequest req, HttpServletResponse resp) {
 		User user = usvc.show(uid);
 		if (user != null) {
-			UserProfile profile = svc.getByUser_Username(user.getUserName());
+			UserProfile profile = svc.getByUser_Username(user.getUsername());
 			return profile;
 		}else {
 			return null;

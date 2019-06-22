@@ -1,3 +1,4 @@
+import { AuthenticationService } from 'src/app/services/authentication.service';
 import { UserService } from './../../services/user.service';
 import { UserProfile } from './../../models/user-profile';
 import { Component, OnInit } from '@angular/core';
@@ -56,12 +57,27 @@ export class SignupComponent implements OnInit {
   newUser: User = new User();
   newUserProfile: UserProfile = new UserProfile();
 
-  constructor(private usersvc: UserService, private router: Router) {
+  constructor(private usersvc: UserService, private router: Router, private auth: AuthenticationService) {
   }
 
   createUser() {
     this.newUser.userProfile = this.newUserProfile;
-    this.usersvc.create(this.newUser);
+
+    this.auth.register(this.newUser).subscribe(
+      data => {
+        this.auth.login(this.newUser.username, this.newUser.password).subscribe(
+          seconddata => {
+            this.router.navigateByUrl('/dashboard');
+          },
+          err => {
+            console.log('error loging in after register:' + err);
+          }
+
+        ); },
+          err => {
+            console.log('error creating user:' + err);
+          }
+    );
     this.router.navigateByUrl('/home');
   }
 
