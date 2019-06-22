@@ -19,6 +19,12 @@ export class DashboardComponent implements OnInit {
   addedAsset(newAsset: Asset){
     this.assetService.create(newAsset);
     newAsset = null;
+    this.assetService.getUsersAssets().subscribe(
+      good => {
+        this.assets = good;
+      }
+    )
   }
+
 
 }

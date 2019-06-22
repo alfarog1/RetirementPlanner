@@ -33,7 +33,7 @@ public class AssetController {
 	        return "assets/pong";
 	    }
 
-	    @GetMapping(path = "/user")
+	    @GetMapping(path = "user")
 	    public List<Asset> index(HttpServletRequest req, HttpServletResponse res, Principal principal) //
 	    {
 	        return svc.index(principal.getName());
@@ -44,7 +44,7 @@ public class AssetController {
 	    	return svc.getAllAssets();
 	    }
 
-	    @GetMapping(path = "/{aid}")
+	    @GetMapping(path = "{aid}")
 	    public Asset show(HttpServletRequest req, HttpServletResponse res, @PathVariable("aId") int aId, Principal principal) 
 	    {
 	        return svc.show(principal.getName(), aId);

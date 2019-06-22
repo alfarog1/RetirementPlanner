@@ -23,6 +23,8 @@ export class UserService {
   }
 
   create(user: User) {
+    console.log(user);
+
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json'
