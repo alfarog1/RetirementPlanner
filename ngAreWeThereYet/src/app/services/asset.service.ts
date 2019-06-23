@@ -49,8 +49,10 @@ export class AssetService {
   }
 
   create(asset: Asset) {
+    const credentials = this.authService.getCredentials();
     const httpOptions = {
       headers: new HttpHeaders({
+        'Authorization': `Basic ${credentials}`,
         'Content-Type': 'application/json'
       })
     };
@@ -60,8 +62,10 @@ export class AssetService {
 
   // TODO: Find correct edit function
   update(updateAsset: Asset) {
+    const credentials = this.authService.getCredentials();
     const httpOptions = {
       headers: new HttpHeaders({
+        'Authorization': `Basic ${credentials}`,
         'Content-Type': 'application/json'
       })
     };
@@ -71,8 +75,10 @@ export class AssetService {
   }
 
   destroy(id: number) {
+    const credentials = this.authService.getCredentials();
     const httpOptions = {
       headers: new HttpHeaders({
+        'Authorization': `Basic ${credentials}`,
         'Content-Type': 'application/json'
       })
     };

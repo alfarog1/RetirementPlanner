@@ -1,4 +1,3 @@
-
 <div class="container" id="header">
   <div class="row">
     <div id="risk" class="col">
@@ -14,31 +13,38 @@
     </div>
   </div>
 </div>
-<div class="container" id='subHeader'>
+<div class="container" id="subHeader">
   <div class="row">
     <div class="col">
-      DOB
+        Add Assets and Goals <br />
+      <app-modal-options></app-modal-options>
     </div>
     <div class="col-6">
-   <marquee> News Ticker <link rel="alternate" href="rss.xml" type="application/rss+xml" title="RSS"></marquee>
+      <marquee>
+        News Ticker
+        <link
+          rel="alternate"
+          href="rss.xml"
+          type="application/rss+xml"
+          title="RSS"
+      /></marquee>
     </div>
     <div class="col">
-     NAME
+      {{user.userProfile.fName}} {{user.userProfile.lName}}
     </div>
   </div>
 </div>
 <div class="container" id="bodyArea">
-    <div class="row">
-      <div class="col assets">
-        Current Assets
-        <app-assetdisplay></app-assetdisplay>
-      </div>
-      <div class="col-8 offset-3">
-     Add Assets and Goals <br>
-     <app-modal-options></app-modal-options>
-      </div>
+  <div class="row">
+    <div class="col assets">
+      Current Assets
+      <app-assetdisplay></app-assetdisplay>
+    </div>
+    <div class="col-3 offset-3">
 
     </div>
-
+    <div class="col-6 offset-6">
+      <app-retiregoals></app-retiregoals>
+    </div>
   </div>
-
+</div>
