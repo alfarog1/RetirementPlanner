@@ -13,4 +13,5 @@ export class Asset {
   employerMatch: EmployerMatch [];
   riskProfile: RiskProfile;
   doesEmployerMatch: boolean;
+  periodicDeposit: number;
 }
