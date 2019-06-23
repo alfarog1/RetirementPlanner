@@ -222,7 +222,7 @@ INSERT INTO `user` (`id`, `username`, `password`, `email`, `role`, `enabled`) VA
 INSERT INTO `user` (`id`, `username`, `password`, `email`, `role`, `enabled`) VALUES (8, 'MPerez10', 'monica', 'monica@gmail.com', 'user', 1);
 INSERT INTO `user` (`id`, `username`, `password`, `email`, `role`, `enabled`) VALUES (9, 'DD4', 'dion', 'dion@aol.com', 'user', 1);
 INSERT INTO `user` (`id`, `username`, `password`, `email`, `role`, `enabled`) VALUES (10, 'Moss', 'alexander', 'alexander@gmail.com', 'user', 1);
-INSERT INTO `user` (`id`, `username`, `password`, `email`, `role`, `enabled`) VALUES (11, 'user', '$2a$10$qXOl2X/57LVg3L9zZY1fauvBCu9WXjfe6dES3mAf/9mtP1e9txHRy', 'user@user.com', 'user', 1);
+INSERT INTO `user` (`id`, `username`, `password`, `email`, `role`, `enabled`) VALUES (11, 'user', '$2a$10$qXOl2X/57LVg3L9zZY1fauvBCu9WXjfe6dES3mAf/9mtP1e9txHRy', 'user@user.com', 'user', DEFAULT);
 
 COMMIT;
 
@@ -259,6 +259,11 @@ INSERT INTO `asset` (`id`, `risk_profile_id`, `vehicle_id`, `user_id`, `amount`,
 INSERT INTO `asset` (`id`, `risk_profile_id`, `vehicle_id`, `user_id`, `amount`, `contribution_fixed`, `contribution_percent`) VALUES (25, 2, 2, 10, 525000, 10000, NULL);
 INSERT INTO `asset` (`id`, `risk_profile_id`, `vehicle_id`, `user_id`, `amount`, `contribution_fixed`, `contribution_percent`) VALUES (26, 5, 1, 10, 340000, 10000, NULL);
 INSERT INTO `asset` (`id`, `risk_profile_id`, `vehicle_id`, `user_id`, `amount`, `contribution_fixed`, `contribution_percent`) VALUES (27, 1, 1, 10, 250000, 20000, NULL);
+INSERT INTO `asset` (`id`, `risk_profile_id`, `vehicle_id`, `user_id`, `amount`, `contribution_fixed`, `contribution_percent`) VALUES (28, 5, 1, 3, 75000, 10000, NULL);
+INSERT INTO `asset` (`id`, `risk_profile_id`, `vehicle_id`, `user_id`, `amount`, `contribution_fixed`, `contribution_percent`) VALUES (29, NULL, 8, 3, 250000, NULL, 5);
+INSERT INTO `asset` (`id`, `risk_profile_id`, `vehicle_id`, `user_id`, `amount`, `contribution_fixed`, `contribution_percent`) VALUES (30, 1, 2, 3, 50000, NULL, 2);
+INSERT INTO `asset` (`id`, `risk_profile_id`, `vehicle_id`, `user_id`, `amount`, `contribution_fixed`, `contribution_percent`) VALUES (31, NULL, 5, 3, 225000, 20000, NULL);
+INSERT INTO `asset` (`id`, `risk_profile_id`, `vehicle_id`, `user_id`, `amount`, `contribution_fixed`, `contribution_percent`) VALUES (32, 1, 3, 3, 35000, 35000, NULL);
 
 COMMIT;
 
