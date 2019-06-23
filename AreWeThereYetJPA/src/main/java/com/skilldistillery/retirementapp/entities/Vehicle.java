@@ -38,6 +38,9 @@ public class Vehicle {
 	@OneToMany(mappedBy="vehicle")
 	private List<Asset> assets;
 	
+	@Column(name= "compounding_periods")
+	private Integer compoundingPeriods;
+	
 //	@OneToMany(mappedBy="vehicle")
 //	private List<RiskProfile> riskProfiles;
 
@@ -65,6 +68,16 @@ public class Vehicle {
 
 	public void setId(int id) {
 		this.id = id;
+	}
+	
+	
+
+	public Integer getCompoundingPeriods() {
+		return compoundingPeriods;
+	}
+
+	public void setCompoundingPeriods(Integer compoundingPeriods) {
+		this.compoundingPeriods = compoundingPeriods;
 	}
 
 	public String getAssetName() {
