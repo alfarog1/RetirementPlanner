@@ -22,6 +22,12 @@ export class RetiregoalsComponent implements OnInit {
 
   constructor(private usersvc: UserService, private assetsvc: AssetService, private profilesvc: UserProfileService) { }
 
+  ngOnInit() {
+    this.getUser();
+    this.getAssets();
+
+  }
+
   getUser() {
     this.usersvc.getUser().subscribe(
       data => {
@@ -79,10 +85,6 @@ export class RetiregoalsComponent implements OnInit {
     return (income * percent) * years;
   }
 
-  ngOnInit() {
-    this.getUser();
-    this.getAssets();
 
-  }
 
 }

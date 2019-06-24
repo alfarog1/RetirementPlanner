@@ -49,6 +49,8 @@ export class AssetService {
   }
 
   create(asset: Asset) {
+    console.log('in create in asset.service');
+    console.log(asset);
     const credentials = this.authService.getCredentials();
     const httpOptions = {
       headers: new HttpHeaders({
