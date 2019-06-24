@@ -24,7 +24,7 @@ import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
 export class ModalOptionsComponent implements OnInit {
   balance: boolean;
   contribution: boolean;
-  investment: null;
+  investment= '';
   appear: boolean;
   recurring: boolean;
   match: boolean;
@@ -59,7 +59,7 @@ export class ModalOptionsComponent implements OnInit {
   }
 
   contribute() {
-    this.investment = document.getElementById("investmentAdd").value;
+    this.investment = (document.getElementById("investmentAdd") as HTMLInputElement).value;
     this.contribution = true;
   }
 

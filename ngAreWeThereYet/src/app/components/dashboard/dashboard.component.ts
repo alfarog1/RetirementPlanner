@@ -1,6 +1,5 @@
 
 import { UserService } from './../../services/user.service';
-import { HomeComponent } from './../home/home.component';
 import { AssetService } from './../../services/asset.service';
 import { Component, OnInit } from '@angular/core';
 import { Asset } from 'src/app/models/asset';
@@ -16,7 +15,7 @@ export class DashboardComponent implements OnInit {
   newAsset: Asset = null;
   assets: Asset[] = [];
 
-  constructor(private assetService: AssetService, private usersvc: UserService, private home: HomeComponent) { }
+  constructor(private assetService: AssetService, private usersvc: UserService) { }
 
   ngOnInit() {
     this.getUser();
