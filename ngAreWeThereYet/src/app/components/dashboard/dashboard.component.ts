@@ -1,4 +1,6 @@
+
 import { UserService } from './../../services/user.service';
+import { HomeComponent } from './../home/home.component';
 import { AssetService } from './../../services/asset.service';
 import { Component, OnInit } from '@angular/core';
 import { Asset } from 'src/app/models/asset';
@@ -13,6 +15,7 @@ export class DashboardComponent implements OnInit {
   user: User;
   newAsset: Asset = null;
   assets: Asset[] = [];
+
   constructor(private assetService: AssetService, private usersvc: UserService) { }
 
   ngOnInit() {
@@ -24,7 +27,11 @@ export class DashboardComponent implements OnInit {
     newAsset = null;
     this.assetService.getUsersAssets().subscribe(
       good => {
-        this.assets = good;
+        this.home.reload()
+        newAsset = null;
+      },
+      bad => {
+        console.log(bad);
       }
     );
   }
@@ -40,6 +47,7 @@ export class DashboardComponent implements OnInit {
       }
     );
   }
-
-
 }
+
+
+
