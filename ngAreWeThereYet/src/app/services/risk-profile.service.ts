@@ -1,3 +1,4 @@
+import { AuthenticationService } from 'src/app/services/authentication.service';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { catchError } from 'rxjs/operators';
@@ -11,10 +12,10 @@ export class RiskProfileService {
   // Fields
   // TODO: Change port number/api route
   private baseUrl = 'http://localhost:8085/';
-  private url = this.baseUrl + '';
+  private url = this.baseUrl + 'api/risks';
 
   // Constructor
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private authService: AuthenticationService) { }
 
   // Methods
   handleError(error: any) {
@@ -51,6 +52,17 @@ export class RiskProfileService {
       })
     };
     return this.http.delete(this.url + '/' + id, httpOptions)
+    .pipe(catchError(this.handleError));
+  }
+  getAll() {
+    const credentials = this.authService.getCredentials();
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Authorization': `Basic ${credentials}`,
+        'Content-Type': 'application/json'
+      })
+    };
+    return this.http.get<RiskProfile[]>(this.url + '', httpOptions)
     .pipe(catchError(this.handleError));
   }
 

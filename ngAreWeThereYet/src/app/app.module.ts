@@ -27,9 +27,15 @@ import {MatButtonModule, MatCheckboxModule, MatCardModule, MatInputModule} from 
 import { ReactiveFormsModule } from '@angular/forms';
 import { LoginComponent } from './components/login/login.component';
 import { LogoutComponent } from './components/logout/logout.component';
-import { HttpClientModule } from '@angular/common/http';
+
+
+
 import { CounterComponent } from './components/counter/counter.component';
 import { ModalOptionsComponent } from './components/modal-options/modal-options.component';
+import { AssetdisplayComponent } from './components/assetdisplay/assetdisplay.component';
+import { HttpClientModule } from '@angular/common/http';
+import { RetiregoalsComponent } from './components/retiregoals/retiregoals.component';
+
 
 
 
@@ -45,7 +51,9 @@ import { ModalOptionsComponent } from './components/modal-options/modal-options.
     LoginComponent,
     LogoutComponent,
     CounterComponent,
-    ModalOptionsComponent
+    ModalOptionsComponent,
+    AssetdisplayComponent,
+    RetiregoalsComponent
   ],
   imports: [
     NgbModule,
