@@ -16,29 +16,14 @@
       <select
         class="form-control"
         id="investmentAdd"
-        (change)="currentBalance()"
+        [(ngModel)]="asset.vehicle"
+        (change)="setVehicle()"
       >
         <option value="" selected="selected">Select investment type</option>
-        <option value="Traditional IRA">Traditional IRA</option>
-        <option value="Roth IRA">Roth IRA</option>
-        <option value="457">457 (deferred comp)</option>
-        <option value="401K">401(k)</option>
-        <option value="401A">401(a)</option>
-        <option value="403B">403(b)</option>
-        <option value="Stocks">Stocks</option>
-        <option value="Bonds">Bonds</option>
-        <option value="Mutual Funds">Mutual Funds</option>
-        <option value="Savings">Savings</option>
-        <option value="Investment Property">Investment Property</option>
-        <option value="OTHER">Other</option>
-        <option value="Non-Qualified">Non-Qualified</option>
-        <option value="457B">457B</option>
-        <option value="Profit Sharing">Profit Sharing</option>
-        <option value="Money Purchase">Money Purchase</option>
-        <option value="TSP">Thrift Savings Plan</option>
+        <option *ngFor="let vehicle of vehicles" [ngValue]='vehicle' >{{vehicle.assetName}}</option>
       </select>
 
-      <div *ngIf="balance">
+      <div *ngIf="asset.vehicle != null">
         <div class="input-group mb-3">
           <div class="input-group-prepend">
             <span class="input-group-text">$</span>
@@ -49,6 +34,7 @@
             aria-label="Amount"
             placeholder="Account Balance"
             (keypress)="contribute()"
+            [(ngModel)]="asset.amount"
           />
           <!-- <div class="input-group-append">
           <span class="input-group-text">.00</span>
@@ -56,7 +42,8 @@
         </div>
       </div>
       <div *ngIf="contribution">
-        Do you make contributions to this {{ investment }} ?<br />
+
+        Do you make contributions to this {{ asset.vehicle.assetName }} ?<br />
         <input
           type="radio"
           name="contribution"

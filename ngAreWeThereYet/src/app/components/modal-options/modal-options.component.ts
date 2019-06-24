@@ -1,5 +1,7 @@
-import { Vehicle } from './../../models/vehicle';
-import { EmployerMatch } from './../../models/employer-match';
+import { VehicleService } from "./../../services/vehicle.service";
+import { Asset } from "./../../models/asset";
+import { Vehicle } from "./../../models/vehicle";
+import { EmployerMatch } from "./../../models/employer-match";
 import { Component, OnInit, ViewEncapsulation } from "@angular/core";
 import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
 
@@ -24,6 +26,8 @@ import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
   ]
 })
 export class ModalOptionsComponent implements OnInit {
+  asset: Asset = new Asset();
+  vehicles: Vehicle[] = [];
   balance: boolean;
   contribution: boolean;
   investment: string;
@@ -31,11 +35,15 @@ export class ModalOptionsComponent implements OnInit {
   recurring: boolean;
   match: boolean;
   employerMatch: boolean;
-  employerMatchPlan = ["457", "401K", "401A", "403B", "Non-Qualified", "457B", "Profit Sharing", "Money Purchase", "TSP"];
 
-  constructor(private modalService: NgbModal) {}
+  constructor(
+    private modalService: NgbModal,
+    private vehicleService: VehicleService
+  ) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.getVehicles();
+  }
 
   openBackDropCustomClass(content) {
     this.modalService.open(content, { backdropClass: "light-blue-backdrop" });
@@ -62,7 +70,9 @@ export class ModalOptionsComponent implements OnInit {
   }
 
   contribute() {
-    this.investment = (document.getElementById("investmentAdd")as HTMLInputElement).value;
+    this.investment = (document.getElementById(
+      "investmentAdd"
+    ) as HTMLInputElement).value;
     this.contribution = true;
   }
 
@@ -75,21 +85,41 @@ export class ModalOptionsComponent implements OnInit {
     this.recurring = true;
   }
 
-matchingContribution() {
-  console.log(this.investment);
+  matchingContribution() {
+    console.log(this.investment);
 
+    // if (this.employerMatchPlan.includes(this.investment) ) {
+    if (this.asset.vehicle.hasEmployerMatch) {
+      this.match = true;
+    } else {
+      this.submitAppear();
+    }
+  }
 
-  if (this.employerMatchPlan.includes(this.investment) ) {
-  this.match = true;
-  // TEST
-}
+  employerMatching() {
+    this.employerMatch = true;
+    this.appear = true;
+  }
 
+  getVehicles() {
+    this.vehicleService.index().subscribe(
+      data => {
+        this.vehicles = data;
+      },
+      err => {
+        console.log("error getting vehicles");
+        console.log(err);
+      }
+    );
+  }
 
-}
+  setVehicle(vehicle: Vehicle) {
+    // let selectedOpt = document.getElementById('investmentAdd');
+    // console.log(selectedOpt);
 
-employerMatching() {
-  this.employerMatch = true;
-  this.appear = true;
-}
-
+    // console.log(vehicle);
+    // console.log(typeof vehicle);
+    console.log(vehicle.assetName);
+    this.asset.vehicle = vehicle;
+  }
 }
