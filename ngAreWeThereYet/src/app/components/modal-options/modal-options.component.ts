@@ -1,3 +1,5 @@
+import { Vehicle } from './../../models/vehicle';
+import { EmployerMatch } from './../../models/employer-match';
 import { Component, OnInit, ViewEncapsulation } from "@angular/core";
 import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
 
@@ -24,11 +26,12 @@ import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
 export class ModalOptionsComponent implements OnInit {
   balance: boolean;
   contribution: boolean;
-  investment= '';
+  investment: string;
   appear: boolean;
   recurring: boolean;
   match: boolean;
   employerMatch: boolean;
+  employerMatchPlan = ["457", "401K", "401A", "403B", "Non-Qualified", "457B", "Profit Sharing", "Money Purchase", "TSP"];
 
   constructor(private modalService: NgbModal) {}
 
@@ -73,7 +76,15 @@ export class ModalOptionsComponent implements OnInit {
   }
 
 matchingContribution() {
+  console.log(this.investment);
+
+
+  if (this.employerMatchPlan.includes(this.investment) ) {
   this.match = true;
+  // TEST
+}
+
+
 }
 
 employerMatching() {
