@@ -78,9 +78,9 @@ export class ModalOptionsComponent implements OnInit {
 matchingContribution() {
   console.log(this.investment);
 
-if (this.employerMatchPlan.includes(this.investment) ) {
+// if (this.employerMatchPlan.includes(this.investment) ) {
   this.match = true;
-}
+// }
 
 }
 
