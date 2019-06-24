@@ -28,11 +28,15 @@ import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
 export class ModalOptionsComponent implements OnInit {
   asset: Asset = new Asset();
   vehicles: Vehicle[] = [];
+  newEmployerMatch1: EmployerMatch = new EmployerMatch();
+  newEmployerMatch2: EmployerMatch = new EmployerMatch();
+  newEmployerMatch3: EmployerMatch = new EmployerMatch();
+  contributeType;
   balance: boolean;
-  contribution: boolean;
+  contribution = 0;
   investment: string;
   appear: boolean;
-  recurring: boolean;
+  recurring: false;
   match: boolean;
   employerMatch: boolean;
 
@@ -70,25 +74,19 @@ export class ModalOptionsComponent implements OnInit {
   }
 
   contribute() {
-    this.investment = (document.getElementById(
-      "investmentAdd"
-    ) as HTMLInputElement).value;
-    this.contribution = true;
+    this.contribution = 1;
   }
 
   submitAppear() {
     this.appear = true;
   }
 
-  recurringContribution() {
-    this.appear = false;
-    this.recurring = true;
-  }
+  // recurringContribution() {
+  //   this.appear = false;
+  //   this.recurring = true;
+  // }
 
   matchingContribution() {
-    console.log(this.investment);
-
-    // if (this.employerMatchPlan.includes(this.investment) ) {
     if (this.asset.vehicle.hasEmployerMatch) {
       this.match = true;
     } else {
@@ -114,11 +112,6 @@ export class ModalOptionsComponent implements OnInit {
   }
 
   setVehicle(vehicle: Vehicle) {
-    // let selectedOpt = document.getElementById('investmentAdd');
-    // console.log(selectedOpt);
-
-    // console.log(vehicle);
-    // console.log(typeof vehicle);
     console.log(vehicle.assetName);
     this.asset.vehicle = vehicle;
   }
