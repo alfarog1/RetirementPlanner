@@ -11,4 +11,5 @@ export class Vehicle {
   hasEmployerMatch: boolean;
   assets: Asset [];
   riskProfiles: RiskProfile [];
+  compoundingPeriods: number;
 }
