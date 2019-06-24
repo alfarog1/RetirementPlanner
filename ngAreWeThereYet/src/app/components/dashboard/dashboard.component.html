@@ -29,14 +29,11 @@
 </div>
 <div class="container" id="bodyArea">
     <div class="row">
-      <div class="col" *ngFor="let asset of assets">
+      <div class="col assets">
         Current Assets
-        <ul>
-          <li>{{asset.vehicle.assetName}}</li>
-          <li>{{asset.amount}}</li>
-        </ul>
+        <app-assetdisplay></app-assetdisplay>
       </div>
-      <div class="col-8">
+      <div class="col-8 offset-3">
      Add Assets and Goals <br>
      <app-modal-options></app-modal-options>
       </div>
@@ -44,3 +41,4 @@
     </div>
 
   </div>
+

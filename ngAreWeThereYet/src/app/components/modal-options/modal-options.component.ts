@@ -1,45 +1,53 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { Component, OnInit, ViewEncapsulation } from "@angular/core";
+import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
 
 @Component({
-  selector: 'app-modal-options',
-  templateUrl: './modal-options.component.html',
-  styleUrls: ['./modal-options.component.css'],
+  selector: "app-modal-options",
+  templateUrl: "./modal-options.component.html",
+  styleUrls: ["./modal-options.component.css"],
   encapsulation: ViewEncapsulation.None,
-  styles: [`
-    .dark-modal .modal-content {
-      background-color: #292b2c;
-      color: white;
-    }
-    .dark-modal .close {
-      color: white;
-    }
-    .light-blue-backdrop {
-      background-color: #5cb3fd;
-    }
-  `]
+  styles: [
+    `
+      .dark-modal .modal-content {
+        background-color: #292b2c;
+        color: white;
+      }
+      .dark-modal .close {
+        color: white;
+      }
+      .light-blue-backdrop {
+        background-color: #5cb3fd;
+      }
+    `
+  ]
 })
 export class ModalOptionsComponent implements OnInit {
+  balance: boolean;
+  contribution: boolean;
+  investment: null;
+  appear: boolean;
+  recurring: boolean;
+  match: boolean;
+  employerMatch: boolean;
 
-  constructor(private modalService: NgbModal) { }
+  constructor(private modalService: NgbModal) {}
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   openBackDropCustomClass(content) {
-    this.modalService.open(content, {backdropClass: 'light-blue-backdrop'});
+    this.modalService.open(content, { backdropClass: "light-blue-backdrop" });
   }
 
   openWindowCustomClass(content) {
-    this.modalService.open(content, { windowClass: 'dark-modal' });
+    this.modalService.open(content, { windowClass: "dark-modal" });
   }
 
   openSm(content) {
-    this.modalService.open(content, { size: 'sm' });
+    this.modalService.open(content, { size: "sm" });
   }
 
   openLg(content) {
-    this.modalService.open(content, { size: 'lg' });
+    this.modalService.open(content, { size: "lg" });
   }
 
   openVerticallyCentered(content) {
@@ -47,11 +55,30 @@ export class ModalOptionsComponent implements OnInit {
   }
 
   currentBalance() {
-    var balance = prompt("Please enter the account balance");
-    if (balance == null || balance == "") {
-     alert("Enter an amount...");
-    } else {
-      prompt("Please enter the account balance");
-    }
+    this.balance = !this.balance;
   }
+
+  contribute() {
+    this.investment = document.getElementById("investmentAdd").value;
+    this.contribution = true;
+  }
+
+  submitAppear() {
+    this.appear = true;
+  }
+
+  recurringContribution() {
+    this.appear = false;
+    this.recurring = true;
+  }
+
+matchingContribution() {
+  this.match = true;
+}
+
+employerMatching() {
+  this.employerMatch = true;
+  this.appear = true;
+}
+
 }
