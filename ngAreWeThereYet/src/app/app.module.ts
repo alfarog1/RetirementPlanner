@@ -30,6 +30,7 @@ import { LogoutComponent } from './components/logout/logout.component';
 import { HttpClientModule } from '@angular/common/http';
 import { CounterComponent } from './components/counter/counter.component';
 import { ModalOptionsComponent } from './components/modal-options/modal-options.component';
+import { GaugeComponent } from './components/gauge/gauge.component';
 
 
 
@@ -45,7 +46,8 @@ import { ModalOptionsComponent } from './components/modal-options/modal-options.
     LoginComponent,
     LogoutComponent,
     CounterComponent,
-    ModalOptionsComponent
+    ModalOptionsComponent,
+    GaugeComponent
   ],
   imports: [
     NgbModule,
