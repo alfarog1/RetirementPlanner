@@ -1,3 +1,4 @@
+import { HomeComponent } from './../home/home.component';
 import { AssetService } from './../../services/asset.service';
 import { Component, OnInit } from '@angular/core';
 import { Asset } from 'src/app/models/asset';
@@ -11,20 +12,31 @@ export class DashboardComponent implements OnInit {
 
   newAsset: Asset = null;
   assets: Asset[] = [];
-  constructor(private assetService: AssetService) { }
+  constructor(private assetService: AssetService, private home: HomeComponent) { }
 
   ngOnInit() {
-  }
-
-  addedAsset(newAsset: Asset){
-    this.assetService.create(newAsset);
-    newAsset = null;
     this.assetService.getUsersAssets().subscribe(
-      good => {
+      good =>{
         this.assets = good;
+      },
+      bad =>{
+        console.log(bad);
       }
     )
   }
 
-
+  addedAsset(newAsset: Asset) {
+    this.assetService.create(newAsset).subscribe(
+      good => {
+        this.home.reload()
+        newAsset = null;
+      },
+      bad => {
+        console.log(bad);
+      }
+    )
+  }
 }
+
+
+
