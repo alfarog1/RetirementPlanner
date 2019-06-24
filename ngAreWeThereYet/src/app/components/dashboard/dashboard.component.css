@@ -149,3 +149,8 @@
   -o-transition-timing-function: linear;
   transition-timing-function: linear;
 }
+.assets {
+  position: fixed;
+  z-index: 1;
+
+}
