@@ -34,6 +34,7 @@ import { CounterComponent } from './components/counter/counter.component';
 import { ModalOptionsComponent } from './components/modal-options/modal-options.component';
 import { AssetdisplayComponent } from './components/assetdisplay/assetdisplay.component';
 import { HttpClientModule } from '@angular/common/http';
+import { RetiregoalsComponent } from './components/retiregoals/retiregoals.component';
 
 
 
@@ -51,7 +52,8 @@ import { HttpClientModule } from '@angular/common/http';
     LogoutComponent,
     CounterComponent,
     ModalOptionsComponent,
-    AssetdisplayComponent
+    AssetdisplayComponent,
+    RetiregoalsComponent
   ],
   imports: [
     NgbModule,

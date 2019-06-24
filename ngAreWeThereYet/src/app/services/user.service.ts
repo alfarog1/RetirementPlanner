@@ -1,3 +1,4 @@
+import { AuthenticationService } from './authentication.service';
 import { Injectable } from '@angular/core';
 import { User } from '../models/user';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
@@ -11,10 +12,10 @@ export class UserService {
   // Fields
   // TODO: Change port number/api route
   private baseUrl = 'http://localhost:8085/';
-  private url = this.baseUrl + '';
+  private url = this.baseUrl + 'api/users';
 
   // Constructor
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private authService: AuthenticationService) { }
 
   // Methods
   handleError(error: any) {
@@ -54,6 +55,19 @@ export class UserService {
     };
     return this.http.delete(this.url + '/' + id, httpOptions)
     .pipe(catchError(this.handleError));
+  }
+
+  getUser() {
+    if (this.authService.checkLogin()) {
+      const credentials = this.authService.getCredentials();
+      const httpOptions = {
+        headers: new HttpHeaders({
+          'Authorization': `Basic ${credentials}`,
+          'X-Requested-With': 'XMLHttpRequest'
+        })
+      };
+      return this.http.get<User>(this.url + '/user', httpOptions);
+    }
   }
 
 }
