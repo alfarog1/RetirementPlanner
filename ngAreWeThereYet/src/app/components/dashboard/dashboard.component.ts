@@ -27,7 +27,7 @@ export class DashboardComponent implements OnInit {
     newAsset = null;
     this.assetService.getUsersAssets().subscribe(
       good => {
-        this.home.reload()
+        // this.home.reload();
         newAsset = null;
       },
       bad => {
