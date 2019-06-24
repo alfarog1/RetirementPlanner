@@ -1,3 +1,4 @@
+<div *ngIf="!edit">
 <table>
   <tr>
     <td>{{ user.userProfile.dob | date }}</td>
@@ -28,3 +29,36 @@
     <td>Assets needed at retirement</td>
   </tr>
 </table>
+</div>
+<div *ngIf="edit">
+    <table>
+        <tr>
+          <td><input type="date" value = 'user.userProfile.dob'>{{ user.userProfile.dob | date }}</td>
+          <td>Date of Birth</td>
+        </tr>
+        <tr>
+          <td>{{ totalAssets | currency }}</td>
+          <td>Total of Assets</td>
+        </tr>
+        <tr>
+          <td>{{ user.userProfile.retirementAge }}</td>
+          <td>Retirement Age</td>
+        </tr>
+        <tr>
+          <td>
+            {{
+              user.userProfile.retirementExpectancy - user.userProfile.retirementAge
+            }}
+          </td>
+          <td>Years of Retirement</td>
+        </tr>
+        <tr>
+          <td>{{ user.userProfile.percentIncome }}</td>
+          <td>% Income in Retirement</td>
+        </tr>
+        <tr>
+          <td>{{ neededAssets() | currency }}</td>
+          <td>Assets needed at retirement</td>
+        </tr>
+      </table>
+</div>
