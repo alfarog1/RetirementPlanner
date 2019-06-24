@@ -1,5 +1,6 @@
 package com.skilldistillery.arewethereyet.controllers;
 
+import java.security.Principal;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -73,8 +74,8 @@ public class UserProfileController {
 		return updateProfile;
 	}
 	@GetMapping("user/{uid}/profiles")
-	public UserProfile getByUser_Username(@PathVariable int uid, HttpServletRequest req, HttpServletResponse resp) {
-		User user = usvc.show(uid);
+	public UserProfile getByUser_Username(@PathVariable int uid, HttpServletRequest req, HttpServletResponse resp, Principal principal) {
+		User user = usvc.show(principal.getName());
 		if (user != null) {
 			UserProfile profile = svc.getByUser_Username(user.getUsername());
 			return profile;

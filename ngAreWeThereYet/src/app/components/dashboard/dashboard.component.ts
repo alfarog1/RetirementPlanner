@@ -1,7 +1,10 @@
+
+import { UserService } from './../../services/user.service';
 import { HomeComponent } from './../home/home.component';
 import { AssetService } from './../../services/asset.service';
 import { Component, OnInit } from '@angular/core';
 import { Asset } from 'src/app/models/asset';
+import { User } from 'src/app/models/user';
 
 @Component({
   selector: 'app-dashboard',
@@ -9,24 +12,20 @@ import { Asset } from 'src/app/models/asset';
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit {
-
+  user: User;
   newAsset: Asset = null;
   assets: Asset[] = [];
-  constructor(private assetService: AssetService, private home: HomeComponent) { }
+
+  constructor(private assetService: AssetService, private usersvc: UserService) { }
 
   ngOnInit() {
-    this.assetService.getUsersAssets().subscribe(
-      good =>{
-        this.assets = good;
-      },
-      bad =>{
-        console.log(bad);
-      }
-    )
+    this.getUser();
   }
 
   addedAsset(newAsset: Asset) {
-    this.assetService.create(newAsset).subscribe(
+    this.assetService.create(newAsset);
+    newAsset = null;
+    this.assetService.getUsersAssets().subscribe(
       good => {
         this.home.reload()
         newAsset = null;
@@ -34,7 +33,19 @@ export class DashboardComponent implements OnInit {
       bad => {
         console.log(bad);
       }
-    )
+    );
+  }
+
+  getUser() {
+    this.usersvc.getUser().subscribe(
+      data => {
+        this.user = data;
+      },
+      err => {
+        console.log('error getting user in dashboard:');
+        console.log(err);
+      }
+    );
   }
 }
 

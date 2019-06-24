@@ -9,7 +9,7 @@ public interface UserService {
 
 	public List<User> index();
 
-	public User show(int aid);
+	public User show(String username);
 
 	public User create(User user);
 

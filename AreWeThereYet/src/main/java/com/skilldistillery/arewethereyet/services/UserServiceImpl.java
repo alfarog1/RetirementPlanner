@@ -21,13 +21,9 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public User show(int aId) {
-		Optional <User> u = repo.findById(aId);
-		if (u.isPresent()) {
-			User user = u.get();
-			return user;
-		}
-		return null;
+	public User show(String username) {
+		User user = repo.findByUsername(username);
+		return user;
 	}
 
 	@Override
