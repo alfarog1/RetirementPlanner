@@ -1,6 +1,5 @@
 
 import { UserService } from './../../services/user.service';
-import { HomeComponent } from './../home/home.component';
 import { AssetService } from './../../services/asset.service';
 import { Component, OnInit } from '@angular/core';
 import { Asset } from 'src/app/models/asset';
