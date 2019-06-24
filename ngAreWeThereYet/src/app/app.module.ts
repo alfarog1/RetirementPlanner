@@ -38,6 +38,7 @@ import { GaugeComponent } from './components/gauge/gauge.component';
 import { AssetdisplayComponent } from './components/assetdisplay/assetdisplay.component';
 import { HttpClientModule } from '@angular/common/http';
 import { RetiregoalsComponent } from './components/retiregoals/retiregoals.component';
+import { FinanceBarComponent } from './components/finance-bar/finance-bar.component';
 
 
 
@@ -57,7 +58,8 @@ import { RetiregoalsComponent } from './components/retiregoals/retiregoals.compo
     ModalOptionsComponent,
     GaugeComponent,
     AssetdisplayComponent,
-    RetiregoalsComponent
+    RetiregoalsComponent,
+    FinanceBarComponent
   ],
   imports: [
     NgbModule,
