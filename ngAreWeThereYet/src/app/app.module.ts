@@ -27,10 +27,18 @@ import {MatButtonModule, MatCheckboxModule, MatCardModule, MatInputModule} from 
 import { ReactiveFormsModule } from '@angular/forms';
 import { LoginComponent } from './components/login/login.component';
 import { LogoutComponent } from './components/logout/logout.component';
-import { HttpClientModule } from '@angular/common/http';
+import { GaugeModule } from 'angular-gauge';
+import { NgxGaugeModule } from 'ngx-gauge';
+
+
+
 import { CounterComponent } from './components/counter/counter.component';
 import { ModalOptionsComponent } from './components/modal-options/modal-options.component';
 import { GaugeComponent } from './components/gauge/gauge.component';
+import { AssetdisplayComponent } from './components/assetdisplay/assetdisplay.component';
+import { HttpClientModule } from '@angular/common/http';
+import { RetiregoalsComponent } from './components/retiregoals/retiregoals.component';
+
 
 
 
@@ -47,7 +55,9 @@ import { GaugeComponent } from './components/gauge/gauge.component';
     LogoutComponent,
     CounterComponent,
     ModalOptionsComponent,
-    GaugeComponent
+    GaugeComponent,
+    AssetdisplayComponent,
+    RetiregoalsComponent
   ],
   imports: [
     NgbModule,
@@ -63,7 +73,9 @@ import { GaugeComponent } from './components/gauge/gauge.component';
     MatInputModule,
     MatCheckboxModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    GaugeModule.forRoot(),
+    NgxGaugeModule
   ],
 
   providers: [

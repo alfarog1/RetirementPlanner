@@ -40,16 +40,22 @@ import { trigger, transition, animate, style } from '@angular/animations';
 export class RiskQuestionnaireComponent implements OnInit {
   // Fields
   visible = false;
-  question1 = 0;
-  question2 = 0;
-  question3 = 0;
-  question4 = 0;
-  question5 = 0;
-  // Constructor
-  constructor() {}
+  question1: number = 0;
+  question2: number = 0;
+  question3: number = 0;
+  question4: number = 0;
+  question5: number = 0;
+  totalScore: number = 0;
 
-  // Doughnut 1
-  public doughnutChartLabels: Label[] = ['Bonds', 'Large Cap', 'Mid Cap', 'Small Cap', 'International', 'Cash'];
+  // Doughnut 1 - Conservative
+  public doughnutChartLabels: Label[] = [
+    'Bonds',
+    'Large Cap',
+    'Mid Cap',
+    'Small Cap',
+    'International',
+    'Cash'
+  ];
   public doughnutChartData: MultiDataSet = [
     [40, 10, 50, 0, 5, 40]
     // [50, 150, 120],
@@ -57,51 +63,71 @@ export class RiskQuestionnaireComponent implements OnInit {
   ];
   public doughnutChartType: ChartType = 'doughnut';
 
-  // Doughnut 2
+  // Doughnut 2 - Moderately Conservative
   public doughnutChartLabels2: Label[] = [
-    'Ready to retire',
-    'Nothing started',
-    'Working on it',
-    'Retire?'
+    'Bonds',
+    'Large Cap',
+    'Mid Cap',
+    'Small Cap',
+    'International',
+    'Cash'
   ];
   public doughnutChartData2: MultiDataSet = [
-    [50, 450, 400, 300]
+    [35, 20, 10, 0, 10, 25]
     // [50, 150, 120],
     // [250, 130, 70],
   ];
   public doughnutChartType2: ChartType = 'doughnut';
 
-  // Doughnut 3
+  // Doughnut 3 - Moderate
   public doughnutChartLabels3: Label[] = [
-    'Stocks',
     'Bonds',
-    'Savings',
-    '401k',
-    'TSP',
-    'Pension',
-    'IRA'
+    'Large Cap',
+    'Mid Cap',
+    'Small Cap',
+    'International',
+    'Cash'
   ];
   public doughnutChartData3: MultiDataSet = [
-    [50, 450, 400, 300, 600, 200, 350]
+    [25, 20, 10, 5, 15, 15]
     // [50, 150, 120],
     // [250, 130, 70],
   ];
   public doughnutChartType3: ChartType = 'doughnut';
 
-  // Doughnut 4
+  // Doughnut 4 - Moderately Aggressive
   public doughnutChartLabels4: Label[] = [
-    'Found this helpful',
-    'Never knew this',
-    'WOW',
-    'Retire?'
+    'Bonds',
+    'Large Cap',
+    'Mid Cap',
+    'Small Cap',
+    'International',
+    'Cash'
   ];
   public doughnutChartData4: MultiDataSet = [
-    [650, 450, 400, 30]
+    [15, 35, 15, 5, 25, 5]
     // [50, 150, 120],
     // [250, 130, 70],
   ];
   public doughnutChartType4: ChartType = 'doughnut';
 
+  // Doughnut 5 - Aggressive
+  public doughnutChartLabels5: Label[] = [
+    'Bonds',
+    'Large Cap',
+    'Mid Cap',
+    'Small Cap',
+    'International',
+    'Cash'
+  ];
+  public doughnutChartData5: MultiDataSet = [
+    [5, 40, 15, 10, 30, 0]
+    // [50, 150, 120],
+    // [250, 130, 70],
+  ];
+  public doughnutChartType5: ChartType = 'doughnut';
+
+  // Doughnut Colors
   public donutColors = [
     {
       backgroundColor: [
@@ -115,16 +141,18 @@ export class RiskQuestionnaireComponent implements OnInit {
       ]
     }
   ];
+  // Constructor
+  constructor() {}
 
   // Methods
   ngOnInit() {}
 
-  onClickMe(){
+  onClickMe() {
     this.visible = !this.visible;
   }
 
-   // events
-   public chartClicked({
+  // events
+  public chartClicked({
     event,
     active
   }: {
@@ -144,5 +172,13 @@ export class RiskQuestionnaireComponent implements OnInit {
     console.log(event, active);
   }
 
-
+  public calculatePoints() {
+    this.totalScore =
+      (+this.question1) +
+      (+this.question2) +
+      (+this.question3) +
+      (+this.question4) +
+      (+this.question5);
+    console.log(this.totalScore);
+  }
 }
