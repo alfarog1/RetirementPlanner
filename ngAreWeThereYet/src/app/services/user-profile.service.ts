@@ -1,3 +1,5 @@
+
+import { AuthenticationService } from './authentication.service';
 import { User } from 'src/app/models/user';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
@@ -5,6 +7,7 @@ import { catchError } from 'rxjs/operators';
 import { throwError } from 'rxjs';
 import { UserProfile } from '../models/user-profile';
 import * as moment from 'moment';
+
 
 @Injectable({
   providedIn: 'root'
@@ -16,7 +19,7 @@ export class UserProfileService {
     private url = this.baseUrl + '';
 
   // Constructor
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private authService: AuthenticationService) { }
 
   // Fields
   handleError(error: any) {

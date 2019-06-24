@@ -33,6 +33,17 @@ public class UserController {
 	{
 		return "/pong";
 	}
+	
+	@GetMapping(path = "/user")
+	public User getUserByUsername(HttpServletRequest req, HttpServletResponse res, Principal principal) {
+		User user = svc.show(principal.getName());
+		if(user != null) {
+			res.setStatus(200);
+		}else {
+			res.setStatus(404);
+		}
+		return user;
+	}
 
 	@GetMapping(path = "")
 	public List<User> index(HttpServletRequest req, HttpServletResponse res) //
@@ -43,7 +54,7 @@ public class UserController {
 	@GetMapping(path = "/{uId}")
 	public User show(HttpServletRequest req, HttpServletResponse res, @PathVariable("uId") int uId,
 			Principal principal) {
-		return svc.show(uId);
+		return svc.show(principal.getName());
 	}
 
 	@PostMapping(path = "")
