@@ -74,12 +74,15 @@
       <div class="input-container" *ngIf="recurring">
         How often?
         <span class="input-group-btn" style="margin-bottom:3px">
-          <button class="btn btn-add left-button btn-primary" ng-click="">
+          <!-- <button class="btn btn-add left-button btn-primary" ng-click=""> -->
+              <button ng-class="dollarButton" ng-click="">
             $
-          </button></span
+          </button>
+          </span
         >
         <span class="input-group-btn" style="margin-bottom:3px">
-          <button class="btn btn-add right-button btn-primary" ng-click="">
+          <!-- <button class="btn btn-add right-button btn-primary" ng-click=""> -->
+              <button ng-class="percentButton" ng-click="">
             %
           </button></span
         >
@@ -115,45 +118,85 @@
       </div>
 
       <div *ngIf="match">
-          Does your emplyoyer make  matching contributions to this {{ investment }} ?<br />
-          <input
-            type="radio"
-            name="contribution"
-            value="yes"
-            (change)="employerMatching()"
-          />Yes
-          <input
-            type="radio"
-            name="contribution"
-            value="no"
-            (change)="submitAppear()"
-          />No
-        </div>
+        Does your emplyoyer make matching contributions to this
+        {{ investment }} ?<br />
+        <input
+          type="radio"
+          name="contribution"
+          value="yes"
+          (change)="employerMatching()"
+        />Yes
+        <input
+          type="radio"
+          name="contribution"
+          value="no"
+          (change)="submitAppear()"
+        />No
+      </div>
 
-        <div *ngIf="employerMatch">
-<table class="panel" align="center">
-  <tbody>
-  <tr><td>Employer matches </td><td align="right"><div class="input-group-prepend"><span class="input-group-text">%</span><input type="text" name="ematch" value="50"></div></td></tr>
-  <tr><td>Up to</td><td align="right"><input type="text" name="ematchend" value="3" ></td></tr>
-  <tr><td>then matches</td><td align="right"><input type="text" name="ematch2" value="20" ></td></tr>
-  <tr><td>Employer Match 2 Limit</td><td align="right"><input type="text" name="ematchend2" value="6" ></td></tr>
-  </tbody></table>
-</div>
-
-
-
-
-
-
-      <div *ngIf="appear">
-          <input
-            type="submit"
-            ngbPopover="I'm ready to submit"
-            triggers="mouseenter:mouseleave"
-          />
-        </div>
+      <div *ngIf="employerMatch">
+        <table class="panel" align="center">
+          <tbody>
+            <th>Employer matches</th>
+            <tr>
+              <!-- <td>Employer matches</td> -->
+              <td align="right">
+                <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">%</span
+                    ><input type="text" name="ematch" />
+                  </div>
+                </div>
+              </td>
+            </tr>
+            <th>Up to</th>
+            <tr>
+              <td align="right">
+                <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">%</span
+                    ><input type="text" name="ematchend" />
+                  </div>
+                </div>
+              </td>
+            </tr>
+            <th>then matches</th>
+            <tr>
+              <td align="right">
+                <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">%</span
+                    ><input type="text" name="ematch2" />
+                  </div>
+                </div>
+              </td>
+            </tr>
+            <th>Up to</th>
+            <tr>
+              <td align="right">
+                <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">%</span
+                    ><input type="text" name="ematchend2" />
+                  </div>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
     <div class="modal-footer">
+      <div *ngIf="appear">
+        <button
+          type="submit"
+          class="btn btn-dark"
+          ngbPopover="I'm ready to submit"
+          triggers="mouseenter:mouseleave"
+        >
+          Submit
+        </button>
+      </div>
       <button
         type="button"
         class="btn btn-light"
