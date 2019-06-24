@@ -16,7 +16,7 @@ export class DashboardComponent implements OnInit {
   newAsset: Asset = null;
   assets: Asset[] = [];
 
-  constructor(private assetService: AssetService, private usersvc: UserService, private home: HomeComponent) { }
+  constructor(private assetService: AssetService, private usersvc: UserService) { }
 
   ngOnInit() {
     this.getUser();

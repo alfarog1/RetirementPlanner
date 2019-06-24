@@ -29,7 +29,9 @@
     <td>Assets needed at retirement</td>
   </tr>
 </table>
+<button name="commitEdit" (click)="edit = true"> Edit</button>
 </div>
+
 <div *ngIf="edit">
     <table>
         <tr>
@@ -60,5 +62,6 @@
           <td>{{ neededAssets() | currency }}</td>
           <td>Assets needed at retirement</td>
         </tr>
+        <button name="commitEdit" (click)="commitEdit(!edit)"> Save</button>
       </table>
 </div>
