@@ -62,7 +62,7 @@ export class ModalOptionsComponent implements OnInit {
   }
 
   contribute() {
-    this.investment = (document.getElementById("investmentAdd")as HTMLInputElement).value;
+    this.investment = (document.getElementById("investmentAdd") as HTMLInputElement).value;
     this.contribution = true;
   }
 
