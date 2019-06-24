@@ -1,9 +1,12 @@
+import { AssetService } from './../../services/asset.service';
+import { UserService } from './../../services/user.service';
 import { VehicleService } from "./../../services/vehicle.service";
 import { Asset } from "./../../models/asset";
 import { Vehicle } from "./../../models/vehicle";
 import { EmployerMatch } from "./../../models/employer-match";
 import { Component, OnInit, ViewEncapsulation } from "@angular/core";
 import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
+import { User } from 'src/app/models/user';
 
 @Component({
   selector: "app-modal-options",
@@ -30,10 +33,10 @@ export class ModalOptionsComponent implements OnInit {
   vehicles: Vehicle[] = [];
   newEmployerMatch1: EmployerMatch = new EmployerMatch();
   newEmployerMatch2: EmployerMatch = new EmployerMatch();
-  newEmployerMatch3: EmployerMatch = new EmployerMatch();
-  contributeType;
+  contributeType = 'fixed';
+  user: User;
   balance: boolean;
-  contribution = 0;
+  contribute: number;
   investment: string;
   appear: boolean;
   recurring: false;
@@ -41,12 +44,15 @@ export class ModalOptionsComponent implements OnInit {
   employerMatch: boolean;
 
   constructor(
+    private userService: UserService,
+    private assetService: AssetService,
     private modalService: NgbModal,
     private vehicleService: VehicleService
   ) {}
 
   ngOnInit() {
     this.getVehicles();
+    this.asset.employerMatch = [];
   }
 
   openBackDropCustomClass(content) {
@@ -69,13 +75,46 @@ export class ModalOptionsComponent implements OnInit {
     this.modalService.open(content, { centered: true });
   }
 
-  currentBalance() {
-    this.balance = !this.balance;
+  confirmSubmit() {
+    this.asset.user = this.user;
+    if (this.newEmployerMatch1.topThreshold > 0) {
+      this.asset.employerMatch.push(this.newEmployerMatch1);
+    }
+    if (this.newEmployerMatch2.topThreshold > 0) {
+      this.asset.employerMatch.push(this.newEmployerMatch2);
+    }
+    console.log('in confirm submit')
+    console.log(this.asset);
+    this.assetService.create(this.asset).subscribe(
+      data => {
+       console.log('asset creation success');
+      },
+      err => {
+        console.log('error adding asset');
+        console.log(err);
+      }
+    );
   }
 
-  contribute() {
-    this.contribution = 1;
+  getUser() {
+    this.userService.getUser().subscribe(
+      data => {
+        this.user = data;
+      },
+      err => {
+        console.log('error retrieving user:');
+        console.log(err);
+
+      }
+    );
   }
+  // currentBalance() {
+  //   this.balance = !this.balance;
+  // }
+
+  // contribute() {
+  //   this.contribution = 1;
+  // }
 
   submitAppear() {
     this.appear = true;
