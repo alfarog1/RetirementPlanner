@@ -63,7 +63,6 @@ export class UserProfileService {
       })
     };
     return moment().diff(dateOfBirth, 'years');
-
   }
 
 }
