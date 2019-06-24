@@ -33,7 +33,7 @@
 <div *ngIf="edit">
     <table>
         <tr>
-          <td><input type="date" value = 'user.userProfile.dob'>{{ user.userProfile.dob | date }}</td>
+          <td><input type="date" value = 'user.userProfile.dob'></td>
           <td>Date of Birth</td>
         </tr>
         <tr>
@@ -41,7 +41,7 @@
           <td>Total of Assets</td>
         </tr>
         <tr>
-          <td>{{ user.userProfile.retirementAge }}</td>
+          <td><input type="number" value = 'user.userProfile.retirementAge' min="60">{{ user.userProfile.retirementAge }}</td>
           <td>Retirement Age</td>
         </tr>
         <tr>
