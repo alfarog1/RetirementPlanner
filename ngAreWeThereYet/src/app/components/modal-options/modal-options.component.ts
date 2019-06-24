@@ -26,12 +26,12 @@ import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
 export class ModalOptionsComponent implements OnInit {
   balance: boolean;
   contribution: boolean;
-  investment = '';
+  investment: string;
   appear: boolean;
   recurring: boolean;
   match: boolean;
   employerMatch: boolean;
-  employerMatchPlan: ["457", "401K", "401A", "403B", "Non-Qualified", "457B", "Profit Sharing", "Money Purchase", "TSP"];
+  employerMatchPlan = ["457", "401K", "401A", "403B", "Non-Qualified", "457B", "Profit Sharing", "Money Purchase", "TSP"];
 
   constructor(private modalService: NgbModal) {}
 
@@ -78,9 +78,12 @@ export class ModalOptionsComponent implements OnInit {
 matchingContribution() {
   console.log(this.investment);
 
-// if (this.employerMatchPlan.includes(this.investment) ) {
+
+  if (this.employerMatchPlan.includes(this.investment) ) {
   this.match = true;
-// }
+  // TEST
+}
+
 
 }
 
