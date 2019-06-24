@@ -26,6 +26,9 @@ public class Asset {
 	@Column(name = "contribution_percent")
 	private Integer contributionPercent;
 	
+	@Column(name = "periodic_deposit")
+	private Double periodicDeposit;
+	
 	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name = "user_id")
@@ -41,6 +44,7 @@ public class Asset {
 	@ManyToOne
 	@JoinColumn(name = "risk_profile_id")
 	private RiskProfile riskProfile;
+	
 
 	public int getId() {
 		return id;
@@ -48,6 +52,27 @@ public class Asset {
 
 	public void setId(int id) {
 		this.id = id;
+	}
+
+	
+	public Double getPeriodicDeposit() {
+		return periodicDeposit;
+	}
+
+	public void setPeriodicDeposit(Double periodicDeposit) {
+		this.periodicDeposit = periodicDeposit;
+	}
+
+	public List<EmployerMatch> getEmployerMatch() {
+		return employerMatch;
+	}
+
+	public void setEmployerMatch(List<EmployerMatch> employerMatch) {
+		this.employerMatch = employerMatch;
+	}
+
+	public void setContributionPercent(Integer contributionPercent) {
+		this.contributionPercent = contributionPercent;
 	}
 
 	public Double getAmount() {

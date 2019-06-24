@@ -1,10 +1,11 @@
+
 import { AuthenticationService } from './authentication.service';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { catchError } from 'rxjs/operators';
 import { throwError } from 'rxjs';
 import { UserProfile } from '../models/user-profile';
-import { User } from '../models/user';
+import * as moment from 'moment';
 
 @Injectable({
   providedIn: 'root'
@@ -54,6 +55,16 @@ export class UserProfileService {
     };
     return this.http.delete(this.url + '/' + id, httpOptions)
     .pipe(catchError(this.handleError));
+  }
+
+  ageFromDateOfBirthday(dateOfBirth: any): number {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json'
+      })
+    };
+    return moment().diff(dateOfBirth, 'years');
+
   }
 
 }

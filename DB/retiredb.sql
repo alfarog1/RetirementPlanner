@@ -28,6 +28,7 @@ CREATE TABLE IF NOT EXISTS `vehicle` (
   `max_contribution` INT(11) NULL,
   `is_pretax` TINYINT(4) NULL DEFAULT NULL,
   `has_employer_match` TINYINT(4) NULL DEFAULT NULL,
+  `compounding_periods` INT NULL,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB
 AUTO_INCREMENT = 4
@@ -78,9 +79,10 @@ CREATE TABLE IF NOT EXISTS `asset` (
   `risk_profile_id` INT(11) NULL,
   `vehicle_id` INT(11) NOT NULL,
   `user_id` INT(11) NOT NULL,
-  `amount` DECIMAL(10,0) NOT NULL,
-  `contribution_fixed` DECIMAL(10,0) NULL DEFAULT NULL,
+  `amount` DECIMAL(10,2) NOT NULL,
+  `contribution_fixed` DECIMAL(10,2) NULL DEFAULT NULL,
   `contribution_percent` INT(11) NULL DEFAULT NULL,
+  `periodic_deposit` DECIMAL(10,2) NOT NULL DEFAULT 0,
   PRIMARY KEY (`id`),
   INDEX `fk_portfolio_user_idx` (`user_id` ASC),
   INDEX `fk_portfolio_asset1_idx` (`vehicle_id` ASC),
@@ -171,24 +173,24 @@ SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `retiredb`;
-INSERT INTO `vehicle` (`id`, `asset_name`, `is_qualified`, `is_fixed`, `max_contribution`, `is_pretax`, `has_employer_match`) VALUES (1, 'stocks', 0, 1, NULL, 0, 0);
-INSERT INTO `vehicle` (`id`, `asset_name`, `is_qualified`, `is_fixed`, `max_contribution`, `is_pretax`, `has_employer_match`) VALUES (2, 'bonds', 0, 1, NULL, 0, 0);
-INSERT INTO `vehicle` (`id`, `asset_name`, `is_qualified`, `is_fixed`, `max_contribution`, `is_pretax`, `has_employer_match`) VALUES (3, 'savings', 0, 1, NULL, 0, 0);
-INSERT INTO `vehicle` (`id`, `asset_name`, `is_qualified`, `is_fixed`, `max_contribution`, `is_pretax`, `has_employer_match`) VALUES (4, 'annuity', 0, 0, NULL, 0, 0);
-INSERT INTO `vehicle` (`id`, `asset_name`, `is_qualified`, `is_fixed`, `max_contribution`, `is_pretax`, `has_employer_match`) VALUES (5, 'traditional_ira', 1, 0, 7000, 1, 0);
-INSERT INTO `vehicle` (`id`, `asset_name`, `is_qualified`, `is_fixed`, `max_contribution`, `is_pretax`, `has_employer_match`) VALUES (6, 'roth_ira', 1, 0, 7000, 0, 0);
-INSERT INTO `vehicle` (`id`, `asset_name`, `is_qualified`, `is_fixed`, `max_contribution`, `is_pretax`, `has_employer_match`) VALUES (7, '457b', 1, 0, 25000, 1, 0);
-INSERT INTO `vehicle` (`id`, `asset_name`, `is_qualified`, `is_fixed`, `max_contribution`, `is_pretax`, `has_employer_match`) VALUES (8, '401k', 1, 0, 25000, 1, 1);
-INSERT INTO `vehicle` (`id`, `asset_name`, `is_qualified`, `is_fixed`, `max_contribution`, `is_pretax`, `has_employer_match`) VALUES (9, '401a', 1, 0, 25000, 1, 1);
-INSERT INTO `vehicle` (`id`, `asset_name`, `is_qualified`, `is_fixed`, `max_contribution`, `is_pretax`, `has_employer_match`) VALUES (10, '403b', 1, 0, 25000, 1, 1);
-INSERT INTO `vehicle` (`id`, `asset_name`, `is_qualified`, `is_fixed`, `max_contribution`, `is_pretax`, `has_employer_match`) VALUES (11, '457', 0, 0, 25000, 1, 1);
-INSERT INTO `vehicle` (`id`, `asset_name`, `is_qualified`, `is_fixed`, `max_contribution`, `is_pretax`, `has_employer_match`) VALUES (12, 'investment_property', 0, 1, NULL, 0, 0);
-INSERT INTO `vehicle` (`id`, `asset_name`, `is_qualified`, `is_fixed`, `max_contribution`, `is_pretax`, `has_employer_match`) VALUES (13, 'non-qualified', 0, 0, NULL, 0, 1);
-INSERT INTO `vehicle` (`id`, `asset_name`, `is_qualified`, `is_fixed`, `max_contribution`, `is_pretax`, `has_employer_match`) VALUES (14, 'profit_sharing', 0, 0, NULL, 0, 0);
-INSERT INTO `vehicle` (`id`, `asset_name`, `is_qualified`, `is_fixed`, `max_contribution`, `is_pretax`, `has_employer_match`) VALUES (15, 'money_purchase', 0, 0, NULL, 0, 0);
-INSERT INTO `vehicle` (`id`, `asset_name`, `is_qualified`, `is_fixed`, `max_contribution`, `is_pretax`, `has_employer_match`) VALUES (16, 'mutual_fund', 0, 0, NULL, 0, 0);
-INSERT INTO `vehicle` (`id`, `asset_name`, `is_qualified`, `is_fixed`, `max_contribution`, `is_pretax`, `has_employer_match`) VALUES (17, 'tsp', 1, 0, NULL, 1, 0);
-INSERT INTO `vehicle` (`id`, `asset_name`, `is_qualified`, `is_fixed`, `max_contribution`, `is_pretax`, `has_employer_match`) VALUES (18, 'other', 0, 0, NULL, 0, 0);
+INSERT INTO `vehicle` (`id`, `asset_name`, `is_qualified`, `is_fixed`, `max_contribution`, `is_pretax`, `has_employer_match`, `compounding_periods`) VALUES (1, 'Stocks', 0, 1, NULL, 0, 0, NULL);
+INSERT INTO `vehicle` (`id`, `asset_name`, `is_qualified`, `is_fixed`, `max_contribution`, `is_pretax`, `has_employer_match`, `compounding_periods`) VALUES (2, 'Bonds', 0, 1, NULL, 0, 0, NULL);
+INSERT INTO `vehicle` (`id`, `asset_name`, `is_qualified`, `is_fixed`, `max_contribution`, `is_pretax`, `has_employer_match`, `compounding_periods`) VALUES (3, 'Savings', 0, 1, NULL, 0, 0, NULL);
+INSERT INTO `vehicle` (`id`, `asset_name`, `is_qualified`, `is_fixed`, `max_contribution`, `is_pretax`, `has_employer_match`, `compounding_periods`) VALUES (4, 'Annuity', 0, 0, NULL, 0, 0, NULL);
+INSERT INTO `vehicle` (`id`, `asset_name`, `is_qualified`, `is_fixed`, `max_contribution`, `is_pretax`, `has_employer_match`, `compounding_periods`) VALUES (5, 'Traditional IRA', 1, 0, 7000, 1, 0, NULL);
+INSERT INTO `vehicle` (`id`, `asset_name`, `is_qualified`, `is_fixed`, `max_contribution`, `is_pretax`, `has_employer_match`, `compounding_periods`) VALUES (6, 'Roth Ira', 1, 0, 7000, 0, 0, NULL);
+INSERT INTO `vehicle` (`id`, `asset_name`, `is_qualified`, `is_fixed`, `max_contribution`, `is_pretax`, `has_employer_match`, `compounding_periods`) VALUES (7, '457B', 1, 0, 25000, 1, 0, NULL);
+INSERT INTO `vehicle` (`id`, `asset_name`, `is_qualified`, `is_fixed`, `max_contribution`, `is_pretax`, `has_employer_match`, `compounding_periods`) VALUES (8, '401K', 1, 0, 25000, 1, 1, NULL);
+INSERT INTO `vehicle` (`id`, `asset_name`, `is_qualified`, `is_fixed`, `max_contribution`, `is_pretax`, `has_employer_match`, `compounding_periods`) VALUES (9, '401A', 1, 0, 25000, 1, 1, NULL);
+INSERT INTO `vehicle` (`id`, `asset_name`, `is_qualified`, `is_fixed`, `max_contribution`, `is_pretax`, `has_employer_match`, `compounding_periods`) VALUES (10, '403B', 1, 0, 25000, 1, 1, NULL);
+INSERT INTO `vehicle` (`id`, `asset_name`, `is_qualified`, `is_fixed`, `max_contribution`, `is_pretax`, `has_employer_match`, `compounding_periods`) VALUES (11, '457', 0, 0, 25000, 1, 1, NULL);
+INSERT INTO `vehicle` (`id`, `asset_name`, `is_qualified`, `is_fixed`, `max_contribution`, `is_pretax`, `has_employer_match`, `compounding_periods`) VALUES (12, 'Investment Property', 0, 1, NULL, 0, 0, NULL);
+INSERT INTO `vehicle` (`id`, `asset_name`, `is_qualified`, `is_fixed`, `max_contribution`, `is_pretax`, `has_employer_match`, `compounding_periods`) VALUES (13, 'Non Qualified', 0, 0, NULL, 0, 1, NULL);
+INSERT INTO `vehicle` (`id`, `asset_name`, `is_qualified`, `is_fixed`, `max_contribution`, `is_pretax`, `has_employer_match`, `compounding_periods`) VALUES (14, 'Profit Sharing', 0, 0, NULL, 0, 0, NULL);
+INSERT INTO `vehicle` (`id`, `asset_name`, `is_qualified`, `is_fixed`, `max_contribution`, `is_pretax`, `has_employer_match`, `compounding_periods`) VALUES (15, 'Money Purchase', 0, 0, NULL, 0, 0, NULL);
+INSERT INTO `vehicle` (`id`, `asset_name`, `is_qualified`, `is_fixed`, `max_contribution`, `is_pretax`, `has_employer_match`, `compounding_periods`) VALUES (16, 'Mutual Fund', 0, 0, NULL, 0, 0, NULL);
+INSERT INTO `vehicle` (`id`, `asset_name`, `is_qualified`, `is_fixed`, `max_contribution`, `is_pretax`, `has_employer_match`, `compounding_periods`) VALUES (17, 'TSP', 1, 0, NULL, 1, 0, NULL);
+INSERT INTO `vehicle` (`id`, `asset_name`, `is_qualified`, `is_fixed`, `max_contribution`, `is_pretax`, `has_employer_match`, `compounding_periods`) VALUES (18, 'Other', 0, 0, NULL, 0, 0, NULL);
 
 COMMIT;
 
@@ -232,38 +234,38 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `retiredb`;
-INSERT INTO `asset` (`id`, `risk_profile_id`, `vehicle_id`, `user_id`, `amount`, `contribution_fixed`, `contribution_percent`) VALUES (1, NULL, 1, 1, 10000, 1000, NULL);
-INSERT INTO `asset` (`id`, `risk_profile_id`, `vehicle_id`, `user_id`, `amount`, `contribution_fixed`, `contribution_percent`) VALUES (2, 5, 9, 2, 50000, NULL, 5);
-INSERT INTO `asset` (`id`, `risk_profile_id`, `vehicle_id`, `user_id`, `amount`, `contribution_fixed`, `contribution_percent`) VALUES (3, NULL, 1, 2, 15000, 2000, NULL);
-INSERT INTO `asset` (`id`, `risk_profile_id`, `vehicle_id`, `user_id`, `amount`, `contribution_fixed`, `contribution_percent`) VALUES (4, NULL, 13, 3, 20000, 1500, NULL);
-INSERT INTO `asset` (`id`, `risk_profile_id`, `vehicle_id`, `user_id`, `amount`, `contribution_fixed`, `contribution_percent`) VALUES (5, NULL, 10, 3, 40000, 2000, NULL);
-INSERT INTO `asset` (`id`, `risk_profile_id`, `vehicle_id`, `user_id`, `amount`, `contribution_fixed`, `contribution_percent`) VALUES (6, NULL, 14, 4, 16000, 4000, NULL);
-INSERT INTO `asset` (`id`, `risk_profile_id`, `vehicle_id`, `user_id`, `amount`, `contribution_fixed`, `contribution_percent`) VALUES (7, NULL, 11, 4, 90000, 8000, NULL);
-INSERT INTO `asset` (`id`, `risk_profile_id`, `vehicle_id`, `user_id`, `amount`, `contribution_fixed`, `contribution_percent`) VALUES (8, NULL, 4, 4, 120000, 13000, NULL);
-INSERT INTO `asset` (`id`, `risk_profile_id`, `vehicle_id`, `user_id`, `amount`, `contribution_fixed`, `contribution_percent`) VALUES (9, NULL, 15, 5, 70000, 10000, NULL);
-INSERT INTO `asset` (`id`, `risk_profile_id`, `vehicle_id`, `user_id`, `amount`, `contribution_fixed`, `contribution_percent`) VALUES (10, NULL, 10, 5, 180000, NULL, 15);
-INSERT INTO `asset` (`id`, `risk_profile_id`, `vehicle_id`, `user_id`, `amount`, `contribution_fixed`, `contribution_percent`) VALUES (11, NULL, 5, 6, 375000, NULL, 10);
-INSERT INTO `asset` (`id`, `risk_profile_id`, `vehicle_id`, `user_id`, `amount`, `contribution_fixed`, `contribution_percent`) VALUES (12, NULL, 8, 6, 250000, NULL, 5);
-INSERT INTO `asset` (`id`, `risk_profile_id`, `vehicle_id`, `user_id`, `amount`, `contribution_fixed`, `contribution_percent`) VALUES (13, 3, 3, 6, 150000, 12000, NULL);
-INSERT INTO `asset` (`id`, `risk_profile_id`, `vehicle_id`, `user_id`, `amount`, `contribution_fixed`, `contribution_percent`) VALUES (14, NULL, 5, 7, 90000, 13000, NULL);
-INSERT INTO `asset` (`id`, `risk_profile_id`, `vehicle_id`, `user_id`, `amount`, `contribution_fixed`, `contribution_percent`) VALUES (15, NULL, 8, 7, 110000, NULL, 8);
-INSERT INTO `asset` (`id`, `risk_profile_id`, `vehicle_id`, `user_id`, `amount`, `contribution_fixed`, `contribution_percent`) VALUES (16, 5, 12, 7, 50000, 2000, NULL);
-INSERT INTO `asset` (`id`, `risk_profile_id`, `vehicle_id`, `user_id`, `amount`, `contribution_fixed`, `contribution_percent`) VALUES (17, NULL, 5, 8, 60000, 1500, NULL);
-INSERT INTO `asset` (`id`, `risk_profile_id`, `vehicle_id`, `user_id`, `amount`, `contribution_fixed`, `contribution_percent`) VALUES (18, NULL, 8, 8, 22000, NULL, 6);
-INSERT INTO `asset` (`id`, `risk_profile_id`, `vehicle_id`, `user_id`, `amount`, `contribution_fixed`, `contribution_percent`) VALUES (19, NULL, 16, 8, 100000, NULL, 4);
-INSERT INTO `asset` (`id`, `risk_profile_id`, `vehicle_id`, `user_id`, `amount`, `contribution_fixed`, `contribution_percent`) VALUES (20, NULL, 6, 9, 170000, 12000, NULL);
-INSERT INTO `asset` (`id`, `risk_profile_id`, `vehicle_id`, `user_id`, `amount`, `contribution_fixed`, `contribution_percent`) VALUES (21, NULL, 10, 9, 27500, NULL, 8);
-INSERT INTO `asset` (`id`, `risk_profile_id`, `vehicle_id`, `user_id`, `amount`, `contribution_fixed`, `contribution_percent`) VALUES (22, NULL, 18, 9, 320000, 22000, NULL);
-INSERT INTO `asset` (`id`, `risk_profile_id`, `vehicle_id`, `user_id`, `amount`, `contribution_fixed`, `contribution_percent`) VALUES (23, NULL, 6, 10, 250000, NULL, 5);
-INSERT INTO `asset` (`id`, `risk_profile_id`, `vehicle_id`, `user_id`, `amount`, `contribution_fixed`, `contribution_percent`) VALUES (24, NULL, 10, 10, 400000, 30000, NULL);
-INSERT INTO `asset` (`id`, `risk_profile_id`, `vehicle_id`, `user_id`, `amount`, `contribution_fixed`, `contribution_percent`) VALUES (25, 2, 2, 10, 525000, 10000, NULL);
-INSERT INTO `asset` (`id`, `risk_profile_id`, `vehicle_id`, `user_id`, `amount`, `contribution_fixed`, `contribution_percent`) VALUES (26, 5, 1, 10, 340000, 10000, NULL);
-INSERT INTO `asset` (`id`, `risk_profile_id`, `vehicle_id`, `user_id`, `amount`, `contribution_fixed`, `contribution_percent`) VALUES (27, 1, 1, 10, 250000, 20000, NULL);
-INSERT INTO `asset` (`id`, `risk_profile_id`, `vehicle_id`, `user_id`, `amount`, `contribution_fixed`, `contribution_percent`) VALUES (28, 5, 1, 3, 75000, 10000, NULL);
-INSERT INTO `asset` (`id`, `risk_profile_id`, `vehicle_id`, `user_id`, `amount`, `contribution_fixed`, `contribution_percent`) VALUES (29, NULL, 8, 3, 250000, NULL, 5);
-INSERT INTO `asset` (`id`, `risk_profile_id`, `vehicle_id`, `user_id`, `amount`, `contribution_fixed`, `contribution_percent`) VALUES (30, 1, 2, 3, 50000, NULL, 2);
-INSERT INTO `asset` (`id`, `risk_profile_id`, `vehicle_id`, `user_id`, `amount`, `contribution_fixed`, `contribution_percent`) VALUES (31, NULL, 5, 3, 225000, 20000, NULL);
-INSERT INTO `asset` (`id`, `risk_profile_id`, `vehicle_id`, `user_id`, `amount`, `contribution_fixed`, `contribution_percent`) VALUES (32, 1, 3, 3, 35000, 35000, NULL);
+INSERT INTO `asset` (`id`, `risk_profile_id`, `vehicle_id`, `user_id`, `amount`, `contribution_fixed`, `contribution_percent`, `periodic_deposit`) VALUES (1, NULL, 1, 1, 10000, 1000, NULL, DEFAULT);
+INSERT INTO `asset` (`id`, `risk_profile_id`, `vehicle_id`, `user_id`, `amount`, `contribution_fixed`, `contribution_percent`, `periodic_deposit`) VALUES (2, 5, 9, 2, 50000, NULL, 5, DEFAULT);
+INSERT INTO `asset` (`id`, `risk_profile_id`, `vehicle_id`, `user_id`, `amount`, `contribution_fixed`, `contribution_percent`, `periodic_deposit`) VALUES (3, NULL, 1, 2, 15000, 2000, NULL, DEFAULT);
+INSERT INTO `asset` (`id`, `risk_profile_id`, `vehicle_id`, `user_id`, `amount`, `contribution_fixed`, `contribution_percent`, `periodic_deposit`) VALUES (4, NULL, 13, 3, 20000, 1500, NULL, DEFAULT);
+INSERT INTO `asset` (`id`, `risk_profile_id`, `vehicle_id`, `user_id`, `amount`, `contribution_fixed`, `contribution_percent`, `periodic_deposit`) VALUES (5, NULL, 10, 3, 40000, 2000, NULL, DEFAULT);
+INSERT INTO `asset` (`id`, `risk_profile_id`, `vehicle_id`, `user_id`, `amount`, `contribution_fixed`, `contribution_percent`, `periodic_deposit`) VALUES (6, NULL, 14, 4, 16000, 4000, NULL, DEFAULT);
+INSERT INTO `asset` (`id`, `risk_profile_id`, `vehicle_id`, `user_id`, `amount`, `contribution_fixed`, `contribution_percent`, `periodic_deposit`) VALUES (7, NULL, 11, 4, 90000, 8000, NULL, DEFAULT);
+INSERT INTO `asset` (`id`, `risk_profile_id`, `vehicle_id`, `user_id`, `amount`, `contribution_fixed`, `contribution_percent`, `periodic_deposit`) VALUES (8, NULL, 4, 4, 120000, 13000, NULL, DEFAULT);
+INSERT INTO `asset` (`id`, `risk_profile_id`, `vehicle_id`, `user_id`, `amount`, `contribution_fixed`, `contribution_percent`, `periodic_deposit`) VALUES (9, NULL, 15, 5, 70000, 10000, NULL, DEFAULT);
+INSERT INTO `asset` (`id`, `risk_profile_id`, `vehicle_id`, `user_id`, `amount`, `contribution_fixed`, `contribution_percent`, `periodic_deposit`) VALUES (10, NULL, 10, 5, 180000, NULL, 15, DEFAULT);
+INSERT INTO `asset` (`id`, `risk_profile_id`, `vehicle_id`, `user_id`, `amount`, `contribution_fixed`, `contribution_percent`, `periodic_deposit`) VALUES (11, NULL, 5, 6, 375000, NULL, 10, DEFAULT);
+INSERT INTO `asset` (`id`, `risk_profile_id`, `vehicle_id`, `user_id`, `amount`, `contribution_fixed`, `contribution_percent`, `periodic_deposit`) VALUES (12, NULL, 8, 6, 250000, NULL, 5, DEFAULT);
+INSERT INTO `asset` (`id`, `risk_profile_id`, `vehicle_id`, `user_id`, `amount`, `contribution_fixed`, `contribution_percent`, `periodic_deposit`) VALUES (13, 3, 3, 6, 150000, 12000, NULL, DEFAULT);
+INSERT INTO `asset` (`id`, `risk_profile_id`, `vehicle_id`, `user_id`, `amount`, `contribution_fixed`, `contribution_percent`, `periodic_deposit`) VALUES (14, NULL, 5, 7, 90000, 13000, NULL, DEFAULT);
+INSERT INTO `asset` (`id`, `risk_profile_id`, `vehicle_id`, `user_id`, `amount`, `contribution_fixed`, `contribution_percent`, `periodic_deposit`) VALUES (15, NULL, 8, 7, 110000, NULL, 8, DEFAULT);
+INSERT INTO `asset` (`id`, `risk_profile_id`, `vehicle_id`, `user_id`, `amount`, `contribution_fixed`, `contribution_percent`, `periodic_deposit`) VALUES (16, 5, 12, 7, 50000, 2000, NULL, DEFAULT);
+INSERT INTO `asset` (`id`, `risk_profile_id`, `vehicle_id`, `user_id`, `amount`, `contribution_fixed`, `contribution_percent`, `periodic_deposit`) VALUES (17, NULL, 5, 8, 60000, 1500, NULL, DEFAULT);
+INSERT INTO `asset` (`id`, `risk_profile_id`, `vehicle_id`, `user_id`, `amount`, `contribution_fixed`, `contribution_percent`, `periodic_deposit`) VALUES (18, NULL, 8, 8, 22000, NULL, 6, DEFAULT);
+INSERT INTO `asset` (`id`, `risk_profile_id`, `vehicle_id`, `user_id`, `amount`, `contribution_fixed`, `contribution_percent`, `periodic_deposit`) VALUES (19, NULL, 16, 8, 100000, NULL, 4, DEFAULT);
+INSERT INTO `asset` (`id`, `risk_profile_id`, `vehicle_id`, `user_id`, `amount`, `contribution_fixed`, `contribution_percent`, `periodic_deposit`) VALUES (20, NULL, 6, 9, 170000, 12000, NULL, DEFAULT);
+INSERT INTO `asset` (`id`, `risk_profile_id`, `vehicle_id`, `user_id`, `amount`, `contribution_fixed`, `contribution_percent`, `periodic_deposit`) VALUES (21, NULL, 10, 9, 27500, NULL, 8, DEFAULT);
+INSERT INTO `asset` (`id`, `risk_profile_id`, `vehicle_id`, `user_id`, `amount`, `contribution_fixed`, `contribution_percent`, `periodic_deposit`) VALUES (22, NULL, 18, 9, 320000, 22000, NULL, DEFAULT);
+INSERT INTO `asset` (`id`, `risk_profile_id`, `vehicle_id`, `user_id`, `amount`, `contribution_fixed`, `contribution_percent`, `periodic_deposit`) VALUES (23, NULL, 6, 10, 250000, NULL, 5, DEFAULT);
+INSERT INTO `asset` (`id`, `risk_profile_id`, `vehicle_id`, `user_id`, `amount`, `contribution_fixed`, `contribution_percent`, `periodic_deposit`) VALUES (24, NULL, 10, 10, 400000, 30000, NULL, DEFAULT);
+INSERT INTO `asset` (`id`, `risk_profile_id`, `vehicle_id`, `user_id`, `amount`, `contribution_fixed`, `contribution_percent`, `periodic_deposit`) VALUES (25, 2, 2, 10, 525000, 10000, NULL, DEFAULT);
+INSERT INTO `asset` (`id`, `risk_profile_id`, `vehicle_id`, `user_id`, `amount`, `contribution_fixed`, `contribution_percent`, `periodic_deposit`) VALUES (26, 5, 1, 10, 340000, 10000, NULL, DEFAULT);
+INSERT INTO `asset` (`id`, `risk_profile_id`, `vehicle_id`, `user_id`, `amount`, `contribution_fixed`, `contribution_percent`, `periodic_deposit`) VALUES (27, 1, 1, 10, 250000, 20000, NULL, DEFAULT);
+INSERT INTO `asset` (`id`, `risk_profile_id`, `vehicle_id`, `user_id`, `amount`, `contribution_fixed`, `contribution_percent`, `periodic_deposit`) VALUES (28, 5, 1, 3, 75000, 10000, NULL, DEFAULT);
+INSERT INTO `asset` (`id`, `risk_profile_id`, `vehicle_id`, `user_id`, `amount`, `contribution_fixed`, `contribution_percent`, `periodic_deposit`) VALUES (29, NULL, 8, 3, 250000, NULL, 5, DEFAULT);
+INSERT INTO `asset` (`id`, `risk_profile_id`, `vehicle_id`, `user_id`, `amount`, `contribution_fixed`, `contribution_percent`, `periodic_deposit`) VALUES (30, 1, 2, 3, 50000, NULL, 2, DEFAULT);
+INSERT INTO `asset` (`id`, `risk_profile_id`, `vehicle_id`, `user_id`, `amount`, `contribution_fixed`, `contribution_percent`, `periodic_deposit`) VALUES (31, NULL, 5, 3, 225000, 20000, NULL, DEFAULT);
+INSERT INTO `asset` (`id`, `risk_profile_id`, `vehicle_id`, `user_id`, `amount`, `contribution_fixed`, `contribution_percent`, `periodic_deposit`) VALUES (32, 1, 3, 3, 35000, 35000, NULL, DEFAULT);
 
 COMMIT;
 
