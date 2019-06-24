@@ -12,6 +12,7 @@ import { User } from 'src/app/models/user';
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit {
+  name;
   user: User;
   newAsset: Asset = null;
   assets: Asset[] = [];
@@ -20,6 +21,7 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit() {
     this.getUser();
+
   }
 
   addedAsset(newAsset: Asset) {
@@ -40,6 +42,7 @@ export class DashboardComponent implements OnInit {
     this.usersvc.getUser().subscribe(
       data => {
         this.user = data;
+        this.name = this.user.userProfile.fName + ' ' + this.user.userProfile.lName;
       },
       err => {
         console.log('error getting user in dashboard:');
