@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AssetService } from 'src/app/services/asset.service';
 
 @Component({
   selector: 'app-counter',
@@ -7,9 +8,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CounterComponent implements OnInit {
 
-  constructor() { }
+
+  constructor(private assetSvc: AssetService) { }
 
   ngOnInit() {
   }
+  payments = this.assetSvc.monthlyRetirementIncome();
+
 
 }
