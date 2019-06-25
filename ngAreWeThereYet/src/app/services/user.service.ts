@@ -37,8 +37,10 @@ export class UserService {
 
   // TODO: Find correct edit function
   update(updateUser: User) {
+    const credentials = this.authService.getCredentials();
     const httpOptions = {
       headers: new HttpHeaders({
+        'Authorization': `Basic ${credentials}`,
         'Content-Type': 'application/json'
       })
     };

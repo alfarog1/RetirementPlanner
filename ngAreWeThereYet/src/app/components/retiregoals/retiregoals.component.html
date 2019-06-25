@@ -1,4 +1,4 @@
-<div *ngIf="!edit">
+<div *ngIf="user != undefined">
             <h2>Your Profile</h2>
             <table>
                 <tr>
@@ -22,7 +22,7 @@
                 <td>Years of Retirement:</td>
                 <td>
                   {{
-                    user.userProfile.retirementExpectancy - user.userProfile.retirementAge
+                    user.userProfile.lifeExpectancy - user.userProfile.retirementAge
                   }}
                 </td>
               </tr>

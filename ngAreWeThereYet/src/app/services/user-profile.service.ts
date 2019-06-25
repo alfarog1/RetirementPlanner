@@ -48,7 +48,7 @@ export class UserProfileService {
     };
     return this.http
     .put(this.url + '/' + updateUserProfile.id, updateUserProfile, httpOptions)
-    .pipe(catchError(this.handleError));
+    .pipe();
   }
 
   destroy(id: number) {

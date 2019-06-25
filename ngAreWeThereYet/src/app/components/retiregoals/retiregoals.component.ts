@@ -49,14 +49,19 @@ export class RetiregoalsComponent implements OnInit {
     this.tempUserProfile = Object.assign({}, this.user.userProfile);
   }
   commitEdit() {
-    this.tempUserProfile.id = this.user.userProfile.id;
-    this.tempUserProfile.user = this.user;
+    console.log(this.tempUserProfile);
+    // this.tempUserProfile.id = this.user.userProfile.id;
+    // this.tempUserProfile.user = this.user;
+    this.user.userProfile = this.tempUserProfile;
+    console.log(this.tempUserProfile);
     if (this.tempUserProfile.payPeriod == null) {
       this.tempUserProfile.payPeriod = this.user.userProfile.payPeriod;
     }
     if (this.tempUserProfile.dob == null) {
       this.tempUserProfile.dob = this.user.userProfile.dob;
     }
+    console.log(this.user);
+
     this.profilesvc.update(this.tempUserProfile).subscribe(
       data => {
         this.tempUserProfile = null;
@@ -93,7 +98,7 @@ export class RetiregoalsComponent implements OnInit {
   neededAssets() {
     let income = this.user.userProfile.income;
     let percent = this.user.userProfile.percentIncome / 100;
-    let years = this.user.userProfile.retirementExpectancy - this.user.userProfile.retirementAge;
+    let years = this.user.userProfile.lifeExpectancy - this.user.userProfile.retirementAge;
 
     return (income * percent) * years;
   }
