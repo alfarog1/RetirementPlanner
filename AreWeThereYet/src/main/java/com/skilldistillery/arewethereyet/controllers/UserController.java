@@ -63,6 +63,7 @@ public class UserController {
 	@PostMapping(path = "")
 	public User create(HttpServletRequest req, HttpServletResponse res,
 			@RequestBody User user) {
+		System.out.println(user);
 		return svc.create(user);
 	}
 

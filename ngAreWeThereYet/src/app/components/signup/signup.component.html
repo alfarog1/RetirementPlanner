@@ -12,7 +12,7 @@
         <div *ngIf="newUser.email != null && newUser.username != null && newUser.password != null">
           <h4 [@slideInLeft] >Tell us about yourself</h4>
           <div class = 'section2' [@slideInBottom]>
-         
+
           Date of Birth: <input [@slideInBottom] type="date" name = 'dob' [(ngModel)]="newUserProfile.dob"><br>
           </div>
           <div *ngIf="newUserProfile.fName != null && newUserProfile.lName != null && newUserProfile.dob != null">
@@ -59,7 +59,7 @@
     <div class="well">
       <div class="form-group">
         <label><b>Date of Birth</b></label>
-        <input type="date" name="dob" class="form-control" id="exampleInputDOB1" placeholder="Date of Birth"
+        <input type="date" name="dob" class="form-control" id="exampleInputDOB0" placeholder="Date of Birth"
           [(ngModel)]="newUserProfile.dob">
       </div>
     </div>
@@ -88,7 +88,7 @@
           <option value="monthly">Monthly</option>
           <option value="bimonthly">Bi-Monthly</option>
       </select>
-      
+
     </div> -->
         <div class="input-group mb-3">
           <div class="input-group-prepend">
@@ -106,6 +106,6 @@
 
         <div class="clearfix">
           <button type="button" class="cancelbtn">Cancel</button>
-          <button type="submit" class="signupbtn">Sign Up</button>
+          <button type="submit" (click)="createUser()" class="signupbtn">Sign Up</button>
         </div>
       </div>
