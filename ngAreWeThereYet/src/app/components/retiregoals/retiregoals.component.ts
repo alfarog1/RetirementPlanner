@@ -6,6 +6,7 @@ import { Component, OnInit } from '@angular/core';
 import { User } from 'src/app/models/user';
 import { Asset } from 'src/app/models/asset';
 import { UserProfileService } from 'src/app/services/user-profile.service';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 
 @Component({
@@ -20,18 +21,17 @@ export class RetiregoalsComponent implements OnInit {
   assets: Asset[];
   tempUserProfile: UserProfile;
 
-  constructor(private usersvc: UserService, private assetsvc: AssetService, private profilesvc: UserProfileService) { }
-
-  ngOnInit() {
-    this.getUser();
-    this.getAssets();
-
-  }
+  constructor(private usersvc: UserService, private assetsvc: AssetService,
+              private profilesvc: UserProfileService, private modalService: NgbModal) { }
 
   getUser() {
     this.usersvc.getUser().subscribe(
       data => {
+        console.log("**************");
         this.user = data;
+        console.log(data);
+        console.log(this.user);
+
       },
       err => {
         console.log('error retrieving user:');
@@ -41,11 +41,27 @@ export class RetiregoalsComponent implements OnInit {
     );
   }
 
+  getUserProfile() {
+
+  }
+
   startEdit() {
-    this.edit = !this.edit;
-    this.tempUserProfile = this.user.userProfile;
+    this.tempUserProfile = Object.assign({}, this.user.userProfile);
   }
   commitEdit() {
+    console.log(this.tempUserProfile);
+    // this.tempUserProfile.id = this.user.userProfile.id;
+    // this.tempUserProfile.user = this.user;
+    this.user.userProfile = this.tempUserProfile;
+    console.log(this.tempUserProfile);
+    if (this.tempUserProfile.payPeriod == null) {
+      this.tempUserProfile.payPeriod = this.user.userProfile.payPeriod;
+    }
+    if (this.tempUserProfile.dob == null) {
+      this.tempUserProfile.dob = this.user.userProfile.dob;
+    }
+    console.log(this.user);
+
     this.profilesvc.update(this.tempUserProfile).subscribe(
       data => {
         this.tempUserProfile = null;
@@ -57,6 +73,7 @@ export class RetiregoalsComponent implements OnInit {
       }
     );
   }
+
   getAssets() {
     this.assetsvc.getUsersAssets().subscribe(
       data => {
@@ -81,11 +98,32 @@ export class RetiregoalsComponent implements OnInit {
   neededAssets() {
     let income = this.user.userProfile.income;
     let percent = this.user.userProfile.percentIncome / 100;
-    let years = this.user.userProfile.retirementExpectancy - this.user.userProfile.retirementAge;
+    let years = this.user.userProfile.lifeExpectancy - this.user.userProfile.retirementAge;
 
     return (income * percent) * years;
   }
 
+  ngOnInit() {
+    this.getUser();
+    console.log(this.user);
+    this.getAssets();
+  }
 
+  openSm(content) {
+    this.modalService.open(content, { size: "lg" });
+  }
+
+  // reload() {
+  //   this.usersvc.index().subscribe(
+  //     good => {
+  //       this.assets = good;
+  //       this.averageBalancePerAsset();
+  //       console.log(this.assets);
+  //     },
+  //     bad => {
+  //       console.log(bad);
+  //     }
+  //   )
+  // }
 
 }

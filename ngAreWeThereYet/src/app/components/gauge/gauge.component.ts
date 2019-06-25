@@ -1,5 +1,7 @@
+import { FinanceBarComponent } from './../finance-bar/finance-bar.component';
 import { animate } from '@angular/animations';
 import { Component, OnInit } from '@angular/core';
+import { AssetService } from 'src/app/services/asset.service';
 
 @Component({
   selector: 'app-gauge',
@@ -8,13 +10,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class GaugeComponent implements OnInit {
 
-  constructor() { }
+  constructor(private assetSvc: AssetService) { }
 
   ngOnInit() {
   }
 
   gaugeType = "semi";
-  retirementReadiness = 80; // <----
+  retirementReadiness = this.assetSvc.retirementReadiness; // <----
   gaugeLabel = "Retirement Readiness";
   animate = true;
   thickness = 15;

@@ -36,7 +36,7 @@ export class ModalOptionsComponent implements OnInit {
   contributeType = 'fixed';
   user: User;
   balance: boolean;
-  contribute: number;
+  contribution: boolean;
   investment: string;
   appear: boolean;
   recurring: false;

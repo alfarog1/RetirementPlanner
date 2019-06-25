@@ -1,8 +1,17 @@
-/* tr {
-  background-color: lightblue;
-} */
-table + tr:nth-child(even) {
-  background-color: #f2f2f2
+th, td {
+  text-align: left;
+  padding: 8px;
+}
+table {
+  outline-style: ridge;
+  outline-width: thin;
+}
+.modal-body p {
+  word-wrap: break-word;
+}
+
+tr:nth-child(even) {
+  background-color: lightgrey;
 }
 td {
   width: 100px;
