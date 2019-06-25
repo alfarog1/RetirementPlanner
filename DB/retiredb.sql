@@ -138,11 +138,11 @@ DROP TABLE IF EXISTS `user_profile` ;
 CREATE TABLE IF NOT EXISTS `user_profile` (
   `id` INT(11) NOT NULL AUTO_INCREMENT,
   `user_id` INT(11) NULL,
-  `retirement_age` INT(11) NULL DEFAULT '67',
-  `life_expectancy` INT(11) NULL DEFAULT '86',
-  `percent_income` INT(11) NULL DEFAULT '80',
-  `first_name` VARCHAR(45) NULL DEFAULT NULL,
-  `last_name` VARCHAR(45) NULL DEFAULT NULL,
+  `retirement_age` INT(11) NOT NULL DEFAULT '67',
+  `life_expectancy` INT(11) NOT NULL DEFAULT '86',
+  `percent_income` INT(11) NOT NULL DEFAULT '80',
+  `first_name` VARCHAR(45) NULL,
+  `last_name` VARCHAR(45) NULL,
   `dob` DATE NOT NULL,
   `income` INT(11) NOT NULL,
   `pay_period` VARCHAR(60) NOT NULL,
@@ -173,24 +173,24 @@ SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `retiredb`;
-INSERT INTO `vehicle` (`id`, `asset_name`, `is_qualified`, `is_fixed`, `max_contribution`, `is_pretax`, `has_employer_match`, `compounding_periods`) VALUES (1, 'Stocks', 0, 1, NULL, 0, 0, NULL);
-INSERT INTO `vehicle` (`id`, `asset_name`, `is_qualified`, `is_fixed`, `max_contribution`, `is_pretax`, `has_employer_match`, `compounding_periods`) VALUES (2, 'Bonds', 0, 1, NULL, 0, 0, NULL);
-INSERT INTO `vehicle` (`id`, `asset_name`, `is_qualified`, `is_fixed`, `max_contribution`, `is_pretax`, `has_employer_match`, `compounding_periods`) VALUES (3, 'Savings', 0, 1, NULL, 0, 0, NULL);
-INSERT INTO `vehicle` (`id`, `asset_name`, `is_qualified`, `is_fixed`, `max_contribution`, `is_pretax`, `has_employer_match`, `compounding_periods`) VALUES (4, 'Annuity', 0, 0, NULL, 0, 0, NULL);
-INSERT INTO `vehicle` (`id`, `asset_name`, `is_qualified`, `is_fixed`, `max_contribution`, `is_pretax`, `has_employer_match`, `compounding_periods`) VALUES (5, 'Traditional IRA', 1, 0, 7000, 1, 0, NULL);
-INSERT INTO `vehicle` (`id`, `asset_name`, `is_qualified`, `is_fixed`, `max_contribution`, `is_pretax`, `has_employer_match`, `compounding_periods`) VALUES (6, 'Roth Ira', 1, 0, 7000, 0, 0, NULL);
-INSERT INTO `vehicle` (`id`, `asset_name`, `is_qualified`, `is_fixed`, `max_contribution`, `is_pretax`, `has_employer_match`, `compounding_periods`) VALUES (7, '457B', 1, 0, 25000, 1, 0, NULL);
-INSERT INTO `vehicle` (`id`, `asset_name`, `is_qualified`, `is_fixed`, `max_contribution`, `is_pretax`, `has_employer_match`, `compounding_periods`) VALUES (8, '401K', 1, 0, 25000, 1, 1, NULL);
-INSERT INTO `vehicle` (`id`, `asset_name`, `is_qualified`, `is_fixed`, `max_contribution`, `is_pretax`, `has_employer_match`, `compounding_periods`) VALUES (9, '401A', 1, 0, 25000, 1, 1, NULL);
-INSERT INTO `vehicle` (`id`, `asset_name`, `is_qualified`, `is_fixed`, `max_contribution`, `is_pretax`, `has_employer_match`, `compounding_periods`) VALUES (10, '403B', 1, 0, 25000, 1, 1, NULL);
-INSERT INTO `vehicle` (`id`, `asset_name`, `is_qualified`, `is_fixed`, `max_contribution`, `is_pretax`, `has_employer_match`, `compounding_periods`) VALUES (11, '457', 0, 0, 25000, 1, 1, NULL);
-INSERT INTO `vehicle` (`id`, `asset_name`, `is_qualified`, `is_fixed`, `max_contribution`, `is_pretax`, `has_employer_match`, `compounding_periods`) VALUES (12, 'Investment Property', 0, 1, NULL, 0, 0, NULL);
-INSERT INTO `vehicle` (`id`, `asset_name`, `is_qualified`, `is_fixed`, `max_contribution`, `is_pretax`, `has_employer_match`, `compounding_periods`) VALUES (13, 'Non Qualified', 0, 0, NULL, 0, 1, NULL);
-INSERT INTO `vehicle` (`id`, `asset_name`, `is_qualified`, `is_fixed`, `max_contribution`, `is_pretax`, `has_employer_match`, `compounding_periods`) VALUES (14, 'Profit Sharing', 0, 0, NULL, 0, 0, NULL);
-INSERT INTO `vehicle` (`id`, `asset_name`, `is_qualified`, `is_fixed`, `max_contribution`, `is_pretax`, `has_employer_match`, `compounding_periods`) VALUES (15, 'Money Purchase', 0, 0, NULL, 0, 0, NULL);
-INSERT INTO `vehicle` (`id`, `asset_name`, `is_qualified`, `is_fixed`, `max_contribution`, `is_pretax`, `has_employer_match`, `compounding_periods`) VALUES (16, 'Mutual Fund', 0, 0, NULL, 0, 0, NULL);
-INSERT INTO `vehicle` (`id`, `asset_name`, `is_qualified`, `is_fixed`, `max_contribution`, `is_pretax`, `has_employer_match`, `compounding_periods`) VALUES (17, 'TSP', 1, 0, NULL, 1, 0, NULL);
-INSERT INTO `vehicle` (`id`, `asset_name`, `is_qualified`, `is_fixed`, `max_contribution`, `is_pretax`, `has_employer_match`, `compounding_periods`) VALUES (18, 'Other', 0, 0, NULL, 0, 0, NULL);
+INSERT INTO `vehicle` (`id`, `asset_name`, `is_qualified`, `is_fixed`, `max_contribution`, `is_pretax`, `has_employer_match`, `compounding_periods`) VALUES (1, 'Stocks', 0, 1, NULL, 0, 0, 365);
+INSERT INTO `vehicle` (`id`, `asset_name`, `is_qualified`, `is_fixed`, `max_contribution`, `is_pretax`, `has_employer_match`, `compounding_periods`) VALUES (2, 'Bonds', 0, 1, NULL, 0, 0, 12);
+INSERT INTO `vehicle` (`id`, `asset_name`, `is_qualified`, `is_fixed`, `max_contribution`, `is_pretax`, `has_employer_match`, `compounding_periods`) VALUES (3, 'Savings', 0, 1, NULL, 0, 0, 12);
+INSERT INTO `vehicle` (`id`, `asset_name`, `is_qualified`, `is_fixed`, `max_contribution`, `is_pretax`, `has_employer_match`, `compounding_periods`) VALUES (4, 'Annuity', 0, 0, NULL, 0, 0, 12);
+INSERT INTO `vehicle` (`id`, `asset_name`, `is_qualified`, `is_fixed`, `max_contribution`, `is_pretax`, `has_employer_match`, `compounding_periods`) VALUES (5, 'Traditional IRA', 1, 0, 7000, 1, 0, 12);
+INSERT INTO `vehicle` (`id`, `asset_name`, `is_qualified`, `is_fixed`, `max_contribution`, `is_pretax`, `has_employer_match`, `compounding_periods`) VALUES (6, 'Roth Ira', 1, 0, 7000, 0, 0, 12);
+INSERT INTO `vehicle` (`id`, `asset_name`, `is_qualified`, `is_fixed`, `max_contribution`, `is_pretax`, `has_employer_match`, `compounding_periods`) VALUES (7, '457B', 1, 0, 25000, 1, 0, 12);
+INSERT INTO `vehicle` (`id`, `asset_name`, `is_qualified`, `is_fixed`, `max_contribution`, `is_pretax`, `has_employer_match`, `compounding_periods`) VALUES (8, '401K', 1, 0, 25000, 1, 1, 12);
+INSERT INTO `vehicle` (`id`, `asset_name`, `is_qualified`, `is_fixed`, `max_contribution`, `is_pretax`, `has_employer_match`, `compounding_periods`) VALUES (9, '401A', 1, 0, 25000, 1, 1, 12);
+INSERT INTO `vehicle` (`id`, `asset_name`, `is_qualified`, `is_fixed`, `max_contribution`, `is_pretax`, `has_employer_match`, `compounding_periods`) VALUES (10, '403B', 1, 0, 25000, 1, 1, 12);
+INSERT INTO `vehicle` (`id`, `asset_name`, `is_qualified`, `is_fixed`, `max_contribution`, `is_pretax`, `has_employer_match`, `compounding_periods`) VALUES (11, '457', 0, 0, 25000, 1, 1, 12);
+INSERT INTO `vehicle` (`id`, `asset_name`, `is_qualified`, `is_fixed`, `max_contribution`, `is_pretax`, `has_employer_match`, `compounding_periods`) VALUES (12, 'Investment Property', 0, 1, NULL, 0, 0, 1);
+INSERT INTO `vehicle` (`id`, `asset_name`, `is_qualified`, `is_fixed`, `max_contribution`, `is_pretax`, `has_employer_match`, `compounding_periods`) VALUES (13, 'Non Qualified', 0, 0, NULL, 0, 1, 12);
+INSERT INTO `vehicle` (`id`, `asset_name`, `is_qualified`, `is_fixed`, `max_contribution`, `is_pretax`, `has_employer_match`, `compounding_periods`) VALUES (14, 'Profit Sharing', 0, 0, NULL, 0, 0, 12);
+INSERT INTO `vehicle` (`id`, `asset_name`, `is_qualified`, `is_fixed`, `max_contribution`, `is_pretax`, `has_employer_match`, `compounding_periods`) VALUES (15, 'Money Purchase', 0, 0, NULL, 0, 0, 12);
+INSERT INTO `vehicle` (`id`, `asset_name`, `is_qualified`, `is_fixed`, `max_contribution`, `is_pretax`, `has_employer_match`, `compounding_periods`) VALUES (16, 'Mutual Fund', 0, 0, NULL, 0, 0, 12);
+INSERT INTO `vehicle` (`id`, `asset_name`, `is_qualified`, `is_fixed`, `max_contribution`, `is_pretax`, `has_employer_match`, `compounding_periods`) VALUES (17, 'TSP', 1, 0, NULL, 1, 0, 12);
+INSERT INTO `vehicle` (`id`, `asset_name`, `is_qualified`, `is_fixed`, `max_contribution`, `is_pretax`, `has_employer_match`, `compounding_periods`) VALUES (18, 'Other', 0, 0, NULL, 0, 0, 12);
 
 COMMIT;
 

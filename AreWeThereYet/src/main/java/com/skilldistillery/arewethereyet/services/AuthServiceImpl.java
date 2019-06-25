@@ -19,6 +19,9 @@ public class AuthServiceImpl implements AuthService{
 		user.setPassword(encoder.encode(user.getPassword()));
 		user.setEnabled(true);
 		user.setRole("standard");
+		user.getUserProfile().setPercentIncome(80);
+		user.getUserProfile().setRetirementAge(67);
+		user.getUserProfile().setLifeExpectancy(86);
 		System.out.println("AuthService" + user);
 		
 		repo.saveAndFlush(user);

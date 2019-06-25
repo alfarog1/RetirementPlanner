@@ -69,6 +69,7 @@ public class UserController {
 	@PutMapping(path = "/{uId}")
 	public User update(HttpServletRequest req, HttpServletResponse res,
 			@PathVariable("uId") int uId, @RequestBody User user) {
+		System.out.println(user);
 		return svc.update(uId, user);
 	}
 

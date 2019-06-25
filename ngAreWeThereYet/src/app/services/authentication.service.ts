@@ -3,14 +3,16 @@ import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { tap, catchError } from "rxjs/operators";
 import { throwError } from "rxjs";
 import { Router } from "@angular/router";
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: "root"
 })
 export class AuthenticationService {
   // Fields
-  private baseUrl = "http://localhost:8085/";
-  private url = this.baseUrl + "";
+  // private baseUrl = "http://localhost:8085/";
+  // private url = this.baseUrl + "";
+  private url = environment.baseUrl + "";
 
   // Constructor
   constructor(private http: HttpClient, private router: Router) {}

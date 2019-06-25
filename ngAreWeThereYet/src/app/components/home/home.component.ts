@@ -1,3 +1,4 @@
+import { AuthenticationService } from './../../services/authentication.service';
 import { AssetService } from './../../services/asset.service';
 import { Component, OnInit } from "@angular/core";
 import { ChartType, ChartOptions, ChartLayoutOptions } from "chart.js";
@@ -76,7 +77,9 @@ export class HomeComponent implements OnInit {
   mutFunAvg: number = 0;
   tspAvg: number = 0;
   bondsAvg: number = 0;
-  constructor(private assetService: AssetService,
+
+
+  constructor(private assetService: AssetService, private auth: AuthenticationService,
     private router: Router
   ) { }
 
@@ -205,6 +208,7 @@ export class HomeComponent implements OnInit {
     console.log(event, active);
   }
   reload() {
+    if (this.auth.checkLogin()) {
     this.assetService.index().subscribe(
       good => {
         this.assets = good;
@@ -214,7 +218,7 @@ export class HomeComponent implements OnInit {
       bad => {
         console.log(bad);
       }
-    )
+    )}
   }
   signUp() {
     this.router.navigateByUrl('signup');
