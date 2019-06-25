@@ -37,6 +37,9 @@ public class UserController {
 	@GetMapping(path = "/user")
 	public User getUserByUsername(HttpServletRequest req, HttpServletResponse res, Principal principal) {
 		User user = svc.show(principal.getName());
+		System.out.println("**************************88");
+		System.out.println(user);
+		
 		if(user != null) {
 			res.setStatus(200);
 		}else {
@@ -60,6 +63,7 @@ public class UserController {
 	@PostMapping(path = "")
 	public User create(HttpServletRequest req, HttpServletResponse res,
 			@RequestBody User user) {
+		System.out.println(user);
 		return svc.create(user);
 	}
 

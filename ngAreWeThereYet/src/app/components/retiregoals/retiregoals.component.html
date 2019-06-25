@@ -1,64 +1,220 @@
-<div *ngIf="!edit">
+<div *ngIf="user != undefined">
+            <h2>Your Profile</h2>
+            <table>
+                <tr>
+                    <td>Name:</td>
+                    <td> {{ user.userProfile.fName }}  {{ user.userProfile.lName }}</td>
+                  </tr>
+                  <tr>
+              <tr>
+                <td>Date of Birth:</td>
+                <td> {{ user.userProfile.dob | date }}</td>
+              </tr>
+              <tr>
+                <td>Total of Assets:</td>
+                <td> {{ totalAssets | currency }}</td>
+              </tr>
+              <tr>
+                <td>Retirement Age:</td>
+                <td> {{ user.userProfile.retirementAge }}</td>
+              </tr>
+              <tr>
+                <td>Years of Retirement:</td>
+                <td>
+                  {{
+                    user.userProfile.lifeExpectancy - user.userProfile.retirementAge
+                  }}
+                </td>
+              </tr>
+              <tr>
+                <td>% Income in Retirement:</td>
+                <td>{{ user.userProfile.percentIncome }}</td>
+              </tr>
+              <tr>
+                <td>Assets needed at retirement:</td>
+                <td> {{ neededAssets() | currency }}</td>
+              </tr>
+            </table>
+            <br>
+            <button class="btn btn-success" name="commitEdit" (click)="openSm(content); startEdit()">Edit</button>
+          </div>
+
+
+
+
+
+<!-- <div *ngIf="!edit">
+  <h2>Your Profile</h2>
   <table>
+      <tr>
+          <td>Name:</td>
+          <td> {{ user.userProfile.fName }}  {{ user.userProfile.lName }}</td>
+        </tr>
+        <tr>
     <tr>
-      <td>{{ user.userProfile.dob | date }}</td>
-      <td>Date of Birth</td>
+      <td>Date of Birth:</td>
+      <td> {{ user.userProfile.dob | date }}</td>
     </tr>
     <tr>
-      <td>{{ totalAssets | currency }}</td>
-      <td>Total of Assets</td>
+      <td>Total of Assets:</td>
+      <td> {{ totalAssets | currency }}</td>
     </tr>
     <tr>
-      <td>{{ user.userProfile.retirementAge }}</td>
-      <td>Retirement Age</td>
+      <td>Retirement Age:</td>
+      <td> {{ user.userProfile.retirementAge }}</td>
     </tr>
     <tr>
+      <td>Years of Retirement:</td>
       <td>
         {{
-        user.userProfile.retirementExpectancy - user.userProfile.retirementAge
-      }}
+          user.userProfile.retirementExpectancy - user.userProfile.retirementAge
+        }}
       </td>
-      <td>Years of Retirement</td>
     </tr>
     <tr>
+      <td>% Income in Retirement:</td>
       <td>{{ user.userProfile.percentIncome }}</td>
-      <td>% Income in Retirement</td>
     </tr>
     <tr>
-      <td>{{ neededAssets() | currency }}</td>
-      <td>Assets needed at retirement</td>
+      <td>Assets needed at retirement:</td>
+      <td> {{ neededAssets() | currency }}</td>
     </tr>
   </table>
-</div>
-<div *ngIf="edit">
+  <br>
+
+  <button class="btn btn-success" name="commitEdit" (click)="edit = true">Edit</button>
+</div> -->
+
+<!-- <div *ngIf="edit">
+  <h2>Edit Profile</h2>
   <table>
+      <tr>
+          <td>First Name:</td>
+          <td>
+            <input type="text" [(ngModel)]="user.userProfile.fName" />
+          </td>
+        </tr>
+        <tr>
+          <td>Last Name:</td>
+          <td>
+            <input type="string" [(ngModel)]="user.userProfile.lName" />
+          </td>
+        </tr>
     <tr>
-      <td><input type="date" value='user.userProfile.dob'></td>
-      <td>Date of Birth</td>
+      <td>Date of Birth:</td>
+      <td><input type="date" placeholder="user.userProfile.dob" /></td>
     </tr>
     <tr>
-      <td>{{ totalAssets | currency }}</td>
-      <td>Total of Assets</td>
-    </tr>
-    <tr>
-      <td><input type="number" value='user.userProfile.retirementAge' min="60">{{ user.userProfile.retirementAge }}</td>
-      <td>Retirement Age</td>
-    </tr>
-    <tr>
+      <td>Retirement Age:</td>
       <td>
-        {{
-              user.userProfile.retirementExpectancy - user.userProfile.retirementAge
-            }}
+        <input
+        type="number"
+        name="retirementAge"
+        [(ngModel)]="user.userProfile.retirementAge"
+        min="60"
+        />
       </td>
-      <td>Years of Retirement</td>
     </tr>
     <tr>
-      <td>{{ user.userProfile.percentIncome }}</td>
-      <td>% Income in Retirement</td>
+      <td>Percent of Income to Retire:</td>
+      <td>
+        <input type="string" [(ngModel)]="user.userProfile.percentIncome" />
+      </td>
     </tr>
     <tr>
-      <td>{{ neededAssets() | currency }}</td>
-      <td>Assets needed at retirement</td>
+      <td>Income:</td>
+      <td>
+        <input type="number" [(ngModel)]="user.userProfile.income" />
+      </td>
     </tr>
+    <tr>
+      <td>Pay Period:</td>
+        <td>
+          <input type="number" [(ngModel)]="user.userProfile.payPeriod" />
+        </td>
+      </tr>
+      <br>
+    <button class="btn btn-success" name="commitEdit" (click)="startEdit(!edit)">Save</button>
+  </table>
+</div> -->
+
+<ng-template #content let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">Profile update</h4>
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <!-- <form> -->
+        <!-- <div class="form-group">
+          <label for="dateOfBirth">Date of birth</label>
+          <div class="input-group">
+            <input id="dateOfBirth" class="form-control" placeholder="yyyy-mm-dd" name="dp" ngbDatepicker #dp="ngbDatepicker">
+            <div class="input-group-append">
+              <button class="btn btn-outline-secondary calendar" (click)="dp.toggle()" type="button"></button>
+            </div>
+          </div>
+        </div>
+      </form> -->
+      <h2>Edit Profile</h2>
+  <table>
+      <tr>
+          <td>First Name:</td>
+          <td>
+            <input type="text" [(ngModel)]="tempUserProfile.fName" />
+          </td>
+        </tr>
+        <tr>
+          <td>Last Name:</td>
+          <td>
+            <input type="string" [(ngModel)]="tempUserProfile.lName" />
+          </td>
+        </tr>
+    <tr>
+      <td>Date of Birth:</td>
+      <td><input type="date" placeholder="tempUserProfile.dob" /></td>
+    </tr>
+    <tr>
+      <td>Retirement Age:</td>
+      <td>
+        <input
+        type="number"
+        name="retirementAge"
+        [(ngModel)]="tempUserProfile.retirementAge"
+        min="60"
+        />
+      </td>
+    </tr>
+    <tr>
+      <td>Percent of Income to Retire:</td>
+      <td>
+        <input type="string" [(ngModel)]="tempUserProfile.percentIncome" />
+      </td>
+    </tr>
+    <tr>
+      <td>Income:</td>
+      <td>
+        <input type="number" [(ngModel)]="tempUserProfile.income" />
+      </td>
+    </tr>
+    <tr>
+      <td>Pay Period:</td>
+        <td>
+          <select [(ngModel)]="tempUserProfile.payPeriod">
+              <option value=1>Annual</option>
+              <option value=12>Monthly</option>
+              <option value=24>Semi-Monthly</option>
+              <option value=26>Bi-Weekly</option>
+              <option value=52>Weekly</option>
+          </select>
+        </td>
+      </tr>
+      <br>
+    <button class="btn btn-success" name="commitEdit" (click)="modal.close('Close click'); commitEdit()">Save</button>
+    <button class="btn btn-danger" name="cancel" (click)="modal.close('Close click'); tempUserProfile = null">Cancel</button>
+
   </table>
 </div>
+
+

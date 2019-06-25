@@ -16,7 +16,7 @@ export class UserProfileService {
   // Fields
     // TODO: Change port number/api route
     private baseUrl = 'http://localhost:8085/';
-    private url = this.baseUrl + '';
+    private url = this.baseUrl + 'api/profiles';
 
   // Constructor
   constructor(private http: HttpClient, private authService: AuthenticationService) { }
@@ -39,14 +39,16 @@ export class UserProfileService {
 
   // TODO: Find correct edit function
   update(updateUserProfile: UserProfile) {
+    const credentials = this.authService.getCredentials();
     const httpOptions = {
       headers: new HttpHeaders({
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        'Authorization': `Basic ${credentials}`
       })
     };
     return this.http
     .put(this.url + '/' + updateUserProfile.id, updateUserProfile, httpOptions)
-    .pipe(catchError(this.handleError));
+    .pipe();
   }
 
   destroy(id: number) {
@@ -66,7 +68,6 @@ export class UserProfileService {
       })
     };
     return moment().diff(dateOfBirth, 'years');
-
   }
 
 }
