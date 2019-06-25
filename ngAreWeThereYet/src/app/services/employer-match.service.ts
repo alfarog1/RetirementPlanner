@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { catchError } from 'rxjs/operators';
 import { throwError } from 'rxjs';
 import { EmployerMatch } from '../models/employer-match';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -10,8 +11,9 @@ import { EmployerMatch } from '../models/employer-match';
 export class EmployerMatchService {
   // Fields
   //  TODO: Change port number/api route
-  private baseUrl = 'http://localhost:8085/';
-  private url = this.baseUrl + '';
+  // private baseUrl = 'http://localhost:8085/';
+  // private url = this.baseUrl + '';
+  private url = environment.baseUrl + '';
 
   // Constructor
   constructor(private http: HttpClient) {}

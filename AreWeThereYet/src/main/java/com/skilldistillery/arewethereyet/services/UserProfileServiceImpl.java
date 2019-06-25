@@ -7,12 +7,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.skilldistillery.arewethereyet.repositories.UserProfileRepository;
+import com.skilldistillery.arewethereyet.repositories.UserRepository;
 import com.skilldistillery.retirementapp.entities.UserProfile;
 
 @Service
 public class UserProfileServiceImpl implements UserProfileService {
 	@Autowired
 	UserProfileRepository repo;
+	
+	@Autowired
+	UserRepository userRepo;
 
 	@Override
 	public List<UserProfile> getAll() {
@@ -43,12 +47,20 @@ public class UserProfileServiceImpl implements UserProfileService {
 	@Override
 	public UserProfile replace(int id, UserProfile profile) {
 		Optional<UserProfile> op = repo.findById(id);
+		UserProfile managed = null;
 		if (op.isPresent()) {
-			profile.setId(op.get().getId());
-					
+			managed = op.get();
+			managed.setfName(profile.getfName());		
+			managed.setlName(profile.getlName());
+			managed.setDob(profile.getDob());
+			managed.setRetirementAge(profile.getRetirementAge());
+			managed.setPercentIncome(profile.getPercentIncome());
+			managed.setIncome(profile.getPercentIncome());
+			managed.setPayPeriod(profile.getPayPeriod());
 		}
-		repo.saveAndFlush(profile);
-		return profile;
+
+		repo.saveAndFlush(managed);
+		return managed;
 	}
 
 	@Override

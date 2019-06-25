@@ -46,10 +46,10 @@ public class UserProfile {
 	@JoinColumn(name ="user_id")
 	private User user;
 
+
 	public UserProfile() {
 		super();
 	}
-
 
 	public UserProfile(int id, int retirementAge, Integer lifeExpectancy, int percentIncome, String fName, String lName,
 			Date dob, int income, String payPeriod, User user) {
@@ -67,14 +67,12 @@ public class UserProfile {
 		this.user = user;
 	}
 
-
 	@Override
 	public String toString() {
 		return "UserProfile [id=" + id + ", retirementAge=" + retirementAge + ", lifeExpectancy=" + lifeExpectancy
 				+ ", percentIncome=" + percentIncome + ", fName=" + fName + ", lName=" + lName + ", dob=" + dob
 				+ ", income=" + income + ", payPeriod=" + payPeriod + ", user=" + user + "]";
 	}
-
 
 	public int getLifeExpectancy() {
 		return lifeExpectancy;
@@ -98,7 +96,7 @@ public class UserProfile {
 		return retirementAge;
 	}
 
-	public void setRetirementAge(int retirementAge) {
+	public void setRetirementAge(Integer retirementAge) {
 		this.retirementAge = retirementAge;
 	}
 
@@ -107,7 +105,7 @@ public class UserProfile {
 		return percentIncome;
 	}
 
-	public void setPercentIncome(int percentIncome) {
+	public void setPercentIncome(Integer percentIncome) {
 		this.percentIncome = percentIncome;
 	}
 
@@ -139,7 +137,7 @@ public class UserProfile {
 		return income;
 	}
 
-	public void setIncome(int income) {
+	public void setIncome(Integer income) {
 		this.income = income;
 	}
 
@@ -159,5 +157,4 @@ public class UserProfile {
 		this.user = user;
 	}
 
-	
 }

@@ -8,5 +8,6 @@ import com.skilldistillery.retirementapp.entities.UserProfile;
 public interface UserProfileRepository extends JpaRepository<UserProfile, Integer> {
 	
 	UserProfile getByUser_Username(String username);
-
+	UserProfile getByUser_Id(Integer id);
+	
 }

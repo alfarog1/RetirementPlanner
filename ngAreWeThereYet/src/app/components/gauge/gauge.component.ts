@@ -10,13 +10,13 @@ import { AssetService } from 'src/app/services/asset.service';
 })
 export class GaugeComponent implements OnInit {
 
-  constructor(private assetSvc: AssetService) { }
+  constructor(private assetSvc: AssetService, private finbar: FinanceBarComponent) { }
 
   ngOnInit() {
   }
 
   gaugeType = "semi";
-  retirementReadiness = this.assetSvc.retirementReadiness; // <----
+  retirementReadiness = this.finbar.retirementReadiness; // <----
   gaugeLabel = "Retirement Readiness";
   animate = true;
   thickness = 15;
