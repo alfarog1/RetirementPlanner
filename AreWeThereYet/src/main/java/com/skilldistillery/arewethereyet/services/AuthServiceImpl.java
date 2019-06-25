@@ -22,6 +22,8 @@ public class AuthServiceImpl implements AuthService{
 		System.out.println("AuthService" + user);
 		
 		repo.saveAndFlush(user);
+		user.getUserProfile().setUser(user);
+		repo.saveAndFlush(user);
 		return user;
 	}
 
