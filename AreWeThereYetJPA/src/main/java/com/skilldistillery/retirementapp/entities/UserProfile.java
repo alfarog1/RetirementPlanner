@@ -24,7 +24,7 @@ public class UserProfile {
 	
 	@Column(name ="life_expectancy")
 	private Integer lifeExpectancy;
-	
+
 	@Column(name ="percent_income")
 	private Integer percentIncome;
 	
@@ -46,6 +46,44 @@ public class UserProfile {
 	@JoinColumn(name ="user_id")
 	private User user;
 
+
+	public UserProfile() {
+		super();
+	}
+
+	public UserProfile(int id, int retirementAge, Integer lifeExpectancy, int percentIncome, String fName, String lName,
+			Date dob, int income, String payPeriod, User user) {
+
+		super();
+		this.id = id;
+		this.retirementAge = retirementAge;
+		this.lifeExpectancy = lifeExpectancy;
+		this.percentIncome = percentIncome;
+		this.fName = fName;
+		this.lName = lName;
+		this.dob = dob;
+		this.income = income;
+		this.payPeriod = payPeriod;
+		this.user = user;
+	}
+
+	@Override
+	public String toString() {
+		return "UserProfile [id=" + id + ", retirementAge=" + retirementAge + ", lifeExpectancy=" + lifeExpectancy
+				+ ", percentIncome=" + percentIncome + ", fName=" + fName + ", lName=" + lName + ", dob=" + dob
+				+ ", income=" + income + ", payPeriod=" + payPeriod + ", user=" + user + "]";
+	}
+
+	public int getLifeExpectancy() {
+		return lifeExpectancy;
+	}
+
+
+	public void setLifeExpectancy(int lifeExpectancy) {
+		this.lifeExpectancy = lifeExpectancy;
+	}
+
+
 	public int getId() {
 		return id;
 	}
@@ -62,13 +100,6 @@ public class UserProfile {
 		this.retirementAge = retirementAge;
 	}
 
-	public Integer getLifeExpectancy() {
-		return lifeExpectancy;
-	}
-
-	public void setLifeExpectancy(Integer lifeExpectancy) {
-		this.lifeExpectancy = lifeExpectancy;
-	}
 
 	public Integer getPercentIncome() {
 		return percentIncome;
@@ -125,33 +156,5 @@ public class UserProfile {
 	public void setUser(User user) {
 		this.user = user;
 	}
-
-	public UserProfile(int id, Integer retirementAge, Integer lifeExpectancy, Integer percentIncome, String fName,
-			String lName, Date dob, Integer income, String payPeriod, User user) {
-		super();
-		this.id = id;
-		this.retirementAge = retirementAge;
-		this.lifeExpectancy = lifeExpectancy;
-		this.percentIncome = percentIncome;
-		this.fName = fName;
-		this.lName = lName;
-		this.dob = dob;
-		this.income = income;
-		this.payPeriod = payPeriod;
-		this.user = user;
-	}
-
-	public UserProfile() {
-		super();
-	}
-
-	@Override
-	public String toString() {
-		return "UserProfile [id=" + id + ", retirementAge=" + retirementAge + ", lifeExpectancy=" + lifeExpectancy
-				+ ", percentIncome=" + percentIncome + ", fName=" + fName + ", lName=" + lName + ", dob=" + dob
-				+ ", income=" + income + ", payPeriod=" + payPeriod + "]";
-	}
-
-	
 
 }
