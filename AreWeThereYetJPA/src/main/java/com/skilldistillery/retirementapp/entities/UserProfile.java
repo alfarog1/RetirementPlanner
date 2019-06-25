@@ -2,7 +2,6 @@ package com.skilldistillery.retirementapp.entities;
 
 import java.util.Date;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -24,7 +23,7 @@ public class UserProfile {
 	private Integer retirementAge;
 	
 	@Column(name ="life_expectancy")
-	private Integer retirementExpectancy;
+	private Integer lifeExpectancy;
 	
 	@Column(name ="percent_income")
 	private Integer percentIncome;
@@ -47,25 +46,6 @@ public class UserProfile {
 	@JoinColumn(name ="user_id")
 	private User user;
 
-	public UserProfile() {
-		super();
-	}
-
-	public UserProfile(int id, Integer retirementAge, Integer retirementExpectancy, Integer percentIncome, String fName,
-			String lName, Date dob, Integer income, String payPeriod, User user) {
-		super();
-		this.id = id;
-		this.retirementAge = retirementAge;
-		this.retirementExpectancy = retirementExpectancy;
-		this.percentIncome = percentIncome;
-		this.fName = fName;
-		this.lName = lName;
-		this.dob = dob;
-		this.income = income;
-		this.payPeriod = payPeriod;
-		this.user = user;
-	}
-
 	public int getId() {
 		return id;
 	}
@@ -78,23 +58,23 @@ public class UserProfile {
 		return retirementAge;
 	}
 
-	public void setRetirementAge(int retirementAge) {
+	public void setRetirementAge(Integer retirementAge) {
 		this.retirementAge = retirementAge;
 	}
 
-	public Integer getRetirementExpectancy() {
-		return retirementExpectancy;
+	public Integer getLifeExpectancy() {
+		return lifeExpectancy;
 	}
 
-	public void setRetirementExpectancy(int retirementExpectancy) {
-		this.retirementExpectancy = retirementExpectancy;
+	public void setLifeExpectancy(Integer lifeExpectancy) {
+		this.lifeExpectancy = lifeExpectancy;
 	}
 
 	public Integer getPercentIncome() {
 		return percentIncome;
 	}
 
-	public void setPercentIncome(int percentIncome) {
+	public void setPercentIncome(Integer percentIncome) {
 		this.percentIncome = percentIncome;
 	}
 
@@ -126,7 +106,7 @@ public class UserProfile {
 		return income;
 	}
 
-	public void setIncome(int income) {
+	public void setIncome(Integer income) {
 		this.income = income;
 	}
 
@@ -146,11 +126,32 @@ public class UserProfile {
 		this.user = user;
 	}
 
+	public UserProfile(int id, Integer retirementAge, Integer lifeExpectancy, Integer percentIncome, String fName,
+			String lName, Date dob, Integer income, String payPeriod, User user) {
+		super();
+		this.id = id;
+		this.retirementAge = retirementAge;
+		this.lifeExpectancy = lifeExpectancy;
+		this.percentIncome = percentIncome;
+		this.fName = fName;
+		this.lName = lName;
+		this.dob = dob;
+		this.income = income;
+		this.payPeriod = payPeriod;
+		this.user = user;
+	}
+
+	public UserProfile() {
+		super();
+	}
+
 	@Override
 	public String toString() {
-		return "UserProfile [id=" + id + ", retirementAge=" + retirementAge + ", retirementExpectancy="
-				+ retirementExpectancy + ", percentIncome=" + percentIncome + ", fName=" + fName + ", lName=" + lName
-				+ ", dob=" + dob + ", income=" + income + ", payPeriod=" + payPeriod + "]";
+		return "UserProfile [id=" + id + ", retirementAge=" + retirementAge + ", lifeExpectancy=" + lifeExpectancy
+				+ ", percentIncome=" + percentIncome + ", fName=" + fName + ", lName=" + lName + ", dob=" + dob
+				+ ", income=" + income + ", payPeriod=" + payPeriod + "]";
 	}
+
+	
 
 }

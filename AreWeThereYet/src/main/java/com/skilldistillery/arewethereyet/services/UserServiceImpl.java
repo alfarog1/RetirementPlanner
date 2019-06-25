@@ -35,6 +35,7 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public User update(int uId, User user) {
 		user.setId(uId);
+		user.getUserProfile().setUser(user);
 		return repo.saveAndFlush(user);
 	}
 
