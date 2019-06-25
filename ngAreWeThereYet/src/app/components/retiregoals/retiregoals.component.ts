@@ -40,6 +40,7 @@ export class RetiregoalsComponent implements OnInit {
       }
     );
   }
+
   startEdit() {
     this.edit = !this.edit;
     this.tempUserProfile = this.user.userProfile;

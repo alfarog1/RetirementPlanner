@@ -1,4 +1,4 @@
-<div *ngIf="!edit">
+<div *ngIf="!edit && user != undefined">
   <table>
     <tr>
       <td>{{ user.userProfile.dob | date }}</td>

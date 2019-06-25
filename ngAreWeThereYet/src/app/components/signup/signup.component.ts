@@ -6,6 +6,7 @@ import { User } from 'src/app/models/user';
 import { Asset } from 'src/app/models/asset';
 import { trigger, transition, style, animate } from '@angular/animations';
 import { Router } from '@angular/router';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-signup',
@@ -57,7 +58,19 @@ export class SignupComponent implements OnInit {
   newUser: User = new User();
   newUserProfile: UserProfile = new UserProfile();
 
-  constructor(private usersvc: UserService, private router: Router, private auth: AuthenticationService) {
+  constructor(private usersvc: UserService,
+              private router: Router,
+              private auth: AuthenticationService,
+              private modalService: NgbModal) {
+  }
+  openLg(content) {
+    this.modalService.open(content, { size: "lg" });
+  }
+
+  cancel() {
+    this.newUser = new User();
+    this.newUserProfile = new UserProfile();
+    this.router.navigateByUrl('/home');
   }
 
   createUser() {
@@ -78,7 +91,6 @@ export class SignupComponent implements OnInit {
             console.log('error creating user:' + err);
           }
     );
-    this.router.navigateByUrl('/home');
   }
 
   ngOnInit() {

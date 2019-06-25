@@ -5,7 +5,8 @@
 <app-login *ngIf="visible" [@slideInTop] >Your Form</app-login>
 <div [@slideInLeft] style="position: absolute; top: 0; right: 0; padding: 20px;">
 <button  type="button" class="btn btn-success" (click)="onClickMe()" > Login </button>
-<button  type="button" class="btn btn-warning" (click)="signUp()"> Sign Up </button>
+<!-- <button  type="button" class="btn btn-warning" (click)="signUp()"> Sign Up </button> -->
+<app-signup></app-signup>
 </div>
 <table class="centered">
 <tbody>
@@ -88,7 +89,7 @@
     </tr>
     </tbody>
     </table>
-    
+
 
 
 <script src="node_modules/chart.js/src/chart.js"></script>
