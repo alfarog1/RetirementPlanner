@@ -5,7 +5,7 @@ import { AuthenticationService } from 'src/app/services/authentication.service';
 
 @Component({
   selector: 'app-login',
-  templateUrl: './login.component.html',
+  // templateUrl: './login.component.html',
   styleUrls: ['./login.component.css'],
   template: `
       <mat-card>

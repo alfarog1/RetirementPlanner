@@ -25,7 +25,7 @@ export class FinanceBarComponent implements OnInit {
   percentOfIncome = 80;
   payments = 0;
 
-  constructor(private assetService: AssetService, private usersvc: UserService, private count: CounterComponent) { }
+  constructor(private assetService: AssetService, private usersvc: UserService) { }
 
   ngOnInit () {
     this.getUser();
@@ -35,7 +35,6 @@ export class FinanceBarComponent implements OnInit {
     this.usersvc.getUser().subscribe(
       data => {
         this.user = data;
-        this.count.user = data;
       },
       err => {
         console.log('error retrieving user:');

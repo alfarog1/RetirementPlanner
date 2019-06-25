@@ -4,6 +4,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { catchError } from 'rxjs/operators';
 import { throwError } from 'rxjs';
 import { RiskProfile } from '../models/risk-profile';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -11,8 +12,9 @@ import { RiskProfile } from '../models/risk-profile';
 export class RiskProfileService {
   // Fields
   // TODO: Change port number/api route
-  private baseUrl = 'http://localhost:8085/';
-  private url = this.baseUrl + 'api/risks';
+  // private baseUrl = 'http://localhost:8085/';
+  // private url = this.baseUrl + 'api/risks';
+    private url = environment.baseUrl + 'api/risks';
 
   // Constructor
   constructor(private http: HttpClient, private authService: AuthenticationService) { }

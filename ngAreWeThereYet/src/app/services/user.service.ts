@@ -4,6 +4,7 @@ import { User } from '../models/user';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { catchError } from 'rxjs/operators';
 import { throwError } from 'rxjs';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -11,8 +12,9 @@ import { throwError } from 'rxjs';
 export class UserService {
   // Fields
   // TODO: Change port number/api route
-  private baseUrl = 'http://localhost:8085/';
-  private url = this.baseUrl + 'api/users';
+  // private baseUrl = 'http://localhost:8085/';
+  // private url = this.baseUrl + 'api/users';
+  private url = environment.baseUrl + 'api/users';
   user: User;
 
   // Constructor

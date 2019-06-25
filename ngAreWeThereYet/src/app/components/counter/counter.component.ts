@@ -87,8 +87,8 @@ this.balanceNeeded = (regularWithdrawals * (1-(Math.pow((1 + this.annualRateAtRe
 return this.balanceNeeded;  }
 
 yearsInRetirement() {
-  const yir = this.usersvc.user.userProfile.lifeExpectancy - this.usersvc.user.userProfile.retirementAge;
-  return yir;
+  // const yir = this.usersvc.user.userProfile.lifeExpectancy - this.usersvc.user.userProfile.retirementAge;
+  return 1;
 }
 
   retirementReadiness() {

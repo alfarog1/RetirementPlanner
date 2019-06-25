@@ -7,14 +7,16 @@ import { catchError } from 'rxjs/operators';
 import { throwError } from 'rxjs';
 import { Asset } from '../models/asset';
 import { User } from '../models/user';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AssetService {
   // Fields
-  private baseUrl = 'http://localhost:8085/';
-  private url = this.baseUrl + 'api/assets';
+  // private baseUrl = 'http://localhost:8085/';
+  // private url = this.baseUrl + 'api/assets';
+  private url = environment.baseUrl + "api/assets";
 
   fv = 0;
   balanceNeeded = 0;
@@ -43,7 +45,7 @@ export class AssetService {
           'X-Requested-With': 'XMLHttpRequest'
         })
       };
-      return this.http.get<Asset[]>(this.url, httpOptions);
+      return this.http.get<Asset[]>(this.url, httpOptions).pipe(catchError(this.handleError));
     }
   }
 
