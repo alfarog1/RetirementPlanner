@@ -12,114 +12,83 @@
   </div>
   <div class="modal-body">
     <div class="form-group">
-      <!-- <label for="exampleFormControlSelect1">Example select</label> -->
-      <select
-        class="form-control"
-        id="investmentAdd"
-        (change)="currentBalance()"
-      >
+      <!-- select investment type and set vehicle to asset -->
+      <select class="form-control" id="investmentAdd"
+        [(ngModel)]="asset.vehicle" (change)="setVehicle()">
         <option value="" selected="selected">Select investment type</option>
-        <option value="Traditional IRA">Traditional IRA</option>
-        <option value="Roth IRA">Roth IRA</option>
-        <option value="457">457 (deferred comp)</option>
-        <option value="401K">401(k)</option>
-        <option value="401A">401(a)</option>
-        <option value="403B">403(b)</option>
-        <option value="Stocks">Stocks</option>
-        <option value="Bonds">Bonds</option>
-        <option value="Mutual Funds">Mutual Funds</option>
-        <option value="Savings">Savings</option>
-        <option value="Investment Property">Investment Property</option>
-        <option value="OTHER">Other</option>
-        <option value="Non-Qualified">Non-Qualified</option>
-        <option value="457B">457B</option>
-        <option value="Profit Sharing">Profit Sharing</option>
-        <option value="Money Purchase">Money Purchase</option>
-        <option value="TSP">Thrift Savings Plan</option>
+        <option *ngFor="let vehicle of vehicles" [ngValue]='vehicle' >{{vehicle.assetName}}</option>
       </select>
-
-      <div *ngIf="balance">
+      <!-- enter ammount in asset and assign to asset.ammount -->
+      <div *ngIf="asset.vehicle != null">
         <div class="input-group mb-3">
           <div class="input-group-prepend">
             <span class="input-group-text">$</span>
           </div>
-          <input
-            type="number"
-            class="form-control"
-            aria-label="Amount"
-            placeholder="Account Balance"
-            (keypress)="contribute()"
-          />
-          <!-- <div class="input-group-append">
-          <span class="input-group-text">.00</span>
-        </div> -->
+          <input type="number" class="form-control" aria-label="Amount"
+          placeholder="Account Balance" [(ngModel)]="asset.amount"/>
         </div>
       </div>
-      <div *ngIf="contribution">
-        Do you make contributions to this {{ investment }} ?<br />
-        <input
-          type="radio"
-          name="contribution"
-          value="yes"
-          (change)="recurringContribution()"
-        />Yes
-        <input
-          type="radio"
-          name="contribution"
-          value="no"
-          (change)="submitAppear()"
-        />No
+      <!-- select if contributions are made to this account -->
+      <div *ngIf="asset.amount > 0 ">
+        Do you make any contributions?<br>
+        <button name="contribution" (click)="contribute = 1" >Yes</button>
+        <button name="contribution" (click)="contribute = 0" >No</button>
       </div>
+      <!-- select percent vs fixed, ammount and frequency of contributions -->
+      <div class="input-container" *ngIf="contribute === 1">
 
-      <div class="input-container" *ngIf="recurring">
-        How often?
         <span class="input-group-btn" style="margin-bottom:3px">
-          <!-- <button class="btn btn-add left-button btn-primary" ng-click=""> -->
-              <button ng-class="dollarButton" ng-click="">
+              <button selected='selected' ng-class="dollarButton" (click)='contributeType = "fixed"; asset.contributionPercent = null'>
             $
           </button>
-          </span
-        >
+          </span>
         <span class="input-group-btn" style="margin-bottom:3px">
-          <!-- <button class="btn btn-add right-button btn-primary" ng-click=""> -->
-              <button ng-class="percentButton" ng-click="">
+              <button ng-class="percentButton" (click)='contributeType = "percent"; asset.contributionFixed = null'>
             %
-          </button></span
-        >
+          </button></span>
 
         <input
+          *ngIf="contributeType === 'fixed'"
           type="number"
           aria-label="Contribution percent"
           aria-describedby="Contribution percent"
           no-arrow-step=""
           name="contributionPercent"
-          ng-model=""
+          [(ngModel)]="asset.contributionFixed"
           class="form-control ng-pristine ng-untouched ng-valid ng-scope ng-empty"
           placeholder="How much?"
-          (change)="matchingContribution()"
         />
-
+        <input
+          *ngIf="contributeType === 'percent'"
+          type="number"
+          aria-label="Contribution percent"
+          aria-describedby="Contribution percent"
+          no-arrow-step=""
+          name="contributionPercent"
+          [(ngModel)]="asset.contributionPercent"
+          class="form-control ng-pristine ng-untouched ng-valid ng-scope ng-empty"
+          placeholder="How much?"
+        />
+        <div *ngIf="asset.contributionFixed != null || asset.contributionPercent != null">
+        How often?
         <select
           name="investmentFrequency"
           aria-describedby="investment frequency"
           class="form-control width-auto ng-pristine ng-valid ng-empty ng-touched"
-          ng-model=""
-          ><option label="Select Frequency" value="string:" selected="selected"
-            >Select Frequency</option
-          ><option label="Weekly" value="string:WEEK">Weekly</option
-          ><option label="Biweekly" value="string:BIWEEK">Biweekly</option
-          ><option label="Semi-monthly" value="string:SMONTH"
-            >Semi-monthly</option
-          ><option label="Monthly" value="string:MONTH">Monthly</option
-          ><option label="Annually" value="string:ANNUAL"
-            >Annually</option
-          ></select
-        >
+          [(ngModel)]="asset.periodicDeposit"
+          (change)="matchingContribution()">
+          <option label="Select Frequency" value="" selected="selected">Select Frequency</option>
+          <option label="Weekly" value=52>Weekly</option>
+          <option label="Biweekly" value=26>Biweekly</option>
+          <option label="Semi-monthly" value=24>Semi-monthly</option>
+          <option label="Monthly" value=12>Monthly</option>
+          <option label="Annually" value=1>Annually</option>
+          </select>
+        </div>
       </div>
-
+      <!-- enter if employer matches contributions -->
       <div *ngIf="match">
-        Does your emplyoyer make matching contributions to this
-        {{ investment }} ?<br />
+        Does your emplyoyer make matching contributions?<br />
         <input
           type="radio"
           name="contribution"
@@ -130,7 +99,7 @@
           type="radio"
           name="contribution"
           value="no"
-          (change)="submitAppear()"
+          (change)="appear = true"
         />No
       </div>
 
@@ -144,7 +113,7 @@
                 <div class="input-group mb-3">
                   <div class="input-group-prepend">
                     <span class="input-group-text">%</span
-                    ><input type="text" name="ematch" />
+                    ><input type="text" name="ematch" [(ngModel)]="newEmployerMatch1.matchingPercent"/>
                   </div>
                 </div>
               </td>
@@ -155,7 +124,7 @@
                 <div class="input-group mb-3">
                   <div class="input-group-prepend">
                     <span class="input-group-text">%</span
-                    ><input type="text" name="ematchend" />
+                    ><input type="text" name="ematchend" [(ngModel)]="newEmployerMatch1.topThreshold" [(ngModel)]="newEmployerMatch2.bottomThreshold"/>
                   </div>
                 </div>
               </td>
@@ -166,7 +135,7 @@
                 <div class="input-group mb-3">
                   <div class="input-group-prepend">
                     <span class="input-group-text">%</span
-                    ><input type="text" name="ematch2" />
+                    ><input type="text" name="ematch2" [(ngModel)]="newEmployerMatch2.matchingPercent"/>
                   </div>
                 </div>
               </td>
@@ -177,7 +146,7 @@
                 <div class="input-group mb-3">
                   <div class="input-group-prepend">
                     <span class="input-group-text">%</span
-                    ><input type="text" name="ematchend2" />
+                    ><input type="text" name="ematchend2" [(ngModel)]="newEmployerMatch2.topThreshold" />
                   </div>
                 </div>
               </td>
@@ -193,6 +162,7 @@
           class="btn btn-dark"
           ngbPopover="I'm ready to submit"
           triggers="mouseenter:mouseleave"
+          (click)="confirmSubmit(); modal.close('Close click')"
         >
           Submit
         </button>
@@ -205,7 +175,7 @@
         Close
       </button>
     </div>
-  </div>
+    </div>
 </ng-template>
 
 <!-- <button class="btn btn-outline-primary mb-2 mr-2" (click)="openWindowCustomClass(content)">Modal with window custom class</button>

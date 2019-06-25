@@ -1,53 +1,3 @@
-<!-- <div *ngIf="editAsset == null">
-<table>
-  <tr>
-      <td>Asset</td>
-      <td>Ammount</td>
-      <td *ngIf="expand != 0 && tempAsset.contributionFixed > 0">Fixed contribution</td>
-      <td *ngIf="expand != 0 && tempAsset.contributionPercent > 0">Percent contribution</td>
-      <td *ngIf="expand != 0 && tempAsset.doesEmployerMatch">Employer matching</td>
-      <td *ngIf="expand != 0 && tempAsset.riskProfile != null">Risk profile</td>
-  </tr>
-</table>
-<div *ngFor="let asset of assets">
-<table>
-  <tr (click)='expand = (expand == asset.id) ? 0 : asset.id; tempAsset = asset'>
-    <td>{{asset.vehicle.assetName}}</td>
-    <td>{{asset.amount | currency}}</td>
-    <td *ngIf="expand === asset.id && asset.contributionFixed > 0">{{asset.contributionFixed | currency}}</td>
-    <td *ngIf="expand === asset.id && asset.contributionPercent > 0">{{asset.contributionPercent}}%</td>
-    <td *ngIf="expand === asset.id && asset.doesEmployerMatch">{{asset.employerMatch | percent}}%</td>
-    <td *ngIf="expand === asset.id && asset.riskProfile != null">{{asset.riskProfile.name}}</td>
-    <td *ngIf="expand === asset.id"><button (click) = 'editAsset = asset'>Edit</button></td>
-  </tr>
-</table>
-</div>
-</div> -->
-<!-- /* gets called when edit */  -->
-<!-- <div *ngIf="editAsset != null">
-    <tr>
-        <td>Asset</td>
-        <td>Ammount</td>
-        <td *ngIf="editAsset.contributionFixed > 0">Fixed contribution</td>
-        <td *ngIf="editAsset.contributionPercent > 0">Percent contribution</td>
-        <td *ngIf="editAsset.doesEmployerMatch">Employer matching</td>
-        <td *ngIf=" editAsset.riskProfile != null">Risk profile</td>
-    </tr>
-<tr>
-    <td>{{editAsset.vehicle.assetName}}</td>
-    <td><input type="number" value = {{editAsset.amount}} [(ngModel)]="editAsset.amount"></td>
-    <td *ngIf=" editAsset.contributionFixed > 0"><input type="number" value={{editAsset.contributionFixed}} [(ngModel)]="editAsset.contributionFixed"></td>
-    <td *ngIf="editAsset.contributionPercent > 0"><input type="number" value={{editAsset.contributionPercent}} [(ngModel)]="editAsset.contributionPercent"></td>
-    <td *ngIf="editAsset.doesEmployerMatch"><input type="number" value={{editAsset.employerMatch}} [(ngModel)]="editAsset.employerMatch"></td>
-    <td *ngIf="editAsset.riskProfile != null"><select name="riskprofile">
-      <option *ngFor="let risk of risks" value="risk" [(ngModel)]="editAsset.riskProfile">{{risk.name}}</option>
-    </select></td>
-    <td><button (click) = 'commitEditAsset()'>Confirm</button></td>
-    <td><button (click) = 'deleteAsset()'>Delete</button></td>
-</tr>
-</div> -->
-<!-- EDIT -->
-
 <div class="row">
   <div class="column">
     <table class="table">
@@ -91,7 +41,8 @@
     </table>
   </div>
   <div class="modal-footer">
-    <button type="button" class="btn btn-outline-dark" (click)='deleteAsset()' (click)="modal.close('Delete click')">Delete</button>
+    <button type="button" class="btn btn-outline-dark" (click)='deleteAsset()'
+      (click)="modal.close('Delete click')">Delete</button>
     <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Save</button>
   </div>
 </ng-template>
