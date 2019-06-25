@@ -13,6 +13,7 @@ export class UserService {
   // TODO: Change port number/api route
   private baseUrl = 'http://localhost:8085/';
   private url = this.baseUrl + 'api/users';
+  user: User;
 
   // Constructor
   constructor(private http: HttpClient, private authService: AuthenticationService) { }
