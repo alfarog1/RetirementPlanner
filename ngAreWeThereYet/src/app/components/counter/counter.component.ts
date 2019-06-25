@@ -7,13 +7,19 @@ import { AssetService } from 'src/app/services/asset.service';
   styleUrls: ['./counter.component.css']
 })
 export class CounterComponent implements OnInit {
+  payments = this.assetSvc.monthlyRetirementIncome();
+effect = "easeInOutBounce";
 
+  duration = 2000;
 
   constructor(private assetSvc: AssetService) { }
 
   ngOnInit() {
   }
-  payments = this.assetSvc.monthlyRetirementIncome();
+
+
+
+
 
 
 }
