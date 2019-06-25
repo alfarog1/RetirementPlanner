@@ -1,7 +1,10 @@
 th, td {
   text-align: left;
   padding: 8px;
-  
+}
+table {
+  outline-style: ridge;
+  outline-width: thin;
 }
 .modal-body p {
   word-wrap: break-word;
