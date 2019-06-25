@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.skilldistillery.arewethereyet.services.AuthService;
 import com.skilldistillery.retirementapp.entities.User;
+
 @RestController
 @CrossOrigin({ "*", "http://localhost:4208" })
 public class AuthController {
@@ -21,8 +22,6 @@ public class AuthController {
 
 	@PostMapping("/register")
 	public User register(@RequestBody User user, HttpServletResponse res) {
-		System.out.println(user);
-
 		if (user == null) {
 			res.setStatus(400);
 		}

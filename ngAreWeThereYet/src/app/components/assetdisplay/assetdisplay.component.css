@@ -1,6 +1,16 @@
-tr {
-  background-color: lightblue;
+th, td {
+  text-align: left;
+  padding: 8px;
+  
+}
+.modal-body p {
+  word-wrap: break-word;
+}
+
+tr:nth-child(even) {
+  background-color: lightgrey;
 }
 td {
   width: 100px;
 }
+

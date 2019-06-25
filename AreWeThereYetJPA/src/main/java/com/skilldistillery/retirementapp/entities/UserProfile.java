@@ -20,13 +20,13 @@ public class UserProfile {
 	private int id;
 	
 	@Column(name ="retirement_age")
-	private int retirementAge;
+	private Integer retirementAge;
 	
 	@Column(name ="life_expectancy")
-	private int lifeExpectancy;
-	
+	private Integer lifeExpectancy;
+
 	@Column(name ="percent_income")
-	private int percentIncome;
+	private Integer percentIncome;
 	
 	@Column(name ="first_name")
 	private String fName;
@@ -36,7 +36,7 @@ public class UserProfile {
 	
 	private Date dob;
 	
-	private int income;
+	private Integer income;
 	
 	@Column(name ="pay_period")
 	private String payPeriod;
@@ -51,9 +51,9 @@ public class UserProfile {
 	}
 
 
-
-	public UserProfile(int id, int retirementAge, int lifeExpectancy, int percentIncome, String fName, String lName,
+	public UserProfile(int id, int retirementAge, Integer lifeExpectancy, int percentIncome, String fName, String lName,
 			Date dob, int income, String payPeriod, User user) {
+
 		super();
 		this.id = id;
 		this.retirementAge = retirementAge;
@@ -68,7 +68,6 @@ public class UserProfile {
 	}
 
 
-
 	@Override
 	public String toString() {
 		return "UserProfile [id=" + id + ", retirementAge=" + retirementAge + ", lifeExpectancy=" + lifeExpectancy
@@ -77,17 +76,14 @@ public class UserProfile {
 	}
 
 
-
 	public int getLifeExpectancy() {
 		return lifeExpectancy;
 	}
 
 
-
 	public void setLifeExpectancy(int lifeExpectancy) {
 		this.lifeExpectancy = lifeExpectancy;
 	}
-
 
 
 	public int getId() {
@@ -98,7 +94,7 @@ public class UserProfile {
 		this.id = id;
 	}
 
-	public int getRetirementAge() {
+	public Integer getRetirementAge() {
 		return retirementAge;
 	}
 
@@ -107,9 +103,7 @@ public class UserProfile {
 	}
 
 
-	
-
-	public int getPercentIncome() {
+	public Integer getPercentIncome() {
 		return percentIncome;
 	}
 
@@ -141,7 +135,7 @@ public class UserProfile {
 		this.dob = dob;
 	}
 
-	public int getIncome() {
+	public Integer getIncome() {
 		return income;
 	}
 
