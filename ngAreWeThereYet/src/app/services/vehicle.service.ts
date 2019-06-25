@@ -1,3 +1,4 @@
+import { AuthenticationService } from './authentication.service';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { catchError } from 'rxjs/operators';
@@ -14,7 +15,7 @@ export class VehicleService {
   private url = this.baseUrl + '';
 
   // Constructor
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private authService: AuthenticationService) {}
 
   // Methods
   handleError(error: any) {
@@ -40,7 +41,7 @@ export class VehicleService {
       })
     };
     return this.http
-    .put(this.url + '/' + vehicle.id, vehicle, httpOptions)
+    .put(this.url + 'api/vehicles' + vehicle.id, vehicle, httpOptions)
     .pipe(catchError(this.handleError));
   }
 
@@ -50,7 +51,19 @@ export class VehicleService {
         'Content-Type': 'application/json'
       })
     };
-    return this.http.delete(this.url + '/' + id, httpOptions)
+    return this.http.delete(this.url + 'api/vehicles' + id, httpOptions)
     .pipe(catchError(this.handleError));
+  }
+  index() {
+    if (this.authService.checkLogin()) {
+      const credentials = this.authService.getCredentials();
+      const httpOptions = {
+        headers: new HttpHeaders({
+          'Authorization': `Basic ${credentials}`,
+          'X-Requested-With': 'XMLHttpRequest'
+        })
+      };
+      return this.http.get<Vehicle[]>(this.url + 'api/vehicles', httpOptions);
+    }
   }
 }

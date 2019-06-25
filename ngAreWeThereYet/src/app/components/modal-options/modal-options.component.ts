@@ -1,7 +1,12 @@
-import { Vehicle } from './../../models/vehicle';
-import { EmployerMatch } from './../../models/employer-match';
+import { AssetService } from './../../services/asset.service';
+import { UserService } from './../../services/user.service';
+import { VehicleService } from "./../../services/vehicle.service";
+import { Asset } from "./../../models/asset";
+import { Vehicle } from "./../../models/vehicle";
+import { EmployerMatch } from "./../../models/employer-match";
 import { Component, OnInit, ViewEncapsulation } from "@angular/core";
 import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
+import { User } from 'src/app/models/user';
 
 @Component({
   selector: "app-modal-options",
@@ -24,18 +29,31 @@ import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
   ]
 })
 export class ModalOptionsComponent implements OnInit {
+  asset: Asset = new Asset();
+  vehicles: Vehicle[] = [];
+  newEmployerMatch1: EmployerMatch = new EmployerMatch();
+  newEmployerMatch2: EmployerMatch = new EmployerMatch();
+  contributeType = 'fixed';
+  user: User;
   balance: boolean;
-  contribution: boolean;
+  contribute: number;
   investment: string;
   appear: boolean;
-  recurring: boolean;
+  recurring: false;
   match: boolean;
   employerMatch: boolean;
-  employerMatchPlan = ["457", "401K", "401A", "403B", "Non-Qualified", "457B", "Profit Sharing", "Money Purchase", "TSP"];
 
-  constructor(private modalService: NgbModal) {}
+  constructor(
+    private userService: UserService,
+    private assetService: AssetService,
+    private modalService: NgbModal,
+    private vehicleService: VehicleService
+  ) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.getVehicles();
+    this.asset.employerMatch = [];
+  }
 
   openBackDropCustomClass(content) {
     this.modalService.open(content, { backdropClass: "light-blue-backdrop" });
@@ -57,39 +75,83 @@ export class ModalOptionsComponent implements OnInit {
     this.modalService.open(content, { centered: true });
   }
 
-  currentBalance() {
-    this.balance = !this.balance;
+  confirmSubmit() {
+    this.asset.user = this.user;
+    if (this.newEmployerMatch1.topThreshold > 0) {
+      this.asset.employerMatch.push(this.newEmployerMatch1);
+    }
+    if (this.newEmployerMatch2.topThreshold > 0) {
+      this.asset.employerMatch.push(this.newEmployerMatch2);
+    }
+    console.log('in confirm submit')
+    console.log(this.asset);
+    this.assetService.create(this.asset).subscribe(
+      data => {
+       console.log('asset creation success');
+      },
+      err => {
+        console.log('error adding asset');
+        console.log(err);
+      }
+    );
   }
 
-  contribute() {
-    this.investment = (document.getElementById("investmentAdd")as HTMLInputElement).value;
-    this.contribution = true;
+  getUser() {
+    this.userService.getUser().subscribe(
+      data => {
+        this.user = data;
+      },
+      err => {
+        console.log('error retrieving user:');
+        console.log(err);
+
+      }
+    );
   }
+  // currentBalance() {
+  //   this.balance = !this.balance;
+  // }
+
+  // contribute() {
+  //   this.contribution = 1;
+  // }
 
   submitAppear() {
     this.appear = true;
   }
 
-  recurringContribution() {
-    this.appear = false;
-    this.recurring = true;
+  // recurringContribution() {
+  //   this.appear = false;
+  //   this.recurring = true;
+  // }
+
+  matchingContribution() {
+    if (this.asset.vehicle.hasEmployerMatch) {
+      this.match = true;
+    } else {
+      this.submitAppear();
+    }
   }
 
-matchingContribution() {
-  console.log(this.investment);
+  employerMatching() {
+    this.employerMatch = true;
+    this.appear = true;
+  }
 
+  getVehicles() {
+    this.vehicleService.index().subscribe(
+      data => {
+        this.vehicles = data;
+      },
+      err => {
+        console.log("error getting vehicles");
+        console.log(err);
+      }
+    );
+  }
 
-  if (this.employerMatchPlan.includes(this.investment) ) {
-  this.match = true;
-  // TEST
-}
-
-
-}
-
-employerMatching() {
-  this.employerMatch = true;
-  this.appear = true;
-}
-
+  setVehicle(vehicle: Vehicle) {
+    console.log(vehicle.assetName);
+    this.asset.vehicle = vehicle;
+  }
 }
