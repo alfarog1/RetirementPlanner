@@ -39,6 +39,7 @@ import { AssetdisplayComponent } from './components/assetdisplay/assetdisplay.co
 import { HttpClientModule } from '@angular/common/http';
 import { RetiregoalsComponent } from './components/retiregoals/retiregoals.component';
 import { FinanceBarComponent } from './components/finance-bar/finance-bar.component';
+import { AdminComponent } from './components/admin/admin.component';
 
 
 
@@ -59,7 +60,8 @@ import { FinanceBarComponent } from './components/finance-bar/finance-bar.compon
     GaugeComponent,
     AssetdisplayComponent,
     RetiregoalsComponent,
-    FinanceBarComponent
+    FinanceBarComponent,
+    AdminComponent
   ],
   imports: [
     NgbModule,
