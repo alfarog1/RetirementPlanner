@@ -50,9 +50,7 @@ export class DashboardComponent implements OnInit {
       }
     );
   }
-  logout() {
-    this.auth.logout();
-  }
+
 
   reloadDashboard() {
 
