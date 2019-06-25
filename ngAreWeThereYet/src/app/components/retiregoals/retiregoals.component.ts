@@ -80,7 +80,7 @@ export class RetiregoalsComponent implements OnInit {
   neededAssets() {
     let income = this.user.userProfile.income;
     let percent = this.user.userProfile.percentIncome / 100;
-    let years = this.user.userProfile.retirementExpectancy - this.user.userProfile.retirementAge;
+    let years = this.user.userProfile.lifeExpectancy - this.user.userProfile.retirementAge;
 
     return (income * percent) * years;
   }
