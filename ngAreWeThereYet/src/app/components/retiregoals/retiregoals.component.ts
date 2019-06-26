@@ -1,3 +1,4 @@
+import { AuthenticationService } from './../../services/authentication.service';
 import { UserProfile } from './../../models/user-profile';
 import { AssetdisplayComponent } from './../assetdisplay/assetdisplay.component';
 import { AssetService } from './../../services/asset.service';
@@ -22,15 +23,13 @@ export class RetiregoalsComponent implements OnInit {
   tempUserProfile: UserProfile;
 
   constructor(private usersvc: UserService, private assetsvc: AssetService,
-              private profilesvc: UserProfileService, private modalService: NgbModal) { }
+              private profilesvc: UserProfileService, private modalService: NgbModal,
+              private auth: AuthenticationService) { }
 
   getUser() {
     this.usersvc.getUser().subscribe(
       data => {
-        console.log("**************");
         this.user = data;
-        console.log(data);
-        console.log(this.user);
 
       },
       err => {
@@ -105,12 +104,14 @@ export class RetiregoalsComponent implements OnInit {
 
   ngOnInit() {
     this.getUser();
-    console.log(this.user);
     this.getAssets();
   }
 
   openSm(content) {
     this.modalService.open(content, { size: "lg" });
+  }
+  logout() {
+    this.auth.logout();
   }
 
   // reload() {

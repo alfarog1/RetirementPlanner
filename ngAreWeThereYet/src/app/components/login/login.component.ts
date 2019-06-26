@@ -5,7 +5,7 @@ import { AuthenticationService } from 'src/app/services/authentication.service';
 
 @Component({
   selector: 'app-login',
-  templateUrl: './login.component.html',
+  // templateUrl: './login.component.html',
   styleUrls: ['./login.component.css'],
   template: `
       <mat-card>
@@ -66,6 +66,7 @@ export class LoginComponent implements OnInit {
     username: new FormControl(''),
     password: new FormControl(''),
   });
+  error;
 
 
 
@@ -89,6 +90,7 @@ export class LoginComponent implements OnInit {
     console.log(loginData);
     this.auth.login(loginData.username, loginData.password).subscribe(
       data => {
+        console.log(data);
         this.router.navigateByUrl('dashboard');
       },
       err =>  {

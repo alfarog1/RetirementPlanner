@@ -83,8 +83,6 @@ export class ModalOptionsComponent implements OnInit {
     if (this.newEmployerMatch2.topThreshold > 0) {
       this.asset.employerMatch.push(this.newEmployerMatch2);
     }
-    console.log('in confirm submit')
-    console.log(this.asset);
     this.assetService.create(this.asset).subscribe(
       data => {
        console.log('asset creation success');

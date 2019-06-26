@@ -1,18 +1,21 @@
-import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { tap, catchError } from 'rxjs/operators';
-import { throwError } from 'rxjs';
+import { Injectable } from "@angular/core";
+import { HttpClient, HttpHeaders } from "@angular/common/http";
+import { tap, catchError } from "rxjs/operators";
+import { throwError } from "rxjs";
+import { Router } from "@angular/router";
+import { environment } from 'src/environments/environment';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: "root"
 })
 export class AuthenticationService {
   // Fields
-  private baseUrl = 'http://localhost:8085/';
-  private url = this.baseUrl + '';
+  // private baseUrl = "http://localhost:8085/";
+  // private url = this.baseUrl + "";
+  private url = environment.baseUrl + "";
 
   // Constructor
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private router: Router) {}
 
   // Methods
   generateBasicAuthCredentials(username, password) {
@@ -20,7 +23,7 @@ export class AuthenticationService {
   }
 
   getCredentials() {
-    return localStorage.getItem('credentials');
+    return localStorage.getItem("credentials");
   }
 
   login(username, password) {
@@ -30,49 +33,49 @@ export class AuthenticationService {
     const httpOptions = {
       headers: new HttpHeaders({
         Authorization: `Basic ${credentials}`,
-        'X-Requested-With': 'XMLHttpRequest'
+        "X-Requested-With": "XMLHttpRequest"
       })
     };
     // create request to authenticate credentials
-    return this.http.get(this.url + 'authenticate', httpOptions).pipe(
+    return this.http.get(this.url + "authenticate", httpOptions).pipe(
       tap(res => {
-        localStorage.setItem('credentials', credentials);
+        localStorage.setItem("credentials", credentials);
         return res;
       }),
       catchError((err: any) => {
         console.log(err);
-        return throwError('AuthService.login(): Error logging in.');
+        return throwError("AuthService.login(): Error logging in.");
       })
     );
   }
 
   checkLogin() {
-    if (localStorage.getItem('credentials')) {
+    if (localStorage.getItem("credentials")) {
       return true;
     }
     return false;
   }
 
   register(user) {
-    console.log('in auth.register()');
+    console.log("in auth.register()");
     console.log(user);
 
     const httpOptions = {
       headers: new HttpHeaders({
-        'Content-Type': 'application/json'
+        "Content-Type": "application/json"
       })
     };
     // create request to register a new account
-    return this.http.post(this.url + 'register', user, httpOptions)
-    .pipe(
+    return this.http.post(this.url + "register", user, httpOptions).pipe(
       catchError((err: any) => {
         console.log(err);
-        return throwError('AuthService.register(): error registering user.');
+        return throwError("AuthService.register(): error registering user.");
       })
     );
   }
 
   logout() {
-    localStorage.removeItem('credentials');
+    localStorage.removeItem("credentials");
+    this.router.navigateByUrl("home");
   }
 }

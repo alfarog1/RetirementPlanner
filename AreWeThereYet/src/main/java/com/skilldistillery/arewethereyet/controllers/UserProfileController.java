@@ -65,7 +65,7 @@ public class UserProfileController {
 	}
 	@PutMapping("profiles/{id}")
 	public UserProfile replace(@RequestBody UserProfile profile, @PathVariable int id, HttpServletRequest req, HttpServletResponse resp) {
-	
+		System.out.println(profile.getUser());
 		UserProfile updateProfile = svc.replace(id, profile);
 			
 		if(updateProfile == null) {

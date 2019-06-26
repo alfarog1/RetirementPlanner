@@ -4,6 +4,7 @@ import { AssetService } from './../../services/asset.service';
 import { Component, OnInit } from '@angular/core';
 import { Asset } from 'src/app/models/asset';
 import { User } from 'src/app/models/user';
+import { AuthenticationService } from 'src/app/services/authentication.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -16,7 +17,7 @@ export class DashboardComponent implements OnInit {
   newAsset: Asset = null;
   assets: Asset[] = [];
 
-  constructor(private assetService: AssetService, private usersvc: UserService) { }
+  constructor(private assetService: AssetService, private usersvc: UserService, private auth: AuthenticationService) { }
 
   ngOnInit() {
     this.getUser();
@@ -49,6 +50,7 @@ export class DashboardComponent implements OnInit {
       }
     );
   }
+
 
   reloadDashboard() {
 

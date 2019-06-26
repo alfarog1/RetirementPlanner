@@ -37,8 +37,7 @@ public class UserController {
 	@GetMapping(path = "/user")
 	public User getUserByUsername(HttpServletRequest req, HttpServletResponse res, Principal principal) {
 		User user = svc.show(principal.getName());
-		System.out.println("**************************88");
-		System.out.println(user);
+
 		
 		if(user != null) {
 			res.setStatus(200);
@@ -70,6 +69,7 @@ public class UserController {
 	@PutMapping(path = "/{uId}")
 	public User update(HttpServletRequest req, HttpServletResponse res,
 			@PathVariable("uId") int uId, @RequestBody User user) {
+		System.out.println(user);
 		return svc.update(uId, user);
 	}
 

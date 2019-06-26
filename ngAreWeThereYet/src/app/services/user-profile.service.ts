@@ -7,6 +7,7 @@ import { catchError } from 'rxjs/operators';
 import { throwError } from 'rxjs';
 import { UserProfile } from '../models/user-profile';
 import * as moment from 'moment';
+import { environment } from 'src/environments/environment';
 
 
 @Injectable({
@@ -15,8 +16,9 @@ import * as moment from 'moment';
 export class UserProfileService {
   // Fields
     // TODO: Change port number/api route
-    private baseUrl = 'http://localhost:8085/';
-    private url = this.baseUrl + 'api/profiles';
+    // private baseUrl = 'http://localhost:8085/';
+    // private url = this.baseUrl + 'api/profiles';
+    private url = environment.baseUrl + 'api/profiles';
 
   // Constructor
   constructor(private http: HttpClient, private authService: AuthenticationService) { }
