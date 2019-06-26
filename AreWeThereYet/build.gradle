@@ -8,7 +8,7 @@ apply plugin: 'war'
 war {
   enabled = true
   archiveName = "${baseName}.war"     // Our app name, as defined in settings.gradle
-  destinationDir = file("./")         // Project root directory
+  destinationDir = file("../")         // Project root directory
 }
 
 

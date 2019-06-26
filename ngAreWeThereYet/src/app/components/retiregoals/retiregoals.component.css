@@ -1,16 +1,24 @@
-td {
+/* td {
   text-align: left;
   padding-left: 20px;
-}
+} */
 
-div {
-  /* z-index: 1;
-  position: relative; */
+.container {
   background-color: lightblue;
+  border-radius: 10px;
 }
+ .field {
+  border-radius: 10px;
+  border-width: medium;
+  border-color: rgba(31, 31, 118, 0.721);
+  border-style: solid;
+ }
+ .value {
+   text-align: right;
+ }
 
 button {
-  text-align: right;
+  margin-bottom: 10px;
 }
 
 .modal-body {
