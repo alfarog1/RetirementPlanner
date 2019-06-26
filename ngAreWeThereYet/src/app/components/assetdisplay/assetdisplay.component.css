@@ -1,19 +1,30 @@
 th, td {
   text-align: left;
   padding: 8px;
+  color: white;
 }
-table {
+
+.table table {
   outline-style: ridge;
   outline-width: thin;
 }
-.modal-body p {
+.modal-body tr {
   word-wrap: break-word;
+  background-color: white;
+  color: #162336;
+  border: none;
 }
 
 tr:nth-child(even) {
-  background-color: lightgrey;
+  background-color: #4d818c;
+}
+tr:nth-child(odd){
+  background-color: #325765;
 }
 td {
   width: 100px;
+}
+thead {
+  background-color: #162336;
 }
 

@@ -1,7 +1,7 @@
 <div class="row">
   <div class="column">
     <table class="table">
-      <thead class="thead-dark">
+      <thead>
         <tr>
           <th>Asset</th>
           <th>Amount</th>
@@ -26,18 +26,65 @@
   </div>
   <div class="modal-body">
     <table>
-      <tr><b>Asset Amount</b><input type="number" value={{editAsset.amount}} [(ngModel)]="editAsset.amount"></tr><br>
-      <tr><b>Contribution</b><input type="number" value={{editAsset.contributionFixed}}
-          [(ngModel)]="editAsset.contributionFixed"></tr><br>
-      <tr *ngIf="editAsset.contributionPercent > 0"><b>Contribution Percent</b><input type="number"
-          value={{editAsset.contributionPercent}} [(ngModel)]="editAsset.contributionPercent"></tr><br>
-      <tr *ngIf="editAsset.doesEmployerMatch"><b>Employer Match</b><input type="number"
-          value={{editAsset.employerMatch}} [(ngModel)]="editAsset.employerMatch"></tr><br>
-      <tr *ngIf="editAsset.riskProfile != null"><b>Risk Profile</b>
+      <!-- <tr><b>Asset Amount</b><input type="number" value={{editAsset.amount}} [(ngModel)]="editAsset.amount"></tr><br> -->
+      <tr>
+        <div class="input-group input-group-sm mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="inputGroup-sizing-sm">Asset Amount</span>
+          </div>
+          <input type="number" class="form-control" aria-label="Asset Amount" aria-describedby="inputGroup-sizing-sm"
+            value={{editAsset.amount}} [(ngModel)]="editAsset.amount">
+        </div>
+      </tr>
+      <tr>
+        <div class="input-group input-group-sm mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="inputGroup-sizing-sm">Contribution</span>
+          </div>
+          <input type="number" class="form-control" aria-label="Asset Amount" aria-describedby="inputGroup-sizing-sm"
+            value={{editAsset.contributionFixed}} [(ngModel)]="editAsset.contributionFixed">
+        </div>
+      </tr>
+      <!-- <tr><b>Contribution</b><input type="number" value={{editAsset.contributionFixed}}
+          [(ngModel)]="editAsset.contributionFixed"></tr><br> -->
+      <!-- <tr *ngIf="editAsset.contributionPercent > 0"><b>Contribution Percent</b><input type="number"
+          value={{editAsset.contributionPercent}} [(ngModel)]="editAsset.contributionPercent"></tr><br> -->
+      <tr *ngIf="editAsset.contributionPercent > 0">
+        <div class="input-group input-group-sm mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="inputGroup-sizing-sm">Contribution %</span>
+          </div>
+          <input type="number" class="form-control" aria-label="Contribution" aria-describedby="inputGroup-sizing-sm"
+            value={{editAsset.contributionPercent}} [(ngModel)]="editAsset.contributionPercent">
+        </div>
+      </tr>
+      <!-- <tr *ngIf="editAsset.doesEmployerMatch"><b>Employer Match</b><input type="number"
+          value={{editAsset.employerMatch}} [(ngModel)]="editAsset.employerMatch"></tr><br> -->
+          <tr *ngIf="editAsset.doesEmployerMatch">
+          <div class="input-group input-group-sm mb-3">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="inputGroup-sizing-sm">Employer Match</span>
+              </div>
+              <input type="number" class="form-control" aria-label="Employer Match" aria-describedby="inputGroup-sizing-sm"
+              value={{editAsset.employerMatch}} [(ngModel)]="editAsset.employerMatch">
+            </div>
+          </tr>
+      <!-- <tr *ngIf="editAsset.riskProfile != null"><b>Risk Profile</b>
         <select name="riskprofile" [(ngModel)]="editAsset.riskProfile">
           <option *ngFor="let risk of risks" value="risk">{{risk.name}}</option>
         </select>
-      </tr>
+      </tr> -->
+      <tr *ngIf="editAsset.riskProfile != null">
+      <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <label class="input-group-text" for="inputGroupSelect01">Risk Profile</label>
+          </div>
+          <select class="custom-select" id="inputGroupSelect01">
+            <option selected>Choose...</option>
+            <option *ngFor="let risk of risks" value="risk">{{risk.name}}</option>
+          </select>
+        </div>
+        </tr>
     </table>
   </div>
   <div class="modal-footer">
