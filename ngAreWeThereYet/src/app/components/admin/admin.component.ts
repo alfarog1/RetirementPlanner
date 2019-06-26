@@ -1,3 +1,4 @@
+// import { LogoutComponent } from './../logout/logout.component';
 import { UserService } from './../../services/user.service';
 import { Component, OnInit } from '@angular/core';
 import { User } from 'src/app/models/user';
@@ -16,7 +17,10 @@ export class AdminComponent implements OnInit {
   closeResult: string;
 
 
-  constructor(private user: UserService, private route: Router, private modalService: NgbModal) { }
+  constructor(private user: UserService,
+              private route: Router, 
+              private modalService: NgbModal
+            ) { }
 
   ngOnInit() {
     this.retrieveUsers();
@@ -105,6 +109,9 @@ export class AdminComponent implements OnInit {
       }
     }
   }
+  // logoutMethod(){
+  //   this.logout.logout()
+  // }
 }
 
 
