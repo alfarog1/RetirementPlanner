@@ -1,3 +1,4 @@
+import { InteractionService } from 'src/app/services/interaction.service';
 
 import { BrowserModule } from "@angular/platform-browser";
 import { NgModule } from "@angular/core";
@@ -41,6 +42,7 @@ import { RetiregoalsComponent } from './components/retiregoals/retiregoals.compo
 import { FinanceBarComponent } from './components/finance-bar/finance-bar.component';
 import { AdminComponent } from './components/admin/admin.component';
 import { RssComponent } from './components/rss/rss.component';
+import { RouterModule } from '@angular/router';
 
 
 
@@ -83,6 +85,7 @@ import { RssComponent } from './components/rss/rss.component';
     GaugeModule.forRoot(),
     NgxGaugeModule
   ],
+  
 
   providers: [
     AssetService,
@@ -92,7 +95,9 @@ import { RssComponent } from './components/rss/rss.component';
     UserService,
     VehicleService,
     AuthenticationService,
-    LoginComponent
+    LoginComponent,
+    RetiregoalsComponent,
+    InteractionService
   ],
 
   bootstrap: [AppComponent]

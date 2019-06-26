@@ -27,32 +27,38 @@ export class RetiregoalsComponent implements OnInit {
   annualRateAtRetirement = 4;
 
   constructor(private usersvc: UserService, private assetsvc: AssetService,
-              private profilesvc: UserProfileService, private modalService: NgbModal,
-              private auth: AuthenticationService, private router: Router) { }
+    private profilesvc: UserProfileService, private modalService: NgbModal,
+    private auth: AuthenticationService, private router: Router) { }
 
+
+  ngOnInit() {
+    this.getUser();
+    this.getAssets();
+    console.log("***************");
+  }
   getUser() {
     this.usersvc.getUser().subscribe(
       data => {
         this.user = data;
 
-          const regularWithdrawals =
-            (this.user.userProfile.income *
-              (this.user.userProfile.percentIncome / 100)) /
-            12;
-          const numofCompPerYr = 1;
+        const regularWithdrawals =
+          (this.user.userProfile.income *
+            (this.user.userProfile.percentIncome / 100)) /
+          12;
+        const numofCompPerYr = 1;
 
-          const yir =
+        const yir =
           this.user.userProfile.lifeExpectancy -
           this.user.userProfile.retirementAge;
 
-          this.balanceNeeded =
-            (regularWithdrawals *
-              (1 -
-                Math.pow(
-                  1 + this.annualRateAtRetirement / numofCompPerYr,
-                  -(yir * numofCompPerYr)
-                ))) /
-            (this.annualRateAtRetirement / numofCompPerYr);
+        this.balanceNeeded =
+          (regularWithdrawals *
+            (1 -
+              Math.pow(
+                1 + this.annualRateAtRetirement / numofCompPerYr,
+                -(yir * numofCompPerYr)
+              ))) /
+          (this.annualRateAtRetirement / numofCompPerYr);
 
       },
       err => {
@@ -62,6 +68,7 @@ export class RetiregoalsComponent implements OnInit {
       }
     );
   }
+
 
   getUserProfile() {
 
@@ -88,6 +95,7 @@ export class RetiregoalsComponent implements OnInit {
       data => {
         this.tempUserProfile = null;
         this.edit = !this.edit;
+        this.ngOnInit();
       },
       err => {
         console.log('error commiting edit');
@@ -129,10 +137,7 @@ export class RetiregoalsComponent implements OnInit {
 
   }
 
-  ngOnInit() {
-    this.getUser();
-    this.getAssets();
-  }
+
 
   openSm(content) {
     this.modalService.open(content, { size: "lg" });

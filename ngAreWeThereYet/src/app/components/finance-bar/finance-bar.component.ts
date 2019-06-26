@@ -144,7 +144,7 @@ export class FinanceBarComponent implements OnInit {
         // if (this.ready > 200) {
         //   this.ready = 200;
         // }
-        this.retirementReadinessVar = (this.ready / this.yearsToRetire);
+        // this.retirementReadinessVar = (this.ready / this.yearsToRetire);
         // this.guageComponent.retirementReadiness = this.ready;
         // this.guageComponent.setRetirementReadiness(this.ready);
       },
@@ -172,20 +172,27 @@ export class FinanceBarComponent implements OnInit {
   }
 
   balanceNeededAtRetirement() {
-    const regularWithdrawals =
-      (this.user.userProfile.income *
-        (this.user.userProfile.percentIncome / 100)) /
-      12;
-    const numofCompPerYr = 12;
+    // const regularWithdrawals =
+    //   (this.user.userProfile.income *
+    //     (this.user.userProfile.percentIncome / 100)) /
+    //   12;
+    // const numofCompPerYr = 12;
 
-    this.balanceNeeded =
-      (regularWithdrawals *
-        (1 -
-          Math.pow(
-            1 + this.annualRateAtRetirement / numofCompPerYr,
-            -(this.yearsInRetirement() * numofCompPerYr)
-          ))) /
-      (this.annualRateAtRetirement / numofCompPerYr);
+    // this.balanceNeeded =
+    //   (regularWithdrawals *
+    //     (1 -
+    //       Math.pow(
+    //         1 + this.annualRateAtRetirement / numofCompPerYr,
+    //         -(this.yearsInRetirement() * numofCompPerYr)
+    //       ))) /
+    //   (this.annualRateAtRetirement / numofCompPerYr);
+    // return this.balanceNeeded;
+    const payment = (this.user.userProfile.income / 12 ) * (this.user.userProfile.percentIncome / 100);
+    console.log(payment);
+    const yir = this.user.userProfile.lifeExpectancy -
+    this.user.userProfile.retirementAge;
+    console.log(yir);
+    this.balanceNeeded = payment * ((1 - (Math.pow( 1 + this.ror, (yir *12)))) / this.ror);
     return this.balanceNeeded;
   }
 
