@@ -7,6 +7,7 @@ import { SignupComponent } from './components/signup/signup.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { RiskQuestionnaireComponent } from './components/risk-questionnaire/risk-questionnaire.component';
 import { FinanceBarComponent } from './components/finance-bar/finance-bar.component';
+import { RetiregoalsComponent } from './components/retiregoals/retiregoals.component';
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'home' },
@@ -16,6 +17,7 @@ const routes: Routes = [
   { path: 'questionnaire', component: RiskQuestionnaireComponent },
   { path: 'finbar', component: FinanceBarComponent },
   { path: 'admin', component: AdminComponent},
+  { path: 'retireGoals', component: RetiregoalsComponent},
   { path: '**', component: NotFoundComponent }
 ];
 

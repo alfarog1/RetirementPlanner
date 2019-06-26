@@ -55,7 +55,7 @@ public class UserProfileServiceImpl implements UserProfileService {
 			managed.setDob(profile.getDob());
 			managed.setRetirementAge(profile.getRetirementAge());
 			managed.setPercentIncome(profile.getPercentIncome());
-			managed.setIncome(profile.getPercentIncome());
+			managed.setIncome(profile.getIncome());
 			managed.setPayPeriod(profile.getPayPeriod());
 		}
 

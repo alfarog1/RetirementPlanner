@@ -8,7 +8,7 @@
       </thead>
       <tbody>
         <tr *ngFor="let asset of assets">
-          <td (click)="open(content); editAssets(asset)">{{asset.vehicle.assetName}}</td>
+          <td (click)="open(content); editAsset = asset">{{asset.vehicle.assetName}}</td>
           <td>{{asset.amount | currency}}</td>
         </tr>
       </tbody>
@@ -90,6 +90,6 @@
   <div class="modal-footer">
     <button type="button" class="btn btn-outline-dark" (click)='deleteAsset()'
       (click)="modal.close('Delete click')">Delete</button>
-    <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Save</button>
+    <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click'); editAssets(editAsset)">Save</button>
   </div>
 </ng-template>
