@@ -1,129 +1,179 @@
-
 <div class='container field' *ngIf="user != undefined">
-            <h2>{{ user.userProfile.fName }}  {{ user.userProfile.lName }}</h2>
-            <hr>
-            <table>
-                <!-- <tr>
+  <h2>{{ user.userProfile.fName }} {{ user.userProfile.lName }}</h2>
+  <hr>
+  <table class="table">
+    <!-- <tr>
                     <td>Name:</td>
                     <td> {{ user.userProfile.fName }}  {{ user.userProfile.lName }}</td>
                   </tr> -->
-                  <tr>
-              <tr>
-                <td>Date of Birth:</td>
-                <td class='value'> {{ user.userProfile.dob | date }}</td>
-              </tr>
-              <tr>
-                <td>Total of Assets:</td>
-                <td class='value'> {{ totalAssets | currency }}</td>
-              </tr>
-              <tr>
-                <td>Retirement Age:</td>
-                <td class='value'> {{ user.userProfile.retirementAge }}</td>
-              </tr>
-              <tr>
-                <td>Years of Retirement:</td>
-                <td class='value'>
-                  {{
+    <tr>
+    <tr>
+      <td>Date of Birth:</td>
+      <td class='value'> {{ user.userProfile.dob | date }}</td>
+    </tr>
+    <tr>
+      <td>Total of Assets:</td>
+      <td class='value'> {{ totalAssets | currency }}</td>
+    </tr>
+    <tr>
+      <td>Retirement Age:</td>
+      <td class='value'> {{ user.userProfile.retirementAge }}</td>
+    </tr>
+    <tr>
+      <td>Years of Retirement:</td>
+      <td class='value'>
+        {{
                     user.userProfile.lifeExpectancy - user.userProfile.retirementAge
                   }}
-                </td>
-              </tr>
-              <tr>
-                <td>% Income in Retirement:</td>
-                <td class='value'>{{ user.userProfile.percentIncome }}</td>
-              </tr>
-              <tr>
-                <td>Assets Goal:</td>
-                <td class='value'> {{ balanceNeeded | currency }}</td>
-              </tr>
-            </table>
-            <hr>
-              <div class = 'row container'>
-              <div class='col-2'>
-                <button class="btn btn-success" name="commitEdit" (click)="openSm(content); startEdit()">Edit</button>
-              </div>
-              <div class='col-2 offset-7'>
-                <button class='btn btn-danger' (click)='logout()'>Logout</button>
-              </div>
-            </div>
-            </div>
+      </td>
+    </tr>
+    <tr>
+      <td>% Income in Retirement:</td>
+      <td class='value'>{{ user.userProfile.percentIncome }}</td>
+    </tr>
+    <tr>
+      <td>Assets Goal:</td>
+      <td class='value'> {{ balanceNeeded | currency }}</td>
+    </tr>
+  </table>
+  <hr>
+  <div class='row container'>
+    <div class='col-2'>
+      <button class="btn btn-success" name="commitEdit" (click)="openSm(content); startEdit()">Edit</button>
+    </div>
+    <div class='col-2 offset-7'>
+      <button class='btn btn-danger' (click)='logout()'>Logout</button>
+    </div>
+  </div>
+</div>
 
 
 
 
 
 <ng-template #content let-modal>
-    <div class="modal-header">
-      <h4 class="modal-title" id="modal-basic-title">Edit profile</h4>
-      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
-        <span aria-hidden="true">&times;</span>
-      </button>
-    </div>
-    <div class="modal-body">
-  <table>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Edit profile</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <table>
       <tr>
-          <td>First Name:</td>
+        <!-- <td>First Name:</td>
           <td>
             <input type="text" [(ngModel)]="tempUserProfile.fName" />
-          </td>
-        </tr>
-        <tr>
-          <td>Last Name:</td>
-          <td>
-            <input type="string" [(ngModel)]="tempUserProfile.lName" />
-          </td>
-        </tr>
-    <tr>
-      <td>Date of Birth:</td>
-      <td><input type="date" placeholder="tempUserProfile.dob" /></td>
-    </tr>
-    <tr>
-      <td>Retirement Age:</td>
-      <td>
-        <input
-        type="number"
-        name="retirementAge"
-        [(ngModel)]="tempUserProfile.retirementAge"
-        min="60"
-        />
-      </td>
-    </tr>
-    <tr>
-      <td>Percent of Income to Retire:</td>
-      <td>
-        <input type="string" [(ngModel)]="tempUserProfile.percentIncome" />
-      </td>
-    </tr>
-    <tr>
-      <td>Annual Income:</td>
-      <td>
-        <input type="number" [(ngModel)]="tempUserProfile.income" />
-      </td>
-    </tr>
-    <tr>
-      <td>Pay Period:</td>
+          </td> -->
+        <div class="input-group input-group-sm mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="inputGroup-sizing-sm">First Name</span>
+          </div>
+          <input type="text" class="form-control" aria-label="First Name" aria-describedby="inputGroup-sizing-sm"
+            [(ngModel)]="tempUserProfile.fName">
+        </div>
+      </tr>
+      <tr>
+        <!-- <td>Last Name:</td>
+        <td>
+          <input type="string" [(ngModel)]="tempUserProfile.lName" />
+        </td> -->
+        <div class="input-group input-group-sm mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="inputGroup-sizing-sm">Last Name</span>
+          </div>
+          <input type="text" class="form-control" aria-label="Last Name" aria-describedby="inputGroup-sizing-sm"
+            [(ngModel)]="tempUserProfile.lName">
+        </div>
+      </tr>
+      <tr>
+        <!-- <td>Date of Birth:</td>
+        <td><input type="date" placeholder="tempUserProfile.dob" /></td> -->
+        <div class="input-group input-group-sm mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="inputGroup-sizing-sm">Date of Birth</span>
+          </div>
+          <input type="date" class="form-control" aria-label="Date of Birth" aria-describedby="inputGroup-sizing-sm"
+            [(ngModel)]="tempUserProfile.dob">
+        </div>
+      </tr>
+      <tr>
+        <!-- <td>Retirement Age:</td>
+        <td>
+          <input type="number" name="retirementAge" [(ngModel)]="tempUserProfile.retirementAge" min="60" />
+        </td> -->
+        <div class="input-group input-group-sm mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="inputGroup-sizing-sm">Retirement Age</span>
+          </div>
+          <input type="number" class="form-control" aria-label="Retirement Age" aria-describedby="inputGroup-sizing-sm"
+            [(ngModel)]="tempUserProfile.retirementAge">
+        </div>
+      </tr>
+      <tr>
+        <!-- <td>Percent of Income to Retire:</td>
+        <td>
+          <input type="string" [(ngModel)]="tempUserProfile.percentIncome" />
+        </td> -->
+        <div class="input-group input-group-sm mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="inputGroup-sizing-sm">Percent of Income to Retire</span>
+          </div>
+          <input type="number" class="form-control" aria-label="Income To Retire"
+            aria-describedby="inputGroup-sizing-sm" [(ngModel)]="tempUserProfile.percentIncome">
+        </div>
+      </tr>
+      <tr>
+        <!-- <td>Annual Income:</td>
+        <td>
+          <input type="number" [(ngModel)]="tempUserProfile.income" />
+        </td> -->
+        <div class="input-group input-group-sm mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="inputGroup-sizing-sm">Annual Income</span>
+          </div>
+          <input type="number" class="form-control" aria-label="Annual Income" aria-describedby="inputGroup-sizing-sm"
+            [(ngModel)]="tempUserProfile.income">
+        </div>
+      </tr>
+      <tr>
+        <!-- <td>Pay Period:</td>
         <td>
           <select [(ngModel)]="tempUserProfile.payPeriod">
-              <option value=1>Annual</option>
-              <option value=12>Monthly</option>
-              <option value=24>Semi-Monthly</option>
-              <option value=26>Bi-Weekly</option>
-              <option value=52>Weekly</option>
+            <option value=1>Annual</option>
+            <option value=12>Monthly</option>
+            <option value=24>Semi-Monthly</option>
+            <option value=26>Bi-Weekly</option>
+            <option value=52>Weekly</option>
           </select>
-        </td>
+        </td> -->
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <label class="input-group-text" for="inputGroupSelect01">Pay Period</label>
+          </div>
+          <select class="custom-select" id="inputGroupSelect01" [(ngModel)]="tempUserProfile.payPeriod">
+            <option selected>Choose...</option>
+            <option value=1>Annual</option>
+            <option value=12>Monthly</option>
+            <option value=24>Semi-Monthly</option>
+            <option value=26>Bi-Weekly</option>
+            <option value=52>Weekly</option>
+          </select>
+        </div>
       </tr>
       <br>
       <div class='row'>
         <div class='col-2'>
-          <button class="btn btn-success" name="commitEdit" (click)="modal.close('Close click'); commitEdit()">Save</button>
+          <button class="btn btn-success" name="commitEdit"
+            (click)="modal.close('Close click'); commitEdit()">Save</button>
         </div>
         <div class='col-2 offset-2'>
-          <button class="btn btn-warning" name="cancel" (click)="modal.close('Close click'); tempUserProfile = null">Cancel</button>
+          <button class="btn btn-warning" name="cancel"
+            (click)="modal.close('Close click'); tempUserProfile = null">Cancel</button>
         </div>
         <div class='col-2 offset-4'>
           <button class='btn btn-danger' (click)="modal.close('Close click');deactivate()">Suspend</button>
         </div>
       </div>
-  </table>
-</div>
-
+    </table>
+  </div>
