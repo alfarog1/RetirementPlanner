@@ -1,26 +1,28 @@
-<div *ngIf="user != undefined">
-            <h2>Your Profile</h2>
+
+<div class='container field' *ngIf="user != undefined">
+            <h2>{{ user.userProfile.fName }}  {{ user.userProfile.lName }}</h2>
+            <hr>
             <table>
-                <tr>
+                <!-- <tr>
                     <td>Name:</td>
                     <td> {{ user.userProfile.fName }}  {{ user.userProfile.lName }}</td>
-                  </tr>
+                  </tr> -->
                   <tr>
               <tr>
                 <td>Date of Birth:</td>
-                <td> {{ user.userProfile.dob | date }}</td>
+                <td class='value'> {{ user.userProfile.dob | date }}</td>
               </tr>
               <tr>
                 <td>Total of Assets:</td>
-                <td> {{ totalAssets | currency }}</td>
+                <td class='value'> {{ totalAssets | currency }}</td>
               </tr>
               <tr>
                 <td>Retirement Age:</td>
-                <td> {{ user.userProfile.retirementAge }}</td>
+                <td class='value'> {{ user.userProfile.retirementAge }}</td>
               </tr>
               <tr>
                 <td>Years of Retirement:</td>
-                <td>
+                <td class='value'>
                   {{
                     user.userProfile.lifeExpectancy - user.userProfile.retirementAge
                   }}
@@ -28,130 +30,27 @@
               </tr>
               <tr>
                 <td>% Income in Retirement:</td>
-                <td>{{ user.userProfile.percentIncome }}</td>
+                <td class='value'>{{ user.userProfile.percentIncome }}</td>
               </tr>
               <tr>
-                <td>Assets needed at retirement:</td>
-                <td> {{ neededAssets() | currency }}</td>
+                <td>Assets Goal:</td>
+                <td class='value'> {{ neededAssets() | currency }}</td>
               </tr>
             </table>
-            <br>
-            <table>
-              <tr>
-                <td>
-                  <button class="btn btn-success" name="commitEdit" (click)="openSm(content); startEdit()">Edit</button>
-                </td>
-                <td>&nbsp;</td>
-                <td>&nbsp;</td>
-                <td>&nbsp;</td>
-                <td>&nbsp;</td>
-                <td>&nbsp;</td>
-                <td>
-                  <button class='btn btn-danger' (click)='logout()'>Logout</button>
-                </td>
-              </tr>
-            </table>
+            <hr>
+              <div class = 'row container'>
+              <div class='col-2'>
+                <button class="btn btn-success" name="commitEdit" (click)="openSm(content); startEdit()">Edit</button>
+              </div>
+              <div class='col-2 offset-7'>
+                <button class='btn btn-danger' (click)='logout()'>Logout</button>
+              </div>
+            </div>
             </div>
 
 
 
 
-
-
-<!-- <div *ngIf="!edit">
-  <h2>Your Profile</h2>
-  <table>
-      <tr>
-          <td>Name:</td>
-          <td> {{ user.userProfile.fName }}  {{ user.userProfile.lName }}</td>
-        </tr>
-        <tr>
-    <tr>
-      <td>Date of Birth:</td>
-      <td> {{ user.userProfile.dob | date }}</td>
-    </tr>
-    <tr>
-      <td>Total of Assets:</td>
-      <td> {{ totalAssets | currency }}</td>
-    </tr>
-    <tr>
-      <td>Retirement Age:</td>
-      <td> {{ user.userProfile.retirementAge }}</td>
-    </tr>
-    <tr>
-      <td>Years of Retirement:</td>
-      <td>
-        {{
-          user.userProfile.retirementExpectancy - user.userProfile.retirementAge
-        }}
-      </td>
-    </tr>
-    <tr>
-      <td>% Income in Retirement:</td>
-      <td>{{ user.userProfile.percentIncome }}</td>
-    </tr>
-    <tr>
-      <td>Assets needed at retirement:</td>
-      <td> {{ neededAssets() | currency }}</td>
-    </tr>
-  </table>
-  <br>
-
-  <button class="btn btn-success" name="commitEdit" (click)="edit = true">Edit</button>
-</div> -->
-
-<!-- <div *ngIf="edit">
-  <h2>Edit Profile</h2>
-  <table>
-      <tr>
-          <td>First Name:</td>
-          <td>
-            <input type="text" [(ngModel)]="user.userProfile.fName" />
-          </td>
-        </tr>
-        <tr>
-          <td>Last Name:</td>
-          <td>
-            <input type="string" [(ngModel)]="user.userProfile.lName" />
-          </td>
-        </tr>
-    <tr>
-      <td>Date of Birth:</td>
-      <td><input type="date" placeholder="user.userProfile.dob" /></td>
-    </tr>
-    <tr>
-      <td>Retirement Age:</td>
-      <td>
-        <input
-        type="number"
-        name="retirementAge"
-        [(ngModel)]="user.userProfile.retirementAge"
-        min="60"
-        />
-      </td>
-    </tr>
-    <tr>
-      <td>Percent of Income to Retire:</td>
-      <td>
-        <input type="string" [(ngModel)]="user.userProfile.percentIncome" />
-      </td>
-    </tr>
-    <tr>
-      <td>Income:</td>
-      <td>
-        <input type="number" [(ngModel)]="user.userProfile.income" />
-      </td>
-    </tr>
-    <tr>
-      <td>Pay Period:</td>
-        <td>
-          <input type="number" [(ngModel)]="user.userProfile.payPeriod" />
-        </td>
-      </tr>
-      <br>
-    <button class="btn btn-success" name="commitEdit" (click)="startEdit(!edit)">Save</button>
-  </table>
-</div> -->
 
 <ng-template #content let-modal>
     <div class="modal-header">
@@ -161,17 +60,6 @@
       </button>
     </div>
     <div class="modal-body">
-      <!-- <form> -->
-        <!-- <div class="form-group">
-          <label for="dateOfBirth">Date of birth</label>
-          <div class="input-group">
-            <input id="dateOfBirth" class="form-control" placeholder="yyyy-mm-dd" name="dp" ngbDatepicker #dp="ngbDatepicker">
-            <div class="input-group-append">
-              <button class="btn btn-outline-secondary calendar" (click)="dp.toggle()" type="button"></button>
-            </div>
-          </div>
-        </div>
-      </form> -->
       <h2>Edit Profile</h2>
   <table>
       <tr>
@@ -231,3 +119,4 @@
 
   </table>
 </div>
+
