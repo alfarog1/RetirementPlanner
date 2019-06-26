@@ -4,6 +4,7 @@ import { tap, catchError } from "rxjs/operators";
 import { throwError } from "rxjs";
 import { Router } from "@angular/router";
 import { environment } from 'src/environments/environment';
+import { User } from '../models/user';
 
 @Injectable({
   providedIn: "root"
@@ -37,7 +38,7 @@ export class AuthenticationService {
       })
     };
     // create request to authenticate credentials
-    return this.http.get(this.url + "authenticate", httpOptions).pipe(
+    return this.http.get<User>(this.url + "authenticate", httpOptions).pipe(
       tap(res => {
         localStorage.setItem("credentials", credentials);
         return res;
