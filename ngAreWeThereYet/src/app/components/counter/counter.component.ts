@@ -11,7 +11,6 @@ import { Asset } from 'src/app/models/asset';
   styleUrls: ['./counter.component.css']
 })
 export class CounterComponent implements OnInit {
-  payments = this.assetSvc.monthlyRetirementIncome();
 effect = "easeInOutBounce";
 
 
