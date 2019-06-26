@@ -60,7 +60,6 @@ export class FinanceBarComponent implements OnInit {
     this.usersvc.getUser().subscribe(
       data => {
         this.user = data;
-        this.user = data;
         console.log(this.user.userProfile.retirementAge);
 
         this.retireAge = this.user.userProfile.retirementAge;
@@ -136,11 +135,12 @@ export class FinanceBarComponent implements OnInit {
             console.log('*****************************');
           }
         });
-        this.ready = this.fv / this.balanceNeeded;
+        this.ready = (this.fv / this.balanceNeeded) * 10;
         console.log('This .fv ' + this.fv);
         console.log('This .balanceNeeded: ' + this.balanceNeeded);
 
         console.log('The real ready is: ' + this.ready);
+        this.retirementReadinessVar = this.ready;
         // if (this.ready > 200) {
         //   this.ready = 200;
         // }
@@ -172,27 +172,11 @@ export class FinanceBarComponent implements OnInit {
   }
 
   balanceNeededAtRetirement() {
-    // const regularWithdrawals =
-    //   (this.user.userProfile.income *
-    //     (this.user.userProfile.percentIncome / 100)) /
-    //   12;
-    // const numofCompPerYr = 12;
-
-    // this.balanceNeeded =
-    //   (regularWithdrawals *
-    //     (1 -
-    //       Math.pow(
-    //         1 + this.annualRateAtRetirement / numofCompPerYr,
-    //         -(this.yearsInRetirement() * numofCompPerYr)
-    //       ))) /
-    //   (this.annualRateAtRetirement / numofCompPerYr);
-    // return this.balanceNeeded;
-    const payment = (this.user.userProfile.income / 12 ) * (this.user.userProfile.percentIncome / 100);
-    console.log(payment);
-    const yir = this.user.userProfile.lifeExpectancy -
-    this.user.userProfile.retirementAge;
-    console.log(yir);
-    this.balanceNeeded = payment * ((1 - (Math.pow( 1 + this.ror, (yir *12)))) / this.ror);
+    const p = (this.user.userProfile.income / 12) * (this.user.userProfile.percentIncome / 100);
+    const n = 12 * (this.user.userProfile.lifeExpectancy -
+          this.user.userProfile.retirementAge);
+    const i = .04 / 12;
+    this.balanceNeeded = p * ((Math.pow(1 + i, n) - 1) / i);
     return this.balanceNeeded;
   }
 
