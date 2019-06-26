@@ -71,36 +71,40 @@ export class LoginComponent implements OnInit {
 
 
   constructor(private router: Router,
-              private auth: AuthenticationService) { }
+    private auth: AuthenticationService) { }
 
   ngOnInit() {
   }
-//  submit() {
-//     if (this.form.valid) {
-//       this.submitEM.emit(this.form.value);
-//     }
-//   }
-//   @Input() error: string | null;
+  //  submit() {
+  //     if (this.form.valid) {
+  //       this.submitEM.emit(this.form.value);
+  //     }
+  //   }
+  //   @Input() error: string | null;
 
 
-//   @Output() submitEM = new EventEmitter();
+  //   @Output() submitEM = new EventEmitter();
 
   login() {
     const loginData = this.form.value;
     console.log(loginData);
     this.auth.login(loginData.username, loginData.password).subscribe(
       data => {
-        console.log(data);
-        this.router.navigateByUrl('dashboard');
+        if (data.principal.authorities[0].authority === "admin") {
+          this.router.navigateByUrl('admin');
+        } else {
+          this.router.navigateByUrl('dashboard');
+        }
+
       },
-      err =>  {
+      err => {
         console.log('Error logging in');
         this.router.navigateByUrl('/login');
       },
     );
 
 
-    }
+  }
 
   // login(form: NgForm) {
   //   const loginData = form.value;
