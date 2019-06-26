@@ -1,3 +1,4 @@
+import { UserProfile } from './../../models/user-profile';
 import { CounterComponent } from './../counter/counter.component';
 import { UserProfileService } from 'src/app/services/user-profile.service';
 import { Vehicle } from './../../models/vehicle';
@@ -24,8 +25,9 @@ export class FinanceBarComponent implements OnInit {
   user: User;
   percentOfIncome = 80;
   payments = 0;
+  retireAge: number;
 
-  constructor(private assetService: AssetService, private usersvc: UserService) { }
+  constructor(private assetService: AssetService, private usersvc: UserService, private userProService: UserProfileService) { this.getUser(); }
 
   ngOnInit () {
     this.getUser();
@@ -35,6 +37,22 @@ export class FinanceBarComponent implements OnInit {
     this.usersvc.getUser().subscribe(
       data => {
         this.user = data;
+        this.user = data;
+        console.log(this.user.userProfile.retirementAge);
+
+        this.retireAge = this.user.userProfile.retirementAge;
+        this.futureValueOfAssets();
+        this.balanceNeededAtRetirement();
+        this.monthlyRetirementIncome();
+        this.retirementReadiness();
+        this.yearsToRetire = this.user.userProfile.retirementAge - this.userProService.ageFromDateOfBirthday(this.user.userProfile.dob);
+
+        console.log(this.retireAge);
+        console.log(this.futureValueOfAssets());
+        console.log(this.balanceNeededAtRetirement());
+        console.log(this.monthlyRetirementIncome());
+        console.log(this.retirementReadiness());
+        console.log(this.fv);
       },
       err => {
         console.log('error retrieving user:');
@@ -51,6 +69,18 @@ export class FinanceBarComponent implements OnInit {
         this.assets = good;
         console.log("A good thing happened");
         console.log(good);
+        this.assets.forEach((asset) => {
+          const i = 6 /asset.vehicle.compoundingPeriods;
+          const t = asset.vehicle.compoundingPeriods * this.yearsToRetire;
+          const d = asset.periodicDeposit;
+          const x = 1 + i;
+          console.log(i);
+          console.log(t);
+          console.log(d);
+          console.log(x);
+          this.fv += asset.amount *
+               Math.pow( x, t) + d * ((Math.pow(x, t) - 1) / i) * x;
+              });
       },
       bad => {
         console.log("A bad thing happened");
@@ -63,6 +93,10 @@ const i = this.ror /asset.vehicle.compoundingPeriods;
 const t = asset.vehicle.compoundingPeriods * this.yearsToRetire;
 const d = asset.periodicDeposit;
 const x = 1 + i;
+console.log(i);
+console.log(t);
+console.log(d);
+console.log(x);
 this.fv += asset.amount *
      Math.pow( x, t) + d * ((Math.pow(x, t) - 1) / i) * x;
     });
