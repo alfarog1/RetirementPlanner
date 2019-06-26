@@ -120,8 +120,8 @@
         <div class='col-2 offset-2'>
           <button class="btn btn-warning" name="cancel" (click)="modal.close('Close click'); tempUserProfile = null">Cancel</button>
         </div>
-        <div>
-          <button class='btn btn-danger'>suspend</button>
+        <div class='col-2 offset-4'>
+          <button class='btn btn-danger' (click)="modal.close('Close click');deactivate()">Suspend</button>
         </div>
       </div>
   </table>

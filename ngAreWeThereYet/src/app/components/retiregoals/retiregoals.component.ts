@@ -1,3 +1,4 @@
+import { Router, Route } from '@angular/router';
 import { AuthenticationService } from './../../services/authentication.service';
 import { UserProfile } from './../../models/user-profile';
 import { AssetdisplayComponent } from './../assetdisplay/assetdisplay.component';
@@ -24,7 +25,7 @@ export class RetiregoalsComponent implements OnInit {
 
   constructor(private usersvc: UserService, private assetsvc: AssetService,
               private profilesvc: UserProfileService, private modalService: NgbModal,
-              private auth: AuthenticationService) { }
+              private auth: AuthenticationService, private router: Router) { }
 
   getUser() {
     this.usersvc.getUser().subscribe(
@@ -112,6 +113,16 @@ export class RetiregoalsComponent implements OnInit {
   }
   logout() {
     this.auth.logout();
+  }
+  deactivate() {
+    if (confirm()) {
+      this.user.enabled = false;
+      this.usersvc.update(this.user).subscribe(
+        good => {
+          this.router.navigateByUrl('home');
+        }
+      );
+    }
   }
 
   // reload() {
