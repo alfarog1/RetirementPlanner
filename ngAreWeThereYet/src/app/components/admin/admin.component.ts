@@ -28,6 +28,7 @@ export class AdminComponent implements OnInit {
   deactivateAccount() {
     console.log(this.editUser);
     this.editUser.enabled = false;
+    console.log(this.editUser)
     this.user.update(this.editUser).subscribe(
       good => {
         this.editUser = null;
@@ -51,8 +52,12 @@ export class AdminComponent implements OnInit {
     );
   }
   userStatus(user: User) {
-    if (user.enabled = true) {
+    console.log(user.username);
+    console.log(user.enabled);
+    if (user.enabled === true) {
       this.status = true;
+    }else {
+      this.status = false;
     }
   }
   retrieveUsers() {
