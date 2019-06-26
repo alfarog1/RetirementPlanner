@@ -90,7 +90,8 @@ export class LoginComponent implements OnInit {
     console.log(loginData);
     this.auth.login(loginData.username, loginData.password).subscribe(
       data => {
-        if (data.principal.authorities[0].authority === "admin") {
+// tslint:disable-next-line: no-string-literal
+        if (data['principal'].authorities[0].authority === 'admin') {
           this.router.navigateByUrl('admin');
         } else {
           this.router.navigateByUrl('dashboard');
