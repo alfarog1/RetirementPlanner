@@ -90,6 +90,7 @@ export class LoginComponent implements OnInit {
     console.log(loginData);
     this.auth.login(loginData.username, loginData.password).subscribe(
       data => {
+        console.log(data);
         this.router.navigateByUrl('dashboard');
       },
       err =>  {

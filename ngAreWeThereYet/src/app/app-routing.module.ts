@@ -1,3 +1,4 @@
+import { AdminComponent } from './components/admin/admin.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { NotFoundComponent } from './components/not-found/not-found.component';
@@ -14,6 +15,7 @@ const routes: Routes = [
   { path: 'dashboard', component: DashboardComponent },
   { path: 'questionnaire', component: RiskQuestionnaireComponent },
   { path: 'finbar', component: FinanceBarComponent },
+  { path: 'admin', component: AdminComponent},
   { path: '**', component: NotFoundComponent }
 ];
 
