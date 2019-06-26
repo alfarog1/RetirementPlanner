@@ -22,6 +22,9 @@ export class RetiregoalsComponent implements OnInit {
   totalAssets;
   assets: Asset[];
   tempUserProfile: UserProfile;
+  neededAssetsVar = 0;
+  balanceNeeded = 0;
+  annualRateAtRetirement = 4;
 
   constructor(private usersvc: UserService, private assetsvc: AssetService,
               private profilesvc: UserProfileService, private modalService: NgbModal,
@@ -31,6 +34,25 @@ export class RetiregoalsComponent implements OnInit {
     this.usersvc.getUser().subscribe(
       data => {
         this.user = data;
+
+          const regularWithdrawals =
+            (this.user.userProfile.income *
+              (this.user.userProfile.percentIncome / 100)) /
+            12;
+          const numofCompPerYr = 1;
+
+          const yir =
+          this.user.userProfile.lifeExpectancy -
+          this.user.userProfile.retirementAge;
+
+          this.balanceNeeded =
+            (regularWithdrawals *
+              (1 -
+                Math.pow(
+                  1 + this.annualRateAtRetirement / numofCompPerYr,
+                  -(yir * numofCompPerYr)
+                ))) /
+            (this.annualRateAtRetirement / numofCompPerYr);
 
       },
       err => {
@@ -96,11 +118,15 @@ export class RetiregoalsComponent implements OnInit {
   }
 
   neededAssets() {
-    let income = this.user.userProfile.income;
-    let percent = this.user.userProfile.percentIncome / 100;
-    let years = this.user.userProfile.lifeExpectancy - this.user.userProfile.retirementAge;
+    // let income = this.user.userProfile.income;
+    // let percent = this.user.userProfile.percentIncome / 100;
+    // let years = this.user.userProfile.lifeExpectancy - this.user.userProfile.retirementAge;
+    // let interest = .04;
+    // let monthlyCompund = 12;
+    // return (income * percent) * years;
+    // return (income * percent) * (1 - (1 + Math.pow((interest / monthlyCompund), -(years * monthlyCompund)))) / (interest / 12);
+    // return this.finBar.balanceNeeded;
 
-    return (income * percent) * years;
   }
 
   ngOnInit() {

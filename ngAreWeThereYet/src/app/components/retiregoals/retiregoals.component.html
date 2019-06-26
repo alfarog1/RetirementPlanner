@@ -34,7 +34,7 @@
               </tr>
               <tr>
                 <td>Assets Goal:</td>
-                <td class='value'> {{ neededAssets() | currency }}</td>
+                <td class='value'> {{ balanceNeeded | currency }}</td>
               </tr>
             </table>
             <hr>
@@ -95,7 +95,7 @@
       </td>
     </tr>
     <tr>
-      <td>Income:</td>
+      <td>Annual Income:</td>
       <td>
         <input type="number" [(ngModel)]="tempUserProfile.income" />
       </td>

@@ -9,22 +9,29 @@ import { AssetService } from 'src/app/services/asset.service';
   styleUrls: ['./gauge.component.css']
 })
 export class GaugeComponent implements OnInit {
+  constructor(
+    private assetSvc: AssetService,
+    private finbar: FinanceBarComponent
+  ) {}
 
-  constructor(private assetSvc: AssetService, private finbar: FinanceBarComponent) { }
 
-  ngOnInit() {
-  }
-
-  gaugeType = "semi";
-  retirementReadiness = this.finbar.retirementReadiness; // <----
-  gaugeLabel = "Retirement Readiness";
+  gaugeType = 'semi';
+  // retirementReadiness = (this.finbar.ready * 100); // <----
+  retirementReadiness = 0;
+  gaugeLabel = 'Retirement Readiness in %';
   animate = true;
   thickness = 15;
   // gaugeAppendText = "km/hr";
 
   thresholdConfig = {
-    '0': {color: 'red'},
-    '40': {color: 'orange'},
-    '75.5': {color: 'green'}
-};
+    0: { color: 'red' },
+    40: { color: 'orange' },
+    75.5: { color: 'green' }
+  };
+
+  public setRetirementReadiness(value: number) {
+    this.retirementReadiness = value;
+  }
+
+  ngOnInit() {}
 }
