@@ -125,7 +125,7 @@ public class User {
 		StringBuilder builder = new StringBuilder();
 		builder.append("User [id=").append(id).append(", username=").append(username).append(", password=")
 				.append(password).append(", email=").append(email).append(", enabled=").append(enabled)
-				.append(", role=").append(role).append(", userProfile=").append(userProfile).append(", assets=")
+				.append(", role=").append(role).append(", userProfile=").append(userProfile.getId()).append(", assets=")
 				.append(assets).append("]");
 		return builder.toString();
 	}

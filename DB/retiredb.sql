@@ -61,7 +61,7 @@ CREATE TABLE IF NOT EXISTS `user` (
   `username` VARCHAR(200) NOT NULL,
   `password` VARCHAR(200) NOT NULL,
   `email` VARCHAR(100) NOT NULL,
-  `role` VARCHAR(45) NOT NULL DEFAULT 'user',
+  `role` VARCHAR(45) NOT NULL DEFAULT 'standard',
   `enabled` TINYINT(4) NOT NULL DEFAULT '1',
   PRIMARY KEY (`id`))
 ENGINE = InnoDB
@@ -224,7 +224,7 @@ INSERT INTO `user` (`id`, `username`, `password`, `email`, `role`, `enabled`) VA
 INSERT INTO `user` (`id`, `username`, `password`, `email`, `role`, `enabled`) VALUES (8, 'MPerez10', 'monica', 'monica@gmail.com', 'user', 1);
 INSERT INTO `user` (`id`, `username`, `password`, `email`, `role`, `enabled`) VALUES (9, 'DD4', 'dion', 'dion@aol.com', 'user', 1);
 INSERT INTO `user` (`id`, `username`, `password`, `email`, `role`, `enabled`) VALUES (10, 'Moss', 'alexander', 'alexander@gmail.com', 'user', 1);
-INSERT INTO `user` (`id`, `username`, `password`, `email`, `role`, `enabled`) VALUES (11, 'user', '$2a$10$qXOl2X/57LVg3L9zZY1fauvBCu9WXjfe6dES3mAf/9mtP1e9txHRy', 'user@user.com', 'user', DEFAULT);
+INSERT INTO `user` (`id`, `username`, `password`, `email`, `role`, `enabled`) VALUES (11, 'user', '$2a$10$qXOl2X/57LVg3L9zZY1fauvBCu9WXjfe6dES3mAf/9mtP1e9txHRy', 'user@user.com', 'admin', 1);
 
 COMMIT;
 
