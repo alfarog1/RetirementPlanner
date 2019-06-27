@@ -1,94 +1,75 @@
+<div id="logo"> <img src="../assets/logo.jpg" width="200" height="200" [@slideInRight]></div>
 
-<div id="logo"> <img src="../assets/logo.jpg" width="200" height="200" [@slideInRight] ></div>
 
-
-<app-login *ngIf="visible" [@slideInTop] >Your Form</app-login>
+<app-login *ngIf="visible" [@slideInTop]>Your Form</app-login>
 <div [@slideInLeft] style="position: absolute; top: 0; right: 0; padding: 20px;">
-<button  type="button" class="btn btn-success" (click)="onClickMe()" > Login </button>
-<!-- <button  type="button" class="btn btn-warning" (click)="signUp()"> Sign Up </button> -->
-<app-signup></app-signup>
+  <button type="button" class="btn btn-success" (click)="onClickMe()"> Login </button>
+  <!-- <button  type="button" class="btn btn-warning" (click)="signUp()"> Sign Up </button> -->
+  <app-signup></app-signup>
 </div>
 <table class="centered">
-<tbody>
-<tr>
-  <td>
-<div>
-  <div>
-    <div style="display: block"  [@slideInLeft]>
-      <canvas baseChart
-      height="350"
-      width="350"
-      position = 'bottom'
-        [data]="doughnutChartData"
-        [labels]="doughnutChartLabels"
-        [chartType]="doughnutChartType"
-        [colors]="donutColors">
-      </canvas>
-    </div>
-  </div>
-</div>
-</td>
-<td>
-<div>
-  <div>
-    <div style="display: block" [@slideInRight]>
-      <canvas baseChart
-      height="350"
-      width="350"
-      position = 'bottom'
-        [data]="doughnutChartData2"
-        [labels]="doughnutChartLabels2"
-        [chartType]="doughnutChartType2"
-        [colors]="donutColors">
-      </canvas>
-    </div>
-  </div>
-</div>
-</td>
-</tr>
-</tbody>
+  <tbody>
+    <tr>
+      <td>
+        <div>
+          <div>
+            <div style="display: block" [@slideInLeft]>
+                <h4><b>Roadblocks to Retirement</b></h4>
+              <canvas baseChart height="350" width="350" position='bottom' [data]="doughnutChartData2"
+                [labels]="doughnutChartLabels2" [chartType]="doughnutChartType2" [colors]="donutColors">
+              </canvas>
+            </div>
+          </div>
+        </div>
+      </td>
+      <td>
+        <div>
+          <div>
+            <div style="display: block" [@slideInRight]>
+                <h4><b>Assets Used</b></h4>
+              <canvas baseChart height="350" width="350" position='bottom' [data]="doughnutChartData"
+                [labels]="doughnutChartLabels" [chartType]="doughnutChartType" [colors]="donutColors">
+              </canvas>
+            </div>
+          </div>
+        </div>
+      </td>
+    </tr>
+  </tbody>
 </table>
 <br>
 <br>
 <br>
 <table class="centered">
-    <tbody>
+  <tbody>
     <tr>
       <td>
-    <div>
-      <div>
-        <div style="display: block" [@slideInLeft]>
-          <canvas baseChart
-          height="350"
-          width="350"
-            [data]="doughnutChartData3"
-            [labels]="doughnutChartLabels3"
-            [chartType]="doughnutChartType3"
-            [colors]="donutColors">
-          </canvas>
+        <div>
+          <div>
+            <div style="display: block" [@slideInLeft]>
+              <h4><b>Average Asset Savings</b></h4>
+              <canvas baseChart height="350" width="350" [data]="doughnutChartData3" [labels]="doughnutChartLabels3"
+                [chartType]="doughnutChartType3" [colors]="donutColors">
+              </canvas>
+            </div>
+          </div>
         </div>
-      </div>
-    </div>
-    </td>
-    <td>
-    <div>
-      <div>
-        <div style="display: block" [@slideInRight]>
-          <canvas baseChart
-          height="350"
-          width="350"
-            [data]="doughnutChartData4"
-            [labels]="doughnutChartLabels4"
-            [chartType]="doughnutChartType4"
-            [colors]="donutColors">
-          </canvas>
+      </td>
+      <td>
+        <div>
+          <div>
+            <div style="display: block" [@slideInRight]>
+              <h4><b>Users Feedback</b></h4>
+              <canvas baseChart height="350" width="350" [data]="doughnutChartData4" [labels]="doughnutChartLabels4"
+                [chartType]="doughnutChartType4" [colors]="donutColors">
+              </canvas>
+            </div>
+          </div>
         </div>
-      </div>
-    </div>
-    </td>
+      </td>
     </tr>
-    </tbody>
-    </table>
+  </tbody>
+</table>
 
 
 
