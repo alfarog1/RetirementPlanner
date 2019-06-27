@@ -131,14 +131,19 @@ export class HomeComponent implements OnInit {
 
   // Doughnut 2
   public doughnutChartLabels2: Label[] = [
-    'Ready to retire',
-    'Nothing started',
-    'Working on it',
-    'Retire?'
+
+    "Income hasn't changed or has decreased",
+    "Comfortable with retirement savings",
+    "Focusing on another financial priority",
+    "Rising household expenses",
+    "Haven't gotten around to it",
+    "Dont know/refused",
+    "Unexpected financial emergency"
   ];
   public doughnutChartData2: MultiDataSet = [
-    [50, 450, 400, 300]
-
+    [26, 21, 16, 12, 11, 10, 5]
+    // [50, 150, 120],
+    // [250, 130, 70],
   ];
   public doughnutChartType2: ChartType = 'doughnut';
 

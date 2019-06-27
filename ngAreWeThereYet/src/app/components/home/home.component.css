@@ -18,4 +18,8 @@ div#logo{
   right: 0;
   top: 0;
 }
+h4 {
+  position: relative;
+  text-align: center;
+}
 
