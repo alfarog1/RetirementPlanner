@@ -15,6 +15,7 @@
     </table>
   </div>
 </div>
+<button class="btn btn-secondary" (click)="openSm(content1)">Add Asset</button>
 
 
 <ng-template #content let-modal>
@@ -82,3 +83,148 @@
       (click)="modal.close('Save click'); editAssets(editAsset)">Save</button>
   </div>
 </ng-template>
+
+<ng-template #content1 let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title">Type of Investment</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <div class="form-group">
+      <!-- select investment type and set vehicle to asset -->
+      <select class="form-control" id="investmentAdd" [(ngModel)]="asset.vehicle" (change)="setVehicle()">
+        <option value="" selected="selected">Select investment type</option>
+        <option *ngFor="let vehicle of vehicles" [ngValue]='vehicle'>{{vehicle.assetName}}</option>
+      </select>
+      <!-- enter ammount in asset and assign to asset.ammount -->
+      <div *ngIf="asset.vehicle != null">
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text">$</span>
+          </div>
+          <input type="number" class="form-control" aria-label="Amount" placeholder="Account Balance"
+            [(ngModel)]="asset.amount" />
+        </div>
+      </div>
+      <!-- select if contributions are made to this account -->
+      <div *ngIf="asset.amount > 0 ">
+        Do you make any contributions?<br>
+        <button name="contribution" (click)="contribute = 1">Yes</button>
+        <button name="contribution" (click)="contribute = 0">No</button>
+      </div>
+      <!-- select percent vs fixed, ammount and frequency of contributions -->
+      <div class="input-container" *ngIf="contribute === 1">
+
+        <span class="input-group-btn" style="margin-bottom:3px">
+          <button selected='selected' ng-class="dollarButton"
+            (click)='contributeType = "fixed"; asset.contributionPercent = null'>
+            $
+          </button>
+        </span>
+        <span class="input-group-btn" style="margin-bottom:3px">
+          <button ng-class="percentButton" (click)='contributeType = "percent"; asset.contributionFixed = null'>
+            %
+          </button></span>
+
+        <input *ngIf="contributeType === 'fixed'" type="number" aria-label="Contribution percent"
+          aria-describedby="Contribution percent" no-arrow-step="" name="contributionPercent"
+          [(ngModel)]="asset.contributionFixed" class="form-control ng-pristine ng-untouched ng-valid ng-scope ng-empty"
+          placeholder="How much?" />
+        <input *ngIf="contributeType === 'percent'" type="number" aria-label="Contribution percent"
+          aria-describedby="Contribution percent" no-arrow-step="" name="contributionPercent"
+          [(ngModel)]="asset.contributionPercent"
+          class="form-control ng-pristine ng-untouched ng-valid ng-scope ng-empty" placeholder="How much?" />
+        <div *ngIf="asset.contributionFixed != null || asset.contributionPercent != null">
+          How often?
+          <select name="investmentFrequency" aria-describedby="investment frequency"
+            class="form-control width-auto ng-pristine ng-valid ng-empty ng-touched" [(ngModel)]="asset.periodicDeposit"
+            (change)="matchingContribution()">
+            <option label="Select Frequency" value="" selected="selected">Select Frequency</option>
+            <option label="Weekly" value=52>Weekly</option>
+            <option label="Biweekly" value=26>Biweekly</option>
+            <option label="Semi-monthly" value=24>Semi-monthly</option>
+            <option label="Monthly" value=12>Monthly</option>
+            <option label="Annually" value=1>Annually</option>
+          </select>
+        </div>
+      </div>
+      <!-- enter if employer matches contributions -->
+      <div *ngIf="match">
+        Does your emplyoyer make matching contributions?<br />
+        <input type="radio" name="contribution" value="yes" (change)="employerMatching()" />Yes
+        <input type="radio" name="contribution" value="no" (change)="appear = true" />No
+      </div>
+
+      <div *ngIf="employerMatch">
+        <table class="panel" align="center">
+          <tbody>
+            <th>Employer matches</th>
+            <tr>
+              <!-- <td>Employer matches</td> -->
+              <td align="right">
+                <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">%</span><input type="text" name="ematch"
+                      [(ngModel)]="newEmployerMatch1.matchingPercent" />
+                  </div>
+                </div>
+              </td>
+            </tr>
+            <th>Up to</th>
+            <tr>
+              <td align="right">
+                <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">%</span><input type="text" name="ematchend"
+                      [(ngModel)]="newEmployerMatch1.topThreshold" [(ngModel)]="newEmployerMatch2.bottomThreshold" />
+                  </div>
+                </div>
+              </td>
+            </tr>
+            <th>then matches</th>
+            <tr>
+              <td align="right">
+                <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">%</span><input type="text" name="ematch2"
+                      [(ngModel)]="newEmployerMatch2.matchingPercent" />
+                  </div>
+                </div>
+              </td>
+            </tr>
+            <th>Up to</th>
+            <tr>
+              <td align="right">
+                <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">%</span><input type="text" name="ematchend2"
+                      [(ngModel)]="newEmployerMatch2.topThreshold" />
+                  </div>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <div *ngIf="appear">
+        <button type="submit" class="btn btn-dark" ngbPopover="I'm ready to submit" triggers="mouseenter:mouseleave"
+          (click)="confirmSubmit(); modal.close('Close click')">
+          Submit
+        </button>
+      </div>
+      <button type="button" class="btn btn-light" (click)="modal.close('Close click')">
+        Close
+      </button>
+    </div>
+  </div>
+</ng-template>
+
+<!-- <button class="btn btn-outline-primary mb-2 mr-2" (click)="openWindowCustomClass(content)">Modal with window custom class</button>
+  <button class="btn btn-outline-primary mb-2 mr-2" (click)="openBackDropCustomClass(content)">Modal with backdrop custom class</button> -->
+
+<!-- <button class="btn btn-outline-primary mb-2 mr-2" (click)="openLg(content)">Large modal</button>
+  <button class="btn btn-outline-primary mb-2 mr-2" (click)="openVerticallyCentered(content)">Modal vertically centered</button> -->
