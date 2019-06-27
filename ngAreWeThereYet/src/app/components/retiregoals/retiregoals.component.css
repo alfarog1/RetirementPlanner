@@ -17,6 +17,9 @@
  .value {
    text-align: right;
  }
+ td{
+   color: white;
+ }
 
 button {
   margin-bottom: 10px;
