@@ -100,15 +100,11 @@ export class FinanceBarComponent implements OnInit {
 
           }
         });
-        this.ready = (this.fv / this.balanceNeeded) * 10;
-        console.log('This .fv ' + this.fv);
-        console.log('This .balanceNeeded: ' + this.balanceNeeded);
-
-        console.log('The real ready is: ' + this.ready);
+        this.ready = (this.fv / this.balanceNeeded) * 100;
+        if (this.ready > 100) {
+          this.ready = 100;
+        }
         this.retirementReadinessVar = this.ready;
-        // if (this.ready > 200) {
-        //   this.ready = 200;
-        // }
         // this.retirementReadinessVar = (this.ready / this.yearsToRetire);
         // this.guageComponent.retirementReadiness = this.ready;
         // this.guageComponent.setRetirementReadiness(this.ready);
@@ -140,7 +136,7 @@ export class FinanceBarComponent implements OnInit {
     const p = (this.user.userProfile.income / 12) * (this.user.userProfile.percentIncome / 100);
     const n = 12 * (this.user.userProfile.lifeExpectancy -
           this.user.userProfile.retirementAge);
-    const i = .04 / 12;
+    const i = .13 / 12;
     this.balanceNeeded = p * ((Math.pow(1 + i, n) - 1) / i);
     return this.balanceNeeded;
   }

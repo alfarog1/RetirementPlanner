@@ -39,7 +39,7 @@ export class RetiregoalsComponent implements OnInit {
         const p = (this.user.userProfile.income / 12) * (this.user.userProfile.percentIncome / 100);
         const n = 12 * (this.user.userProfile.lifeExpectancy -
               this.user.userProfile.retirementAge);
-        const i = .04 / 12;
+        const i = .13 / 12;
         this.balanceNeeded = p * ((Math.pow(1 + i, n) - 1) / i);
       },
       err => {
