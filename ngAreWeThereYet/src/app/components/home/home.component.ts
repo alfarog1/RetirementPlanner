@@ -1,47 +1,52 @@
 import { AuthenticationService } from './../../services/authentication.service';
 import { AssetService } from './../../services/asset.service';
-import { Component, OnInit } from "@angular/core";
-import { ChartType, ChartOptions, ChartLayoutOptions } from "chart.js";
-import { MultiDataSet, Label } from "ng2-charts";
-import { trigger, transition, animate, style } from "@angular/animations";
+import { Component, OnInit } from '@angular/core';
+import { ChartType, ChartOptions, ChartLayoutOptions } from 'chart.js';
+import { MultiDataSet, Label } from 'ng2-charts';
+import { trigger, transition, animate, style } from '@angular/animations';
 import { Asset } from 'src/app/models/asset';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: "app-home",
-  templateUrl: "./home.component.html",
-  styleUrls: ["./home.component.css"],
+  selector: 'app-home',
+  templateUrl: './home.component.html',
+  styleUrls: ['./home.component.css'],
   animations: [
-    trigger("slideInLeft", [
-      transition(":enter", [
-        style({ transform: "translateX(-100%)" }),
-        animate("400ms ease-in", style({ transform: "translateX(0%)" }))
+    trigger('slideInLeft', [
+      transition(':enter', [
+        style({ transform: 'translateX(-100%)' }),
+        animate('400ms ease-in', style({ transform: 'translateX(0%)' }))
       ]),
-      transition(":leave", [
-        animate("400ms ease-in", style({ transform: "translateX(-100%)" }))
+      transition(':leave', [
+        animate('400ms ease-in', style({ transform: 'translateX(-100%)' }))
       ])
     ]),
-    trigger("slideInRight", [
-      transition(":enter", [
-        style({ transform: "translateX(100%)" }),
-        animate("400ms ease-in", style({ transform: "translateX(0%)" }))
+    trigger('slideInRight', [
+      transition(':enter', [
+        style({ transform: 'translateX(100%)' }),
+        animate('400ms ease-in', style({ transform: 'translateX(0%)' }))
       ]),
-      transition(":leave", [
-        animate("400ms ease-in", style({ transform: "translateX(100%)" }))
+      transition(':leave', [
+        animate('400ms ease-in', style({ transform: 'translateX(100%)' }))
       ])
     ]),
-    trigger("slideInTop", [
-      transition(":enter", [
-        style({ transform: "translateY(-100%)" }),
-        animate("400ms ease-in", style({ transform: "translateY(0%)" }))
+    trigger('slideInTop', [
+      transition(':enter', [
+        style({ transform: 'translateY(-100%)' }),
+        animate('400ms ease-in', style({ transform: 'translateY(0%)' }))
       ]),
-      transition(":leave", [
-        animate("400ms ease-in", style({ transform: "translateY(-100%)" }))
+      transition(':leave', [
+        animate('400ms ease-in', style({ transform: 'translateY(-100%)' }))
       ])
     ])
   ]
 })
 export class HomeComponent implements OnInit {
+  constructor(
+    private assetService: AssetService,
+    private auth: AuthenticationService,
+    private router: Router
+  ) {}
   assets: Asset[] = [];
   count1 = 0;
   count2 = 0;
@@ -78,50 +83,55 @@ export class HomeComponent implements OnInit {
   tspAvg: number = 0;
   bondsAvg: number = 0;
 
-
-  constructor(private assetService: AssetService, private auth: AuthenticationService,
-    private router: Router
-  ) { }
-
-  ngOnInit() {
-
-    this.reload();
-  }
   visible = false;
 
-  onClickMe() {
-    this.visible = !this.visible;
-  }
-
   // Doughnut  1
-  public doughnutChartLabels: Label[] = [ "Stocks",
-    "Bonds",
-    "Savings",
-    "Annuity",
-    "Traditional IRA",
-    "Roth IRA",
-    "457b",
-    "401k",
-    "401a",
-    "403b",
-    "457",
-    "Investment Property",
-    "Non-Qualified",
-    "Profit Sharing",
-    "Money Purchase",
-    "Mutual Fund",
-    "TSP"
+  public doughnutChartLabels: Label[] = [
+    'Stocks',
+    'Bonds',
+    'Savings',
+    'Annuity',
+    'Traditional IRA',
+    'Roth IRA',
+    '457b',
+    '401k',
+    '401a',
+    '403b',
+    '457',
+    'Investment Property',
+    'Non-Qualified',
+    'Profit Sharing',
+    'Money Purchase',
+    'Mutual Fund',
+    'TSP'
   ];
   public doughnutChartData = [
-    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
 
     // [50, 150, 120],
     // [250, 130, 70],
   ];
-  public doughnutChartType: ChartType = "doughnut";
+  public doughnutChartType: ChartType = 'doughnut';
 
   // Doughnut 2
   public doughnutChartLabels2: Label[] = [
+
     "Income hasn't changed or has decreased",
     "Comfortable with retirement savings",
     "Focusing on another financial priority",
@@ -135,46 +145,62 @@ export class HomeComponent implements OnInit {
     // [50, 150, 120],
     // [250, 130, 70],
   ];
-  public doughnutChartType2: ChartType = "doughnut";
+  public doughnutChartType2: ChartType = 'doughnut';
 
   // Doughnut 3
   public doughnutChartLabels3: Label[] = [
-    "Stocks",
-    "Bonds",
-    "Savings",
-    "Annuity",
-    "Traditional IRA",
-    "Roth IRA",
-    "457b",
-    "401k",
-    "401a",
-    "403b",
-    "457",
-    "Investment Property",
-    "Non-Qualified",
-    "Profit Sharing",
-    "Money Purchase",
-    "Mutual Fund",
-    "TSP"
+    'Stocks',
+    'Bonds',
+    'Savings',
+    'Annuity',
+    'Traditional IRA',
+    'Roth IRA',
+    '457b',
+    '401k',
+    '401a',
+    '403b',
+    '457',
+    'Investment Property',
+    'Non-Qualified',
+    'Profit Sharing',
+    'Money Purchase',
+    'Mutual Fund',
+    'TSP'
   ];
   public doughnutChartData3 = [
-    0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
   ];
-  public doughnutChartType3: ChartType = "doughnut";
+  public doughnutChartType3: ChartType = 'doughnut';
 
   // Doughnut 4
   public doughnutChartLabels4: Label[] = [
-    "Found this helpful",
-    "Never knew this",
-    "WOW",
-    "Retire?"
+    'Found this helpful',
+    'Never knew this',
+    'WOW',
+    'Retire?'
   ];
   public doughnutChartData4: MultiDataSet = [
     [650, 450, 400, 30]
     // [50, 150, 120],
     // [250, 130, 70],
   ];
-  public doughnutChartType4: ChartType = "doughnut";
+  public doughnutChartType4: ChartType = 'doughnut';
 
   public donutColors = [
     {
@@ -199,6 +225,14 @@ export class HomeComponent implements OnInit {
     }
   ];
 
+  ngOnInit() {
+    this.reload();
+  }
+
+  onClickMe() {
+    this.visible = !this.visible;
+  }
+
   // events
   public chartClicked({
     event,
@@ -221,33 +255,29 @@ export class HomeComponent implements OnInit {
   }
   reload() {
     if (this.auth.checkLogin()) {
-    this.assetService.index().subscribe(
-      good => {
-        this.assets = good;
-        this.averageBalancePerAsset();
-        console.log(this.assets);
-      },
-      bad => {
-        console.log(bad);
-      }
-    )}
+      this.assetService.index().subscribe(
+        good => {
+          this.assets = good;
+          this.averageBalancePerAsset();
+          console.log(this.assets);
+        },
+        bad => {
+          console.log(bad);
+        }
+      );
+    }
   }
   signUp() {
     this.router.navigateByUrl('signup');
   }
   averageBalancePerAsset() {
     console.log(this.assets);
-    let temp = [
-      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
-    ];
-    let temp1 = [
-      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
-    ];
+    let temp = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+    let temp1 = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
     for (let i = 0; i < this.assets.length; i++) {
       console.log(this.assets[i]);
       console.log(this.assets[i].vehicle.id);
       switch (this.assets[i].vehicle.id) {
-
         case 1:
           let value1 = this.assets[i].amount;
           temp[0]++;
@@ -337,7 +367,5 @@ export class HomeComponent implements OnInit {
     }
     this.doughnutChartData = temp;
     this.doughnutChartData3 = temp1;
-
-
   }
 }

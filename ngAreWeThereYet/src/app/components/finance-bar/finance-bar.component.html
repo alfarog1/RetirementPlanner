@@ -11,7 +11,7 @@
       <div class='col-7'>
         <div>
          <h2> Monthly Income in Retirement</h2>
-          <h1>{{fv/yearsInRetirement()/12 | currency}}</h1>
+          <h1>{{((fv/yearsInRetirement())/12) * .3 | currency}}</h1>
         </div>
       </div>
       <div class="col-5">
