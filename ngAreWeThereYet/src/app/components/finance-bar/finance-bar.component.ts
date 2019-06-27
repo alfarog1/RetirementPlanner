@@ -131,7 +131,6 @@ export class FinanceBarComponent implements OnInit {
       },
       () => {}
     );
-
   }
 
   balanceNeededAtRetirement() {
