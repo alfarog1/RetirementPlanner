@@ -100,7 +100,8 @@ export class LoginComponent implements OnInit {
       },
       err => {
         console.log('Error logging in');
-        this.router.navigateByUrl('/login');
+        alert("Login Failed");
+        this.router.navigateByUrl('/home');
       },
     );
 
