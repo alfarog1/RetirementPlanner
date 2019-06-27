@@ -1,4 +1,4 @@
-import { InteractionService } from 'src/app/services/interaction.service';
+
 
 import { BrowserModule } from "@angular/platform-browser";
 import { NgModule } from "@angular/core";
@@ -85,7 +85,7 @@ import { RouterModule } from '@angular/router';
     GaugeModule.forRoot(),
     NgxGaugeModule
   ],
-  
+
 
   providers: [
     AssetService,
@@ -96,8 +96,7 @@ import { RouterModule } from '@angular/router';
     VehicleService,
     AuthenticationService,
     LoginComponent,
-    RetiregoalsComponent,
-    InteractionService
+    RetiregoalsComponent
   ],
 
   bootstrap: [AppComponent]
