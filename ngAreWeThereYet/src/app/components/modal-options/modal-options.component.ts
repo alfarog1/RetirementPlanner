@@ -42,6 +42,7 @@ export class ModalOptionsComponent implements OnInit {
   recurring: false;
   match: boolean;
   employerMatch: boolean;
+  contribute: number;
 
   constructor(
     private userService: UserService,
