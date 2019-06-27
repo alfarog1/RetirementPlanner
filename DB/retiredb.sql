@@ -173,7 +173,7 @@ SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `retiredb`;
-INSERT INTO `vehicle` (`id`, `asset_name`, `is_qualified`, `is_fixed`, `max_contribution`, `is_pretax`, `has_employer_match`, `compounding_periods`) VALUES (1, 'Stocks', 0, 1, NULL, 0, 0, 365);
+INSERT INTO `vehicle` (`id`, `asset_name`, `is_qualified`, `is_fixed`, `max_contribution`, `is_pretax`, `has_employer_match`, `compounding_periods`) VALUES (1, 'Stocks', 0, 1, NULL, 0, 0, 12);
 INSERT INTO `vehicle` (`id`, `asset_name`, `is_qualified`, `is_fixed`, `max_contribution`, `is_pretax`, `has_employer_match`, `compounding_periods`) VALUES (2, 'Bonds', 0, 1, NULL, 0, 0, 12);
 INSERT INTO `vehicle` (`id`, `asset_name`, `is_qualified`, `is_fixed`, `max_contribution`, `is_pretax`, `has_employer_match`, `compounding_periods`) VALUES (3, 'Savings', 0, 1, NULL, 0, 0, 12);
 INSERT INTO `vehicle` (`id`, `asset_name`, `is_qualified`, `is_fixed`, `max_contribution`, `is_pretax`, `has_employer_match`, `compounding_periods`) VALUES (4, 'Annuity', 0, 0, NULL, 0, 0, 12);
@@ -236,9 +236,7 @@ START TRANSACTION;
 USE `retiredb`;
 INSERT INTO `asset` (`id`, `risk_profile_id`, `vehicle_id`, `user_id`, `amount`, `contribution_fixed`, `contribution_percent`, `periodic_deposit`) VALUES (1, NULL, 1, 1, 10000, 1000, NULL, DEFAULT);
 INSERT INTO `asset` (`id`, `risk_profile_id`, `vehicle_id`, `user_id`, `amount`, `contribution_fixed`, `contribution_percent`, `periodic_deposit`) VALUES (2, 5, 9, 2, 50000, NULL, 5, DEFAULT);
-INSERT INTO `asset` (`id`, `risk_profile_id`, `vehicle_id`, `user_id`, `amount`, `contribution_fixed`, `contribution_percent`, `periodic_deposit`) VALUES (3, NULL, 1, 2, 15000, 2000, NULL, DEFAULT);
-INSERT INTO `asset` (`id`, `risk_profile_id`, `vehicle_id`, `user_id`, `amount`, `contribution_fixed`, `contribution_percent`, `periodic_deposit`) VALUES (4, NULL, 13, 3, 20000, 1500, NULL, DEFAULT);
-INSERT INTO `asset` (`id`, `risk_profile_id`, `vehicle_id`, `user_id`, `amount`, `contribution_fixed`, `contribution_percent`, `periodic_deposit`) VALUES (5, NULL, 10, 3, 40000, 2000, NULL, DEFAULT);
+INSERT INTO `asset` (`id`, `risk_profile_id`, `vehicle_id`, `user_id`, `amount`, `contribution_fixed`, `contribution_percent`, `periodic_deposit`) VALUES (3, NULL, 1, 3, 8000, 50, NULL, DEFAULT);
 INSERT INTO `asset` (`id`, `risk_profile_id`, `vehicle_id`, `user_id`, `amount`, `contribution_fixed`, `contribution_percent`, `periodic_deposit`) VALUES (6, NULL, 14, 4, 16000, 4000, NULL, DEFAULT);
 INSERT INTO `asset` (`id`, `risk_profile_id`, `vehicle_id`, `user_id`, `amount`, `contribution_fixed`, `contribution_percent`, `periodic_deposit`) VALUES (7, NULL, 11, 4, 90000, 8000, NULL, DEFAULT);
 INSERT INTO `asset` (`id`, `risk_profile_id`, `vehicle_id`, `user_id`, `amount`, `contribution_fixed`, `contribution_percent`, `periodic_deposit`) VALUES (8, NULL, 4, 4, 120000, 13000, NULL, DEFAULT);
@@ -261,11 +259,10 @@ INSERT INTO `asset` (`id`, `risk_profile_id`, `vehicle_id`, `user_id`, `amount`,
 INSERT INTO `asset` (`id`, `risk_profile_id`, `vehicle_id`, `user_id`, `amount`, `contribution_fixed`, `contribution_percent`, `periodic_deposit`) VALUES (25, 2, 2, 10, 525000, 10000, NULL, DEFAULT);
 INSERT INTO `asset` (`id`, `risk_profile_id`, `vehicle_id`, `user_id`, `amount`, `contribution_fixed`, `contribution_percent`, `periodic_deposit`) VALUES (26, 5, 1, 10, 340000, 10000, NULL, DEFAULT);
 INSERT INTO `asset` (`id`, `risk_profile_id`, `vehicle_id`, `user_id`, `amount`, `contribution_fixed`, `contribution_percent`, `periodic_deposit`) VALUES (27, 1, 1, 10, 250000, 20000, NULL, DEFAULT);
-INSERT INTO `asset` (`id`, `risk_profile_id`, `vehicle_id`, `user_id`, `amount`, `contribution_fixed`, `contribution_percent`, `periodic_deposit`) VALUES (28, 5, 1, 3, 75000, 10000, NULL, DEFAULT);
-INSERT INTO `asset` (`id`, `risk_profile_id`, `vehicle_id`, `user_id`, `amount`, `contribution_fixed`, `contribution_percent`, `periodic_deposit`) VALUES (29, NULL, 8, 3, 250000, NULL, 5, DEFAULT);
-INSERT INTO `asset` (`id`, `risk_profile_id`, `vehicle_id`, `user_id`, `amount`, `contribution_fixed`, `contribution_percent`, `periodic_deposit`) VALUES (30, 1, 2, 3, 50000, NULL, 2, DEFAULT);
-INSERT INTO `asset` (`id`, `risk_profile_id`, `vehicle_id`, `user_id`, `amount`, `contribution_fixed`, `contribution_percent`, `periodic_deposit`) VALUES (31, NULL, 5, 3, 225000, 20000, NULL, DEFAULT);
-INSERT INTO `asset` (`id`, `risk_profile_id`, `vehicle_id`, `user_id`, `amount`, `contribution_fixed`, `contribution_percent`, `periodic_deposit`) VALUES (32, 1, 3, 3, 35000, 35000, NULL, DEFAULT);
+INSERT INTO `asset` (`id`, `risk_profile_id`, `vehicle_id`, `user_id`, `amount`, `contribution_fixed`, `contribution_percent`, `periodic_deposit`) VALUES (29, NULL, 8, 2, 250000, NULL, 5, 26);
+INSERT INTO `asset` (`id`, `risk_profile_id`, `vehicle_id`, `user_id`, `amount`, `contribution_fixed`, `contribution_percent`, `periodic_deposit`) VALUES (30, 1, 2, 3, 10000, NULL, 1, 0);
+INSERT INTO `asset` (`id`, `risk_profile_id`, `vehicle_id`, `user_id`, `amount`, `contribution_fixed`, `contribution_percent`, `periodic_deposit`) VALUES (31, NULL, 5, 2, 30000, 200, NULL, 12);
+INSERT INTO `asset` (`id`, `risk_profile_id`, `vehicle_id`, `user_id`, `amount`, `contribution_fixed`, `contribution_percent`, `periodic_deposit`) VALUES (32, 1, 3, 3, 5000, 1, NULL, 1);
 
 COMMIT;
 
@@ -288,7 +285,7 @@ START TRANSACTION;
 USE `retiredb`;
 INSERT INTO `user_profile` (`id`, `user_id`, `retirement_age`, `life_expectancy`, `percent_income`, `first_name`, `last_name`, `dob`, `income`, `pay_period`) VALUES (1, 1, 75, 86, 80, 'Laurence', 'Fisher', '1967-01-28', 80000, 'bi-weekly');
 INSERT INTO `user_profile` (`id`, `user_id`, `retirement_age`, `life_expectancy`, `percent_income`, `first_name`, `last_name`, `dob`, `income`, `pay_period`) VALUES (2, 2, 72, 88, 75, 'Kelly', 'Day', '1975-03-22', 85000, 'monthly');
-INSERT INTO `user_profile` (`id`, `user_id`, `retirement_age`, `life_expectancy`, `percent_income`, `first_name`, `last_name`, `dob`, `income`, `pay_period`) VALUES (3, 3, 78, 82, 90, 'Adam', 'Crawford', '1987-01-09', 83000, 'bi-weekly');
+INSERT INTO `user_profile` (`id`, `user_id`, `retirement_age`, `life_expectancy`, `percent_income`, `first_name`, `last_name`, `dob`, `income`, `pay_period`) VALUES (3, 3, 69, 90, 80, 'Adam', 'Crawford', '1987-01-09', 83000, 'bi-weekly');
 INSERT INTO `user_profile` (`id`, `user_id`, `retirement_age`, `life_expectancy`, `percent_income`, `first_name`, `last_name`, `dob`, `income`, `pay_period`) VALUES (4, 4, 69, 80, 83, 'Jacob', 'Turner', '1980-07-15', 70000, 'weekly');
 INSERT INTO `user_profile` (`id`, `user_id`, `retirement_age`, `life_expectancy`, `percent_income`, `first_name`, `last_name`, `dob`, `income`, `pay_period`) VALUES (5, 5, 71, 84, 85, 'Leslie', 'Hunter', '1978-03-11', 71000, 'bi-weekly');
 INSERT INTO `user_profile` (`id`, `user_id`, `retirement_age`, `life_expectancy`, `percent_income`, `first_name`, `last_name`, `dob`, `income`, `pay_period`) VALUES (6, 6, 55, 88, 90, 'Marcus', 'Fitch', '1985-12-22', 140000, 'monthly');
