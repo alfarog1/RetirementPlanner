@@ -34,17 +34,17 @@ export class RetiregoalsComponent implements OnInit {
       data => {
         this.user = data;
 
-          const regularWithdrawals =
+        const regularWithdrawals =
             (this.user.userProfile.income *
               (this.user.userProfile.percentIncome / 100)) /
             12;
-          const numofCompPerYr = 1;
+        const numofCompPerYr = 1;
 
-          const yir =
+        const yir =
           this.user.userProfile.lifeExpectancy -
           this.user.userProfile.retirementAge;
 
-          this.balanceNeeded =
+        this.balanceNeeded =
             (regularWithdrawals *
               (1 -
                 Math.pow(
@@ -117,12 +117,12 @@ export class RetiregoalsComponent implements OnInit {
   }
 
   neededAssets() {
-    // let income = this.user.userProfile.income;
-    // let percent = this.user.userProfile.percentIncome / 100;
-    // let years = this.user.userProfile.lifeExpectancy - this.user.userProfile.retirementAge;
-    // let interest = .04;
-    // let monthlyCompund = 12;
-    // return (income * percent) * years;
+    let income = this.user.userProfile.income;
+    let percent = this.user.userProfile.percentIncome / 100;
+    let years = this.user.userProfile.lifeExpectancy - this.user.userProfile.retirementAge;
+    let interest = .04;
+    let monthlyCompund = 12;
+    return (income * percent) * years;
     // return (income * percent) * (1 - (1 + Math.pow((interest / monthlyCompund), -(years * monthlyCompund)))) / (interest / 12);
     // return this.finBar.balanceNeeded;
 

@@ -154,7 +154,7 @@ export class FinanceBarComponent implements OnInit {
       },
       () => {}
     );
-    this.assets.forEach(function(asset) {
+    this.assets.forEach((asset) => {
       const i = this.ror / 100 / asset.vehicle.compoundingPeriods;
       const t = asset.vehicle.compoundingPeriods * this.yearsToRetire;
       const d = asset.periodicDeposit;
@@ -172,20 +172,10 @@ export class FinanceBarComponent implements OnInit {
   }
 
   balanceNeededAtRetirement() {
-    const regularWithdrawals =
-      (this.user.userProfile.income *
-        (this.user.userProfile.percentIncome / 100)) /
-      12;
-    const numofCompPerYr = 12;
-
-    this.balanceNeeded =
-      (regularWithdrawals *
-        (1 -
-          Math.pow(
-            1 + this.annualRateAtRetirement / numofCompPerYr,
-            -(this.yearsInRetirement() * numofCompPerYr)
-          ))) /
-      (this.annualRateAtRetirement / numofCompPerYr);
+    const payment = (this.user.userProfile.income / 12 ) * (this.user.userProfile.percentIncome / 100);
+    const yir = this.user.userProfile.lifeExpectancy -
+    this.user.userProfile.retirementAge;
+    this.balanceNeeded = payment * ((1 - (Math.pow( 1 + this.ror, (yir *12)))) / this.ror);
     return this.balanceNeeded;
   }
 
