@@ -13,6 +13,7 @@
   border-width: medium;
   border-color: rgba(255, 255, 255, .5);
   border-style: solid;
+  color: white;
  }
  .value {
    text-align: right;

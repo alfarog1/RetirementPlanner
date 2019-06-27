@@ -4,7 +4,6 @@ import { Asset } from 'src/app/models/asset';
 import { RiskProfileService } from 'src/app/services/risk-profile.service';
 import { RiskProfile } from 'src/app/models/risk-profile';
 import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { InteractionService } from 'src/app/services/interaction.service';
 import { Router } from '@angular/router';
 
 @Component({
@@ -25,7 +24,6 @@ export class AssetdisplayComponent implements OnInit {
   constructor(private modalService: NgbModal,
     private assetsvc: AssetService,
     private risksvc: RiskProfileService,
-    private interaction: InteractionService,
     private router: Router) { }
 
   ngOnInit() {

@@ -7,29 +7,24 @@
     <title>Document</title>
   </head>
   <body>
-    <table>
-      <th>
-        Monthly Retirement Income
-      </th>
-      <th>
-        Readiness
-      </th>
-      <tr>
-        <td><app-counter></app-counter></td>
-        <!-- <td><app-gauge></app-gauge></td> -->
-        <td>
-          <div class="gauge-container"></div>
-          <ngx-gauge
-            [type]="gaugeType"
-            [value]="retirementReadinessVar"
-            [label]="gaugeLabel"
-            [thresholds]="thresholdConfig"
-            [animate]="animate"
-            [thick]="thickness"
-          >
-          </ngx-gauge>
-        </td>
-      </tr>
-    </table>
+    <div class="row">
+      <div class='col-7'>
+        <div>
+         <h2> Monthly Income in Retirement</h2>
+          <h1>{{fv/yearsInRetirement()/12 | currency}}</h1>
+        </div>
+      </div>
+      <div class="col-5">
+        <ngx-gauge
+          [type]="gaugeType"
+          [value]="retirementReadinessVar"
+          [label]="gaugeLabel"
+          [thresholds]="thresholdConfig"
+          [animate]="animate"
+          [thick]="thickness"
+        >
+        </ngx-gauge>
+      </div>
+    </div>
   </body>
 </html>

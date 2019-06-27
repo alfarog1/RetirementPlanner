@@ -17,9 +17,11 @@ th, td {
 
 tr:nth-child(even) {
   background-color: #4d818c;
+  border-radius: 10px;
 }
 tr:nth-child(odd){
   background-color: #325765;
+  border-radius: 10px;
 }
 td {
   width: 100px;
