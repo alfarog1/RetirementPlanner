@@ -4,14 +4,16 @@
 } */
 
 .container {
-  background-color: lightblue;
+  background-color: #4d818c;
   border-radius: 10px;
+  color: white;
 }
  .field {
   border-radius: 10px;
   border-width: medium;
-  border-color: rgba(31, 31, 118, 0.721);
+  border-color: rgba(255, 255, 255, .5);
   border-style: solid;
+  color: white;
  }
  .value {
    text-align: right;
@@ -24,4 +26,5 @@ button {
 .modal-body {
   z-index: 1;
   position: relative;
+  background-color: #4d818cbb;
 }

@@ -16,14 +16,11 @@ import { GaugeComponent } from '../gauge/gauge.component';
   styleUrls: ['./finance-bar.component.css']
 })
 export class FinanceBarComponent implements OnInit {
-  // From Guage
   gaugeType = 'semi';
-  // retirementReadiness = (this.finbar.ready * 100); // <----
   retirementReadinessVar = 0;
   gaugeLabel = 'Retirement Readiness';
   animate = true;
   thickness = 15;
-  // gaugeAppendText = "km/hr";
 
   thresholdConfig = {
     0: { color: 'red' },
@@ -60,9 +57,6 @@ export class FinanceBarComponent implements OnInit {
     this.usersvc.getUser().subscribe(
       data => {
         this.user = data;
-        this.user = data;
-        console.log(this.user.userProfile.retirementAge);
-
         this.retireAge = this.user.userProfile.retirementAge;
         this.futureValueOfAssets();
         this.balanceNeededAtRetirement();
@@ -71,13 +65,6 @@ export class FinanceBarComponent implements OnInit {
         this.yearsToRetire =
           this.user.userProfile.retirementAge -
           this.userProService.ageFromDateOfBirthday(this.user.userProfile.dob);
-
-        console.log(this.retireAge);
-        console.log(this.futureValueOfAssets());
-        console.log(this.balanceNeededAtRetirement());
-        console.log(this.monthlyRetirementIncome());
-        console.log(this.retirementReadiness());
-        console.log(this.fv);
       },
       err => {
         console.log('error retrieving user:');
@@ -87,14 +74,9 @@ export class FinanceBarComponent implements OnInit {
   }
 
   futureValueOfAssets() {
-    console.log('Begin futureValueOfAssets()');
     this.assetService.getUsersAssets().subscribe(
       good => {
-        console.log('>>> futureValueOfAssets() just received data.');
         this.assets = good;
-        console.log('A good thing happened');
-        console.log(good);
-        console.log(this.assets);
 
         this.assets.forEach(asset => {
           if (asset.periodicDeposit !== 0) {
@@ -104,47 +86,26 @@ export class FinanceBarComponent implements OnInit {
               asset.contributionFixed !== null
                 ? asset.contributionFixed
                 : (asset.contributionPercent / 100) * this.user.userProfile.income;
-            console.log('contribution: ' + contribution);
-            console.log('Con Fix: ' + asset.contributionFixed);
-            console.log('Con %: ' + asset.contributionPercent);
-            console.log('Income: ' + this.user.userProfile.income);
 
             const d = asset.periodicDeposit * contribution;
             const x = 1 + i;
-            console.log('____________________________________');
-            console.log(i);
-            console.log(t);
-            console.log(d);
-            console.log(x);
-            console.log(this.ror);
 
             const amountToAdd =
               asset.amount * Math.pow(x, t) +
               d * ((Math.pow(x, t) - 1) / i) * x;
-            console.log(amountToAdd);
             this.fv += amountToAdd;
-              // asset.amount * Math.pow(x, t) +
-              // d * ((Math.pow(x, t) - 1) / i) * x;
-            console.log('fv: ' + this.fv);
-            console.log('____________________________________');
           } else {
-            console.log('*****************************');
-            console.log(this.ror + 'Else');
             const amountToAdd2 =  asset.amount * Math.pow(1 + this.ror / 100, this.yearsToRetire);
             this.fv += amountToAdd2;
-            console.log('FV: ' + this.fv);
-            console.log('*****************************');
+
           }
         });
-        this.ready = this.fv / this.balanceNeeded;
-        console.log('This .fv ' + this.fv);
-        console.log('This .balanceNeeded: ' + this.balanceNeeded);
-
-        console.log('The real ready is: ' + this.ready);
-        // if (this.ready > 200) {
-        //   this.ready = 200;
-        // }
-        this.retirementReadinessVar = (this.ready / this.yearsToRetire);
+        this.ready = (this.fv / this.balanceNeeded) * 100;
+        if (this.ready > 100) {
+          this.ready = 100;
+        }
+        this.retirementReadinessVar = this.ready;
+        // this.retirementReadinessVar = (this.ready / this.yearsToRetire);
         // this.guageComponent.retirementReadiness = this.ready;
         // this.guageComponent.setRetirementReadiness(this.ready);
       },
@@ -172,10 +133,11 @@ export class FinanceBarComponent implements OnInit {
   }
 
   balanceNeededAtRetirement() {
-    const payment = (this.user.userProfile.income / 12 ) * (this.user.userProfile.percentIncome / 100);
-    const yir = this.user.userProfile.lifeExpectancy -
-    this.user.userProfile.retirementAge;
-    this.balanceNeeded = payment * ((1 - (Math.pow( 1 + this.ror, (yir *12)))) / this.ror);
+    const p = (this.user.userProfile.income / 12) * (this.user.userProfile.percentIncome / 100);
+    const n = 12 * (this.user.userProfile.lifeExpectancy -
+          this.user.userProfile.retirementAge);
+    const i = .13 / 12;
+    this.balanceNeeded = p * ((Math.pow(1 + i, n) - 1) / i);
     return this.balanceNeeded;
   }
 

@@ -25,6 +25,18 @@ export class UserService {
     console.error('Something Broke');
     return throwError(error.json().error || 'Server Error');
   }
+  index() {
+    if (this.authService.checkLogin()) {
+      const credentials = this.authService.getCredentials();
+      const httpOptions = {
+        headers: new HttpHeaders({
+          'Authorization': `Basic ${credentials}`,
+          'X-Requested-With': 'XMLHttpRequest'
+        })
+      };
+      return this.http.get<User[]>(this.url, httpOptions);
+    }
+  }
 
   create(user: User) {
     console.log(user);
@@ -35,7 +47,7 @@ export class UserService {
       })
     };
     return this.http.post<User>(this.url, user, httpOptions)
-    .pipe(catchError(this.handleError));
+      .pipe(catchError(this.handleError));
   }
 
   // TODO: Find correct edit function
@@ -48,8 +60,8 @@ export class UserService {
       })
     };
     return this.http
-    .put(this.url + '/' + updateUser.id, updateUser, httpOptions)
-    .pipe(catchError(this.handleError));
+      .put(this.url + '/' + updateUser.id, updateUser, httpOptions)
+      .pipe(catchError(this.handleError));
   }
 
   destroy(id: number) {
@@ -59,7 +71,7 @@ export class UserService {
       })
     };
     return this.http.delete(this.url + '/' + id, httpOptions)
-    .pipe(catchError(this.handleError));
+      .pipe(catchError(this.handleError));
   }
 
   getUser() {

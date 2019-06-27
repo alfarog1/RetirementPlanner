@@ -1,3 +1,4 @@
+import { Router, Route } from '@angular/router';
 import { AuthenticationService } from './../../services/authentication.service';
 import { UserProfile } from './../../models/user-profile';
 import { AssetdisplayComponent } from './../assetdisplay/assetdisplay.component';
@@ -27,13 +28,14 @@ export class RetiregoalsComponent implements OnInit {
 
   constructor(private usersvc: UserService, private assetsvc: AssetService,
               private profilesvc: UserProfileService, private modalService: NgbModal,
-              private auth: AuthenticationService) { }
+              private auth: AuthenticationService, private router: Router) { }
 
   getUser() {
     this.usersvc.getUser().subscribe(
       data => {
         this.user = data;
 
+<<<<<<< HEAD
         const regularWithdrawals =
             (this.user.userProfile.income *
               (this.user.userProfile.percentIncome / 100)) /
@@ -52,7 +54,14 @@ export class RetiregoalsComponent implements OnInit {
                   -(yir * numofCompPerYr)
                 ))) /
             (this.annualRateAtRetirement / numofCompPerYr);
+=======
+>>>>>>> 707fde0750e072eeb0993d50b9f4b8b127f78989
 
+        const p = (this.user.userProfile.income / 12) * (this.user.userProfile.percentIncome / 100);
+        const n = 12 * (this.user.userProfile.lifeExpectancy -
+              this.user.userProfile.retirementAge);
+        const i = .13 / 12;
+        this.balanceNeeded = p * ((Math.pow(1 + i, n) - 1) / i);
       },
       err => {
         console.log('error retrieving user:');
@@ -70,23 +79,20 @@ export class RetiregoalsComponent implements OnInit {
     this.tempUserProfile = Object.assign({}, this.user.userProfile);
   }
   commitEdit() {
-    console.log(this.tempUserProfile);
-    // this.tempUserProfile.id = this.user.userProfile.id;
-    // this.tempUserProfile.user = this.user;
-    this.user.userProfile = this.tempUserProfile;
-    console.log(this.tempUserProfile);
+    this.tempUserProfile.id = this.user.userProfile.id;
+    this.tempUserProfile.user = this.user;
+    // this.user.userProfile = this.tempUserProfile;
     if (this.tempUserProfile.payPeriod == null) {
       this.tempUserProfile.payPeriod = this.user.userProfile.payPeriod;
     }
     if (this.tempUserProfile.dob == null) {
       this.tempUserProfile.dob = this.user.userProfile.dob;
     }
-    console.log(this.user);
-
     this.profilesvc.update(this.tempUserProfile).subscribe(
       data => {
         this.tempUserProfile = null;
         this.edit = !this.edit;
+        this.ngOnInit();
       },
       err => {
         console.log('error commiting edit');
@@ -134,10 +140,20 @@ export class RetiregoalsComponent implements OnInit {
   }
 
   openSm(content) {
-    this.modalService.open(content, { size: "lg" });
+    this.modalService.open(content, { size: 'lg' });
   }
   logout() {
     this.auth.logout();
+  }
+  deactivate() {
+    if (confirm()) {
+      this.user.enabled = false;
+      this.usersvc.update(this.user).subscribe(
+        good => {
+          this.router.navigateByUrl('home');
+        }
+      );
+    }
   }
 
   // reload() {

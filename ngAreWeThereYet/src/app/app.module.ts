@@ -1,4 +1,5 @@
 
+
 import { BrowserModule } from "@angular/platform-browser";
 import { NgModule } from "@angular/core";
 import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
@@ -39,7 +40,9 @@ import { AssetdisplayComponent } from './components/assetdisplay/assetdisplay.co
 import { HttpClientModule } from '@angular/common/http';
 import { RetiregoalsComponent } from './components/retiregoals/retiregoals.component';
 import { FinanceBarComponent } from './components/finance-bar/finance-bar.component';
+import { AdminComponent } from './components/admin/admin.component';
 import { RssComponent } from './components/rss/rss.component';
+import { RouterModule } from '@angular/router';
 
 
 
@@ -61,6 +64,7 @@ import { RssComponent } from './components/rss/rss.component';
     AssetdisplayComponent,
     RetiregoalsComponent,
     FinanceBarComponent,
+    AdminComponent,
     RssComponent
   ],
   imports: [
@@ -82,6 +86,7 @@ import { RssComponent } from './components/rss/rss.component';
     NgxGaugeModule
   ],
 
+
   providers: [
     AssetService,
     EmployerMatchService,
@@ -90,7 +95,8 @@ import { RssComponent } from './components/rss/rss.component';
     UserService,
     VehicleService,
     AuthenticationService,
-    LoginComponent
+    LoginComponent,
+    RetiregoalsComponent
   ],
 
   bootstrap: [AppComponent]

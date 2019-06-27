@@ -1,0 +1,56 @@
+<head>
+    <script src="../assets/search.js"></script>
+</head>
+
+
+<div class="row">
+  <div class="col-3">
+    <div class="sidenav">
+      <a><b>Admin</b></a>
+      <button (click)="logoutMethod()" type="button" class="btn btn-dark">Logout</button>
+
+      <!-- <input type="text" placeholder="Search User.."> -->
+    </div>
+  </div>
+  <div class="col-8">
+    <input type="text" id="myInput" (keyup)="myFunction()" placeholder="Search for names.." title="Type in a name">
+    <table id="customers" class="table">
+      <tr>
+        <th>Username</th>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Account Status</th>
+      </tr>
+      <tr *ngFor="let user of users" (click)="open(content); editUserMethod(user)">
+        <td>{{user.username}}</td>
+        <td>{{user.userProfile.fName}}</td>
+        <td>{{user.userProfile.lName}}</td>
+        <td>{{userStatus(user)}}{{status}}</td>
+      </tr>
+    </table>
+  </div>
+</div>
+
+
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Account Status</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body modal-sm">
+    <form>
+      <div class="form-group">
+        <button type="button" class="btn btn-outline-dark"
+          (click)="activateAccount(editUser); modal.close('Activate click')">Activate</button>
+        <button type="button" class="btn btn-outline-dark"
+          (click)="deactivateAccount(editUser); modal.close('Deactivate click')">Deactivate</button>
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Save</button>
+  </div>
+</ng-template>
+

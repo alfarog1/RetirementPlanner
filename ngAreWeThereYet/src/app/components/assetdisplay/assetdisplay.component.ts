@@ -4,12 +4,13 @@ import { Asset } from 'src/app/models/asset';
 import { RiskProfileService } from 'src/app/services/risk-profile.service';
 import { RiskProfile } from 'src/app/models/risk-profile';
 import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-assetdisplay',
   templateUrl: './assetdisplay.component.html',
   styleUrls: ['./assetdisplay.component.css']
-  
+
 })
 export class AssetdisplayComponent implements OnInit {
 
@@ -20,7 +21,10 @@ export class AssetdisplayComponent implements OnInit {
   expand = 0;
   closeResult: string;
 
-  constructor(private modalService: NgbModal, private assetsvc: AssetService, private risksvc: RiskProfileService) { }
+  constructor(private modalService: NgbModal,
+    private assetsvc: AssetService,
+    private risksvc: RiskProfileService,
+    private router: Router) { }
 
   ngOnInit() {
     this.getRisks();
@@ -82,7 +86,10 @@ export class AssetdisplayComponent implements OnInit {
     this.assetsvc.update(this.editAsset).subscribe(
       data => {
         this.loadAssets();
+        this.router.navigateByUrl('/retireGoals', { skipLocationChange: true }).then(() =>
+          this.router.navigate(['/dashboard']));
         this.editAsset = null;
+
       },
       err => {
         console.log('error updating asset:');
@@ -90,8 +97,9 @@ export class AssetdisplayComponent implements OnInit {
       }
     );
   }
-  editAssets(asset){
-  this.editAsset = asset;
+  editAssets(asset) {
+    this.editAsset = asset;
+    this.commitEditAsset();
   }
 
 }
