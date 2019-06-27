@@ -30,6 +30,7 @@ export class AssetdisplayComponent implements OnInit {
   newEmployerMatch1: EmployerMatch = new EmployerMatch();
   newEmployerMatch2: EmployerMatch = new EmployerMatch();
   contributeType = 'fixed';
+  contribute: Boolean = false;
   user: User;
   balance: boolean;
   contribution: boolean;
@@ -156,6 +157,7 @@ export class AssetdisplayComponent implements OnInit {
        console.log('asset creation success');
        this.ngOnInit();
        this.asset = new Asset();
+       this.contribute = false;
       },
       err => {
         console.log('error adding asset');
