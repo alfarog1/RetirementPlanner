@@ -63,7 +63,7 @@
             value={{editAsset.employerMatch}} [(ngModel)]="editAsset.employerMatch">
         </div>
       </tr>
-      <tr *ngIf="editAsset.riskProfile != null">
+      <tr *ngIf="editAsset.riskProfile === null">
         <div class="input-group mb-3">
           <div class="input-group-prepend">
             <label class="input-group-text" for="inputGroupSelect01">Risk Profile</label>

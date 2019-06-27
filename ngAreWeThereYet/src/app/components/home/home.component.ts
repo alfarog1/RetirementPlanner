@@ -182,7 +182,16 @@ export class HomeComponent implements OnInit {
         "#ef8250",
         "#aed987",
         "#fcc267",
-        "#00876c"
+        "#00876c",
+        "#C40822",
+        "#58871B",
+        "#456D12",
+        "#563E0B",
+        "#17CC17",
+        "#17CC6C",
+        "#17CC9D",
+        "#A40D14",
+        "#F20510"
       ]
     }
   ];
