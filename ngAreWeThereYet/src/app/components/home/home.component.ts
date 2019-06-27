@@ -131,7 +131,6 @@ export class HomeComponent implements OnInit {
 
   // Doughnut 2
   public doughnutChartLabels2: Label[] = [
-
     "Income hasn't changed or has decreased",
     "Comfortable with retirement savings",
     "Focusing on another financial priority",

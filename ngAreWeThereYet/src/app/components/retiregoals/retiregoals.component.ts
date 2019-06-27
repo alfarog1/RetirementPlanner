@@ -41,6 +41,7 @@ export class RetiregoalsComponent implements OnInit {
               this.user.userProfile.retirementAge);
         const i = .13 / 12;
         this.balanceNeeded = p * ((Math.pow(1 + i, n) - 1) / i);
+        this.balanceNeeded = this.balanceNeeded * .3;
       },
       err => {
         console.log('error retrieving user:');
