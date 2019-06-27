@@ -80,8 +80,8 @@ export class FinanceBarComponent implements OnInit {
 
         this.assets.forEach(asset => {
           if (asset.periodicDeposit !== 0) {
-            const i = this.ror / 100 / asset.vehicle.compoundingPeriods;
-            const t = asset.vehicle.compoundingPeriods * this.yearsToRetire;
+            const i = this.ror / 100;
+            const t = this.yearsToRetire;
             const contribution =
               asset.contributionFixed !== null
                 ? asset.contributionFixed
@@ -108,6 +108,22 @@ export class FinanceBarComponent implements OnInit {
         // this.retirementReadinessVar = (this.ready / this.yearsToRetire);
         // this.guageComponent.retirementReadiness = this.ready;
         // this.guageComponent.setRetirementReadiness(this.ready);
+
+        this.assets.forEach((asset) => {
+          const i = this.ror / 100 ;
+          const t = this.yearsToRetire;
+          const d = asset.periodicDeposit;
+          const x = 1 + i;
+          console.log(i);
+          console.log(t);
+          console.log(d);
+          console.log(x);
+          this.fv +=
+            asset.amount * Math.pow(x, t) + d * ((Math.pow(x, t) - 1) / i) * x;
+        });
+
+        console.log('End futureValueOfAssets()');
+        return this.fv;
       },
       bad => {
         console.log('A bad thing happened');
@@ -115,21 +131,7 @@ export class FinanceBarComponent implements OnInit {
       },
       () => {}
     );
-    this.assets.forEach(function(asset) {
-      const i = this.ror / 100 / asset.vehicle.compoundingPeriods;
-      const t = asset.vehicle.compoundingPeriods * this.yearsToRetire;
-      const d = asset.periodicDeposit;
-      const x = 1 + i;
-      console.log(i);
-      console.log(t);
-      console.log(d);
-      console.log(x);
-      this.fv +=
-        asset.amount * Math.pow(x, t) + d * ((Math.pow(x, t) - 1) / i) * x;
-    });
 
-    console.log('End futureValueOfAssets()');
-    return this.fv;
   }
 
   balanceNeededAtRetirement() {
@@ -163,7 +165,7 @@ export class FinanceBarComponent implements OnInit {
 
   monthlyRetirementIncome() {
     this.payments =
-      (this.futureValueOfAssets() * this.annualRateAtRetirement) /
+      (this.fv * this.annualRateAtRetirement) /
       (Math.pow(1 + this.annualRateAtRetirement, this.yearsInRetirement()) - 1);
   }
 }
