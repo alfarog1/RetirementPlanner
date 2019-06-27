@@ -126,7 +126,7 @@ export class RetiregoalsComponent implements OnInit {
     this.auth.logout();
   }
   deactivate() {
-    if (confirm()) {
+    if (confirm("Are You Sure?")) {
       this.user.enabled = false;
       this.usersvc.update(this.user).subscribe(
         good => {
