@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ChartType, ChartOptions, ChartLayoutOptions } from 'chart.js';
 import { MultiDataSet, Label } from 'ng2-charts';
 import { trigger, transition, animate, style } from '@angular/animations';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-risk-questionnaire',
@@ -142,7 +143,7 @@ export class RiskQuestionnaireComponent implements OnInit {
     }
   ];
   // Constructor
-  constructor() {}
+  constructor(private modalService: NgbModal) {}
 
   // Methods
   ngOnInit() {}
@@ -180,5 +181,8 @@ export class RiskQuestionnaireComponent implements OnInit {
       (+this.question4) +
       (+this.question5);
     console.log(this.totalScore);
+  }
+  openLg(content) {
+    this.modalService.open(content, { size: "lg" });
   }
 }
